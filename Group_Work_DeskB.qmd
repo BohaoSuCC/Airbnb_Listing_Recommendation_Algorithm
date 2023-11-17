@@ -44,16 +44,16 @@ format:
 
 ## Declaration of Authorship {.unnumbered .unlisted}
 
-We, [insert your group's names], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
+We, \[DeskB\], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
 
-Date:
+Date: December 11th 2023
 
-Student Numbers: 
+Student Numbers: 20017359   23032922   23081403    23103585    23130397
 
 ## Brief Group Reflection
 
 | What Went Well | What Was Challenging |
-| -------------- | -------------------- |
+|----------------|----------------------|
 | A              | B                    |
 | C              | D                    |
 
@@ -77,7 +77,6 @@ Are there any areas on which you would appreciate more detailed feedback if we'r
 }
 </style>
 ```
-
 {{< pagebreak >}}
 
 # Response to Questions
@@ -102,22 +101,18 @@ else:
 
 ## 1. Who collected the data?
 
-::: {.duedate}
-
+::: duedate
 ( 2 points; Answer due Week 7 )
-
 :::
 
 An inline citation: As discussed on @insideairbnb, there are many...
 
-A parenthetical citation: There are many ways to research Airbnb [see, for example, @insideairbnb]... 
+A parenthetical citation: There are many ways to research Airbnb [see, for example, @insideairbnb]...
 
 ## 2. Why did they collect it?
 
-::: {.duedate}
-
+::: duedate
 ( 4 points; Answer due Week 7 )
-
 :::
 
 ```{python}
@@ -129,51 +124,40 @@ ax = df.host_listings_count.plot.hist(bins=50);
 ax.set_xlim([0,500]);
 ```
 
-## 3. How was the data collected?  
+## 3. How was the data collected?
 
-::: {.duedate}
-
+::: duedate
 ( 5 points; Answer due Week 8 )
-
 :::
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
-::: {.duedate}
-
+::: duedate
 ( 11 points; Answer due Week 9 )
-
 :::
 
-## 5. What ethical considerations does the use of this data raise? 
+## 5. What ethical considerations does the use of this data raise?
 
-::: {.duedate}
-
+::: duedate
 ( 18 points; Answer due {{< var assess.group-date >}} )
-
 :::
 
-## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
+## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
 
-::: {.duedate}
-
+::: duedate
 ( 15 points; Answer due {{< var assess.group-date >}} )
-
 :::
 
-## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London? 
+## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
-::: {.duedate}
-
+::: duedate
 ( 45 points; Answer due {{< var assess.group-date >}} )
-
 :::
 
 ## Sustainable Authorship Tools
 
 Your QMD file should automatically download your BibTeX file. We will then re-run the QMD file to generate the output successfully.
 
-Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
+Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) ([sansfont]{style="font-family:Sans-Serif;"}) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`).
 
 ## References
-
