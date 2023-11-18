@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Group Name’s Group Project</title>
+<title>DeskB’s Group Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -85,7 +119,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Group Name’s Group Project</h1>
+<h1 class="title">DeskB’s Group Project</h1>
 </div>
 
 
@@ -103,7 +137,7 @@ div.csl-indent {
 <section id="declaration-of-authorship" class="level2 unnumbered unlisted">
 <h2 class="unnumbered unlisted anchored" data-anchor-id="declaration-of-authorship">Declaration of Authorship</h2>
 <p>We, [DeskB], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.</p>
-<p>Date: December 11th 2023</p>
+<p>Date: 11th December 2023</p>
 <p>Student Numbers: 20017359 23032922 23081403 23103585 23130397</p>
 </section>
 <section id="brief-group-reflection" class="level2">
@@ -151,7 +185,8 @@ div.csl-indent {
 <section id="who-collected-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="who-collected-the-data">1. Who collected the data?</h2>
 <div class="duedate">
-<p>1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : This dataset was created by automatically scraping public information from Airbnb’s Website. Murray Cox was one of the main founder and technicians of this mission driven project that aims to provide data and advocacy about Airbnb’s impact on residential communities. <a href="(http://insideairbnb.com/about)">[1]</a> 2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> and <a href="https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip">London-wards-2018</a> : This dataset is an extract from <a href="https://www.ordnancesurvey.co.uk/">Ordnance Survey</a> Boundary-Line product which is a specialist 1:10 000 scale boundaries dataset.</p>
+<p>1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : This dataset was created by automatically scraping public information from Airbnb’s Website. Murray Cox was one of the main founder and technicians of this mission driven project that aims to provide data and advocacy about Airbnb’s impact on residential communities. <a href="(http://insideairbnb.com/about)">[1]</a></p>
+<p>2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> and <a href="https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip">London-wards-2018</a> : This dataset is an extract from <a href="https://www.ordnancesurvey.co.uk/">Ordnance Survey</a> Boundary-Line product which is a specialist 1:10 000 scale boundaries dataset.</p>
 <p>( 2 points; Answer due Week 7 )</p>
 </div>
 <p>An inline citation: As discussed on <span class="citation" data-cites="insideairbnb"><span>“Inside airbnb”</span> (<a href="#ref-insideairbnb" role="doc-biblioref">n.d.</a>)</span>, there are many…</p>
@@ -160,11 +195,13 @@ div.csl-indent {
 <section id="why-did-they-collect-it" class="level2">
 <h2 class="anchored" data-anchor-id="why-did-they-collect-it">2. Why did they collect it?</h2>
 <div class="duedate">
-<p>( 4 points; Answer due Week 7 ) 1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : Inside Airbnb is a mission driven project that provides data and advocacy about Airbnb’s impact on residential communities. We work towards a vision where communities are empowered with data and information to understand, decide and control the role of renting residential homes to tourists. 2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> : With a long history and evolving from . The Ordnance Survey aims to help governments make smarter decisions that ensure our safety and security, they also show businesses how to gain a location data edge and we help everyone experience the benefits of the world outside.</p>
+<p>( 4 points; Answer due Week 7 )</p>
+<p>1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : Inside Airbnb is a mission driven project that provides data and advocacy about Airbnb’s impact on residential communities. We work towards a vision where communities are empowered with data and information to understand, decide and control the role of renting residential homes to tourists.</p>
+<p>2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> : With a long history and evolving from . The Ordnance Survey aims to help governments make smarter decisions that ensure our safety and security, they also show businesses how to gain a location data edge and we help everyone experience the benefits of the world outside.</p>
 </div>
 <div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
-<pre><code>Data frame is 69,351 x 76</code></pre>
+<pre><code>Data frame is 69,351 x 75</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="4">
@@ -176,7 +213,13 @@ div.csl-indent {
 <section id="how-was-the-data-collected" class="level2">
 <h2 class="anchored" data-anchor-id="how-was-the-data-collected">3. How was the data collected?</h2>
 <div class="duedate">
-<p>1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps: 1.Web Scraping: Inside Airbnb uses automated scripts to systematically browse and extract data from Airbnb’s listings. These scripts navigate the website just like a human user would, but they do it much faster and on a larger scale. 2.Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled. 3.Data Aggregation: The collected data is then aggregated into a database. This database is organized to make it easier to analyze trends, patterns, and insights related to Airbnb’s offerings in various cities and regions. 4.Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones. 5.Public Accessibility: The aggregated data is often made available to the public through the Inside Airbnb website, enabling researchers, policymakers, and the general public to analyze Airbnb’s impact on housing markets and communities. It’s important to note that web scraping practices, like those used by Inside Airbnb, may face legal and ethical considerations depending on the website’s terms of service and regional laws regarding data privacy and usage. 2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> : .</p>
+<p>1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:</p>
+<p>i<em>.Web Scraping</em>: Inside Airbnb uses automated scripts to systematically browse and extract data from Airbnb’s listings. These scripts navigate the website just like a human user would, but they do it much faster and on a larger scale.</p>
+<p><em>ii.Data Extraction</em>: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.</p>
+<p><em>iii.Data Aggregation</em>: The collected data is then aggregated into a database. This database is organized to make it easier to analyze trends, patterns, and insights related to Airbnb’s offerings in various cities and regions.</p>
+<p><em>iv.Regular Updates</em>: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.</p>
+<p><em>v.Public Accessibility</em>: The aggregated data is often made available to the public through the Inside Airbnb website, enabling researchers, policymakers, and the general public to analyze Airbnb’s impact on housing markets and communities. It’s important to note that web scraping practices, like those used by Inside Airbnb, may face legal and ethical considerations depending on the website’s terms of service and regional laws regarding data privacy and usage.</p>
+<p>2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> : .</p>
 <p>( 5 points; Answer due Week 8 )</p>
 </div>
 </section>
@@ -195,6 +238,7 @@ div.csl-indent {
 <section id="with-reference-to-the-data-i.e.-using-numbers-figures-maps-and-descriptive-statistics-what-does-an-analysis-of-hosts-and-listing-types-suggest-about-the-nature-of-airbnb-lets-in-london" class="level2">
 <h2 class="anchored" data-anchor-id="with-reference-to-the-data-i.e.-using-numbers-figures-maps-and-descriptive-statistics-what-does-an-analysis-of-hosts-and-listing-types-suggest-about-the-nature-of-airbnb-lets-in-london">6. With reference to the data (<em>i.e.</em> using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?</h2>
 <div class="duedate">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>( 15 points; Answer due <strong>?var:assess.group-date</strong> )</p>
 </div>
 </section>
