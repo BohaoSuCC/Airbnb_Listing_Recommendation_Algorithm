@@ -89,73 +89,79 @@ Are there any areas on which you would appreciate more detailed feedback if we'r
 
 ```{python}
 import os
+
 import pandas as pd
 ```
 
-host = 'https://orca.casa.ucl.ac.uk'
-path = '~jreades/data'
-file = '2022-09-10-listings.csv.gz'
+```{python}
+host = 'http://data.insideairbnb.com'
+path = 'united-kingdom/england/london/2023-09-06/data'
+file = 'listings.csv.gz'
 url  = f'{host}/{path}/{file}'
 
 if os.path.exists(file):
-  df = pd.read_csv(file, compression='gzip', low_memory=False)
+  Airbnb_Listing = pd.read_csv(file, compression='gzip', low_memory=False)
 else: 
-  df = pd.read_csv(url, compression='gzip', low_memory=False)
-  df.to_csv(file)
+  Airbnb_Listing = pd.read_csv(url, compression='gzip', low_memory=False)
+  Airbnb_Listing.to_csv(file)
+```
 
-## 1. Who collected the data?
 
-::: duedate
+## 1. Who collected the data? ( 2 points; Answer due Week 7 )
+
+::: 
 1.[\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : This dataset was created by automatically scraping public information from Airbnb's Website. Murray Cox was one of the main founder and technicians of this mission driven project that aims to provide data and advocacy about Airbnb's impact on residential communities. [\[1\]]((http://insideairbnb.com/about))
 
 2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) and [London-wards-2018](https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip) : This dataset is an extract from [Ordnance Survey](https://www.ordnancesurvey.co.uk/) Boundary-Line product which is a specialist 1:10 000 scale boundaries dataset.
 
-( 2 points; Answer due Week 7 )
 :::
 
 An inline citation: As discussed on @insideairbnb, there are many...
 
 A parenthetical citation: There are many ways to research Airbnb [see, for example, @insideairbnb]...
 
-## 2. Why did they collect it?
+## 2. Why did they collect it? ( 4 points; Answer due Week 7 )
 
-::: duedate
-( 4 points; Answer due Week 7 )
+:::
 
 1.[\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb is a mission driven project that provides data and advocacy about Airbnb's impact on residential communities. We work towards a vision where communities are empowered with data and information to understand, decide and control the role of renting residential homes to tourists.
 
-2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : With a long history and evolving from . The Ordnance Survey aims to help governments make smarter decisions that ensure our safety and security, they also show businesses how to gain a location data edge and we help everyone experience the benefits of the world outside.
+2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : With a long history and evolving from . The Ordnance Survey aims to help governments make smarter decisions that ensure our safety and security, they also show businesses how to gain a location data edge and we help everyone experience the benefits of the world outside. Under the [Public Sector Geospatial Agreement](https://www.ordnancesurvey.co.uk/customers/public-sector/public-sector-geospatial-agreement) (PSGA), Ordnance Survey (OS) provides Great Britain’s national mapping services. OS creates, maintains and provides access to consistent, definitive and authoritative location data of Great Britain, aiming to help organisations to maximise the use, value and benefit of the data for the national interest and the public good.
 :::
 
-
 ```{python}
-print(f"Data frame is {df.shape[0]:,} x {df.shape[1]:,}")
+print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
 ```
 
 ```{python}
-ax = df.host_listings_count.plot.hist(bins=50);
-ax.set_xlim([0,500]);
+plot_hist_Listing = Airbnb_Listing.host_listings_count.plot.hist(bins=50)
+plot_hist_Listing.set_xlim([0, 500]);
 ```
 
-## 3. How was the data collected?
-
-::: duedate
+## 3. How was the data collected? ( 5 points; Answer due Week 8 )
+:::
 1.[\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:
 
-i*.Web Scraping*: Inside Airbnb uses automated scripts to systematically browse and extract data from Airbnb's listings. These scripts navigate the website just like a human user would, but they do it much faster and on a larger scale.
+**i.Web Scraping**: Inside Airbnb uses automated scripts to systematically browse and extract data from Airbnb's listings. These scripts navigate the website just like a human user would, but they do it much faster and on a larger scale.
 
-*ii.Data Extraction*: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.
+**ii.Data Extraction**: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.
 
-*iii.Data Aggregation*: The collected data is then aggregated into a database. This database is organized to make it easier to analyze trends, patterns, and insights related to Airbnb’s offerings in various cities and regions.
+**iii.Data Aggregation**: The collected data is then aggregated into a database. This database is organized to make it easier to analyze trends, patterns, and insights related to Airbnb’s offerings in various cities and regions.
 
-*iv.Regular Updates*: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.
+**iv.Regular Updates**: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.
 
-*v.Public Accessibility*: The aggregated data is often made available to the public through the Inside Airbnb website, enabling researchers, policymakers, and the general public to analyze Airbnb’s impact on housing markets and communities. It's important to note that web scraping practices, like those used by Inside Airbnb, may face legal and ethical considerations depending on the website's terms of service and regional laws regarding data privacy and usage.
+**v.Public Accessibility**: The aggregated data is often made available to the public through the Inside Airbnb website, enabling researchers, policymakers, and the general public to analyze Airbnb’s impact on housing markets and communities. It's important to note that web scraping practices, like those used by Inside Airbnb, may face legal and ethical considerations depending on the website's terms of service and regional laws regarding data privacy and usage.
 
-2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : .
+2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : "Boundary-Line for England and Wales was initially digitised from Ordnance Survey’s boundary record sheets at 1:10 000 scale (or, in some cases, at larger scales). The Government Statistical Service (GSS) codes are supplied by the Office for National Statistics 
+and General Register Office for Scotland (G)". GIS software provides the functionality to store, manage and manipulate this digital map data. Teh
+properties of the data make it suitable as a key base for users wishing to develop applications. BoundaryLine is also suitable for use within other digital mapping systems. It's coordinated on the National Grdi
+which allows for the easy superimposition of other da
+::: )
 
-( 5 points; Answer due Week 8 )
-:::
+```{python}
+print(Airbnb_Listing.info())
+print(Airbnb_Listing.columns)
+```
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
@@ -185,12 +191,10 @@ def
 ( 45 points; Answer due {{< var assess.group-date >}} )
 :::
 
-```{python}
 ## Sustainable Authorship Tools
 
 Your QMD file should automatically download your BibTeX file. We will then re-run the QMD file to generate the output successfully.
 
 Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) ([sansfont]{style="font-family:Sans-Serif;"}) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`).
-```
 
 ## References
