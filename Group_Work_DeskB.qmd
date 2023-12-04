@@ -159,7 +159,7 @@ print(Airbnb_Listing.columns)
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
 ::: duedate
-( 11 points; Answer due Week 9 )
+( 11 points; Answer due Week 9 ) ![gif](%22example.gif%22)
 :::
 
 ```{python}
