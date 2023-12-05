@@ -182,3 +182,5 @@ cython_debug/
 Data/Data_InsideAirbnb/Origin_version/calendar.csv.gz
 Data/Data_InsideAirbnb/Origin_version/reviews.csv.gz
 RTest/
+Processing_Modeling/randforest_classfier_model.joblib
+Processing_Modeling/svm_classfier_model.joblib
