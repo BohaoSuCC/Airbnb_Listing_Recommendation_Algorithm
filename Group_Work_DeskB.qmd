@@ -89,21 +89,100 @@ Are there any areas on which you would appreciate more detailed feedback if we'r
 
 ```{python}
 import os
-
+import spacy
 import pandas as pd
+import numpy as np
+import geopandas as gpd
+import re
+import math
+import string
+import unicodedata
+import gensim
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+import nltk
+import seaborn as sns
+import ast  # 用于安全地将字符串转换为列表
+import umap
+
+import contextily as ctx
+import urllib.request
+
+from PIL import Image, ImageDraw
+
+from scipy.spatial import cKDTree
+from scipy.spatial.distance import cdist
+from scipy.ndimage import convolve
+from shapely.geometry import Point
+
+from sklearn.preprocessing import OneHotEncoder  # We don't use this but I point out where you *could*
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+from sklearn.decomposition import PCA
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.svm import SVC
+from sklearn.manifold import TSNE
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+from nltk.corpus import wordnet
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.stem.porter import PorterStemmer
+from nltk.stem.snowball import SnowballStemmer
+from nltk import ngrams, FreqDist
+
+from gensim.models.coherencemodel import CoherenceModel
+from gensim.corpora.dictionary import Dictionary
+from gensim.matutils import Sparse2Corpus
+from gensim.matutils import corpus2dense
+from gensim.models import tfidfmodel
+from gensim.models import Word2Vec
+from gensim.models import TfidfModel
+from gensim.models import KeyedVectors
+from gensim.models.ldamodel import LdaModel
+
+from joblib import dump
+from joblib import load
+
+from bs4 import BeautifulSoup
+from wordcloud import WordCloud, STOPWORDS
+
+# Import everthing from textual/__init__.py
+# Including bunch of tools and functions we could use for NLP 
+from textual import *
 ```
 
 ```{python}
+# Download and read the csv file remotely from url
 host = 'http://data.insideairbnb.com'
 path = 'united-kingdom/england/london/2023-09-06/data'
 file = 'listings.csv.gz'
 url  = f'{host}/{path}/{file}'
 
+# Save csv file
 if os.path.exists(file):
   Airbnb_Listing = pd.read_csv(file, compression='gzip', low_memory=False)
 else: 
   Airbnb_Listing = pd.read_csv(url, compression='gzip', low_memory=False)
   Airbnb_Listing.to_csv(file)
+
+# Download and read the gpkg file remotel from url
+host = 'https://data.london.gov.uk'
+path = 'download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f'
+file = 'London_Boroughs.gpkg'
+url  = f'{host}/{path}/{file}'
+
+# Save gkpg file
+if os.path.exists(file):
+  London_boroughs = gpd.read_file(file, compression='gzip', low_memory=False)
+else: 
+  London_boroughs = gpd.read_file(url, compression='gzip', low_memory=False)
+  London_boroughs.to_file(file, driver='GPKG')
+
 ```
 
 ## 1. Who collected the data? ( 2 points; Answer due Week 7 )
@@ -163,7 +242,7 @@ print(Airbnb_Listing.columns)
 :::
 
 ```{python}
-import scipy as sp
+###relating coding for PART4
 ```
 
 ## 5. What ethical considerations does the use of this data raise?
@@ -178,9 +257,47 @@ import scipy as sp
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
 
-::: duedate
-( 15 points; Answer due {{< var assess.group-date >}} )
-:::
+有很多的研究从xxxx等方面，分析了Airbnb房源各方面的特征。包括价格、空间分布，房源类型等。但同时，不可忽略的一点是，在Airbnb网站平台的介绍中，"文本描述"作为其中重要的一环，影响着renters对房源的第一印象，同时对于促进一笔成功的rental交易起着重要作用，同时作为市场的正向反馈，房东host也会根据市场的需求时刻调整着自己的description来迎合市场。因此，对于文本描述的分析既可以xxx，又可以。那么，在STL的大背景regulation下，如何通过分析房源的文本特征与房源的签约成功率，综合income相关联，来分析数据之间的联系relationship。并以这些relationship为指引来进行branding，帮助：
+
+1. 帮助房东获得更多的收益，
+2. 帮助Airbnb更高效的利用房源，
+3. 帮助社区更好的防止ghost hotel与社区空虚。
+
+How to maximize listings' utilize under 90-day STL regulation by their textual features/charactoristic?
+
+### 6.1 The definition of maximize income
+
+我们用"minimum_nights"列的数据乘以"number_of_review"xxxxx，乘以price。最后得到一个预估的总和'sum_income'.
+
+再结合各个borough不同的xxxx指标，来与sum_income综合比较之后得到一个综合指标。
+
+后续的所有文本特征分析，都以这个综合指标X来衡量。
+
+**（综合指标X的图）**
+
+### 6.2 dataset中有哪些文本特征？
+
+1. 'description'：这一列的主要内容是房东对该房源的描述。那么，在各种各样的描述中，不同的房东会从哪些方面（主题topic）来对自己的房源进行描述（branding）？
+
+2. 'amenities'：这一列的主要内容是一些设施，场地，额外配置等。
+
+3. 以上这两个文本特征，在城市的空间分布中有怎样的集聚类型特征？是否在某些特定区域（社区），会有同质性房源的相似描述的高度集中分布？
+
+4. 这些文本特征如何与综合指标X来相关联？怎样的文本特征对提升综合指标X有着正向推动作用？
+
+#### 6.2.1 房东的房源描述有哪些共有主题（shared topic）？
+
+**16个词云图**
+
+#### 6.2.2 amenities有哪些的空间分布特征？
+
+**向量散点图**
+
+#### 6.2.3 怎样的ameinities对综合指标X有正向作用？
+
+**向量回归模型分类**
+
+
 
 ```{python}
 ###relating coding for PART6
