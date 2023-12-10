@@ -257,11 +257,11 @@ print(Airbnb_Listing.columns)
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
 
-有很多的研究从xxxx等方面，分析了Airbnb房源各方面的特征。包括价格、空间分布，房源类型等。但同时，不可忽略的一点是，在Airbnb网站平台的介绍中，"文本描述"作为其中重要的一环，影响着renters对房源的第一印象，同时对于促进一笔成功的rental交易起着重要作用，同时作为市场的正向反馈，房东host也会根据市场的需求时刻调整着自己的description来迎合市场。因此，对于文本描述的分析既可以xxx，又可以。那么，在STL的大背景regulation下，如何通过分析房源的文本特征与房源的签约成功率，综合income相关联，来分析数据之间的联系relationship。并以这些relationship为指引来进行branding，帮助：
+有很多的研究从xxxx等方面，分析了Airbnb房源各方面的特征。包括价格、空间分布，房源类型等。但同时，不可忽略的一点是，在Airbnb网站平台的介绍中，"文本描述"作为其中重要的一环，影响着renters对房源的第一印象，同时对于促进一笔成功的rental交易起着重要作用，同时作为市场的正向反馈，房东host也会根据*政策的要求*调整着自己的description来迎合市场。因此，对于文本描述的分析既可以xxx，又可以。那么，在STL的大背景regulation下，如何通过分析房源的文本特征与房源的*签约成功率，综合income相关联*，来分析数据之间的联系relationship。并以这些relationship为指引来进行branding，帮助：
 
-1. 帮助房东获得更多的收益，
-2. 帮助Airbnb更高效的利用房源，
-3. 帮助社区更好的防止ghost hotel与社区空虚。
+1.  帮助房东获得更多的收益，
+2.  帮助Airbnb更高效的利用房源，
+3.  "STL"。
 
 How to maximize listings' utilize under 90-day STL regulation by their textual features/charactoristic?
 
@@ -271,31 +271,40 @@ How to maximize listings' utilize under 90-day STL regulation by their textual f
 
 再结合各个borough不同的xxxx指标，来与sum_income综合比较之后得到一个综合指标。
 
-后续的所有文本特征分析，都以这个综合指标X来衡量。
+后续的所有文本特征分析，都以这个综合指标X来衡量。（综合指标与’是否超过90天‘相结合）
 
-**（综合指标X的图）**
+**(综合指标X分布图，与某些文献提到的middle-income neighbourhoods相匹配)**
 
 ### 6.2 dataset中有哪些文本特征？
 
-1. 'description'：这一列的主要内容是房东对该房源的描述。那么，在各种各样的描述中，不同的房东会从哪些方面（主题topic）来对自己的房源进行描述（branding）？
+1.  'description'：这一列的主要内容是房东对该房源的描述。那么，在各种各样的描述中，不同的房东会从哪些方面（主题topic）来对自己的房源进行描述（branding）？
 
-2. 'amenities'：这一列的主要内容是一些设施，场地，额外配置等。
+2.  'amenities'：这一列的主要内容是一些设施，场地，额外配置等。
 
-3. 以上这两个文本特征，在城市的空间分布中有怎样的集聚类型特征？是否在某些特定区域（社区），会有同质性房源的相似描述的高度集中分布？
+3.  以上这两个文本特征，在城市的空间分布中有怎样的集聚类型特征？是否在某些特定区域（社区），会有同质性房源的相似描述的高度集中分布？
 
-4. 这些文本特征如何与综合指标X来相关联？怎样的文本特征对提升综合指标X有着正向推动作用？
+4.  这些文本特征如何与综合指标X来相关联？怎样的文本特征对提升综合指标X有着正向推动作用？
 
 #### 6.2.1 房东的房源描述有哪些共有主题（shared topic）？
 
-**16个词云图**
+在所有的'description'描述中，通过LDA模型能够提取文本中的主题特征。
+
+在通过accurary值衡量不同数量topic的拟合程度之后，topic确认为16个。**（折线coherence value）**
+
+**16个词云图**（词云图中找出周边环境的特征信息）
 
 #### 6.2.2 amenities有哪些的空间分布特征？
 
-**向量散点图**
+**向量散点图+底图散点分布**
 
 #### 6.2.3 怎样的ameinities对综合指标X有正向作用？
 
-**向量回归模型分类**
+**向量回归模型SVM分类**
+
+
+1. 同质性房源的空间分布（聚集与哪些社区？哪些区域？
+
+2. 现有房源描述的关键词有哪些？哪些文本特征有利于提高综合指标X？
 
 
 
