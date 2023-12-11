@@ -98,6 +98,7 @@ import math
 import string
 import unicodedata
 import gensim
+import matplotlib as mpl
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
@@ -191,7 +192,6 @@ else:
 
 2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) and [London-wards-2018](https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip) : This dataset is an extract from [Ordnance Survey](https://www.ordnancesurvey.co.uk/) Boundary-Line product which is a specialist 1:10 000 scale boundaries dataset.
 
-
 :::
 
 An inline citation: As discussed on @insideairbnb, there are many...
@@ -258,6 +258,10 @@ print(Airbnb_Listing.columns)
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
 
+文本特征如何被generalize和classified为Airbnb的推荐系统和branding系统提供 参考？
+
+1.为什么要看文本特征？
+
 有很多的研究从xxxx等方面，分析了Airbnb房源各方面的特征。包括价格、空间分布，房源类型等。但同时，不可忽略的一点是，在Airbnb网站平台的介绍中，"文本描述"作为其中重要的一环，影响着renters对房源的第一印象，同时对于促进一笔成功的rental交易起着重要作用，同时作为市场的正向反馈，房东host也会根据*政策的要求*调整着自己的description来迎合市场。
 
 因此，对于文本描述的分析既可以xxx，又可以。那么，在STL的大背景regulation下，如何通过分析房源的文本特征与房源的*签约成功率，综合income相关联*，来分析数据之间的联系relationship。并以这些relationship为指引来进行branding，帮助：
@@ -304,37 +308,29 @@ How to maximize listings' utilize under 90-day STL regulation by their textual f
 
 **向量回归模型SVM分类**
 
+1.  同质性房源的空间分布（聚集与哪些社区？哪些区域？
 
-1. 同质性房源的空间分布（聚集与哪些社区？哪些区域？
-
-2. 现有房源描述的关键词有哪些？哪些文本特征有利于提高综合指标X？
-
-
-文本特征提取信息——————branding的导向（参考
-
-
-branding的导向—————— 正向和负向对STL的影响？
-
-Airbnb 可以参考branding导向做两件事：
-
-1. 更多的推荐那些有着更高*出租利润率*的房源。（单体收入更高，但是会导致部分房子）
-
-2. 更多的推荐那些*出租利润率*较低的房源，让整体的房屋入住率较为平均（时间上平均+空间上平均）
-
-
-
-正向：1.
-
-负向：1.
-
-
-
+2.  现有房源描述的关键词有哪些？哪些文本特征有利于提高综合指标X？
 
 ```{python}
 ###relating coding for PART6
 ```
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
+
+文本特征提取信息——————branding的导向（参考
+
+branding的导向—————— 正向和负向对STL的影响？
+
+Airbnb 可以参考branding导向做两件事：
+
+1.  更多的推荐那些有着更高*出租利润率*的房源。（单体收入更高，但是会导致部分房子）
+
+2.  更多的推荐那些*出租利润率*较低的房源，让整体的房屋入住率较为平均（时间上平均+空间上平均）
+
+正向：1.
+
+负向：1.
 
 ::: duedate
 ( 45 points; Answer due {{< var assess.group-date >}} )
