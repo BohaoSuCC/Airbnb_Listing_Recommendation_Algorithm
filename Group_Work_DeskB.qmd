@@ -48,11 +48,36 @@ jupyter:
     name: python3
 ---
 
+```{python}
+```{python}
+import requests
+"""
+# Set the Github PERMALINK URL for downloading bio.bib and harvard-cite-them-right.csl
+bib_url = https://github.com/BohaoSuCC/Groupwork_DeskB/blob/ac05a58f6578083ccab0a4fd5f4f0291a1ef293a/bio.bib?raw=true 
+csl_url = https://github.com/BohaoSuCC/Groupwork_DeskB/blob/ac05a58f6578083ccab0a4fd5f4f0291a1ef293a/harvard-cite-them-right.csl?raw=true
+
+# Set the Github PATH URL for downloading bio.bib and harvard-cite-them-right.csl
+bib_url = https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/bio.bib?raw=true
+csl_url = https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/harvard-cite-them-right.csl?raw=true
+
+
+# Downloading bio.bib
+resp = requests.get(bib_url)
+with open("bio.bib", "wb") as f:
+    f.write(resp.content)
+
+# 下载harvard-cite-them-right.csl文件
+resp = requests.get(csl_url)
+with open("harvard-cite-them-right.csl", "wb") as f:
+    f.write(resp.content)
+"""
+```
+
 ## Declaration of Authorship {.unnumbered .unlisted}
 
 We, \[DeskB\], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
 
-Date: 11th December 2023
+Date: 19th December 2023
 
 Student Numbers: 20017359 23032922 23081403 23103585 23130397
 
@@ -183,20 +208,22 @@ if os.path.exists(file):
 else: 
   London_boroughs = gpd.read_file(url, compression='gzip', low_memory=False)
   London_boroughs.to_file(file, driver='GPKG')
+```
 
+```{python}
+# Automatically download the BibTeX file.
 ```
 
 ## 1. Who collected the data? ( 2 points; Answer due Week 7 )
 
-::: 1.[\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : This dataset was created by automatically scraping public information from Airbnb's Website. Murray Cox was one of the main founder and technicians of this mission driven project that aims to provide data and advocacy about Airbnb's impact on residential communities. [\[1\]]((http://insideairbnb.com/about))
+1. [\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : This dataset was created by automatically scraping public information from Airbnb's Website. Murray Cox was one of the main founder and technicians of this mission driven project that aims to provide data and advocacy about Airbnb's impact on residential communities. [\[1\]]((http://insideairbnb.com/about))
 
-2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) and [London-wards-2018](https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip) : This dataset is an extract from [Ordnance Survey](https://www.ordnancesurvey.co.uk/) Boundary-Line product which is a specialist 1:10 000 scale boundaries dataset.
+2. [\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) and [London-wards-2018](https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip) : This dataset is an extract from [Ordnance Survey](https://www.ordnancesurvey.co.uk/) Boundary-Line product which is a specialist 1:10 000 scale boundaries dataset.
 
-:::
 
 An inline citation: As discussed on @insideairbnb, there are many...
 
-A parenthetical citation: There are many ways to research Airbnb [see, for example, @insideairbnb]...
+A parenthetical citation: There are many ways to research Airbnb [@insideairbnb]
 
 ## 2. Why did they collect it? ( 4 points; Answer due Week 7 )
 
@@ -231,15 +258,10 @@ plot_hist_Listing.set_xlim([0, 500]);
 
 2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : "Boundary-Line for England and Wales was initially digitised from Ordnance Survey's boundary record sheets at 1:10 000 scale (or, in some cases, at larger scales). The Government Statistical Service (GSS) codes are supplied by the Office for National Statistics and General Register Office for Scotland(GROS). GIS software provides the functionality to store, manage and manipulate this digital map data. The properties of the data make it suitable as a key base for users wishing to develop applications. BoundaryLine is also suitable for use within other digital mapping systems. It's coordinated on the National Grid which allows for the easy superimposition of other data.
 
-```{python}
-#print(Airbnb_Listing.info())
-print(Airbnb_Listing.columns)
-```
-
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
 ::: duedate
-( 11 points; Answer due Week 9 ) ![gif](%22example.gif%22)
+( 11 points; Answer due Week 9 )
 :::
 
 ```{python}
@@ -257,6 +279,12 @@ print(Airbnb_Listing.columns)
 ```
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
+
+### 6.1 Why should we choose the textual information?
+
+Many studi[@xiao:2016]es have analyzed various aspects of Airbnb listings, including price, spatial distribution, room type, etc. However, the "textual description" also plays a crucial role in shaping renters' first impressions of the listings and significantly contributes to facilitating successful rental transactions. Additionally, as a form of positive market feedback, hosts would also adjust their descriptions in response to policy requirements to cater to market demand s.### 6.2 What's in the textual information
+
+
 
 文本特征如何被generalize和classified为Airbnb的推荐系统和branding系统提供 参考？
 

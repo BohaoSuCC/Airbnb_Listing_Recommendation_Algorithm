@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -134,10 +100,15 @@ div.csl-indent {
 
 </header>
 
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>'\n# Set the Github PERMALINK URL for downloading bio.bib and harvard-cite-them-right.csl\nbib_url = https://github.com/BohaoSuCC/Groupwork_DeskB/blob/ac05a58f6578083ccab0a4fd5f4f0291a1ef293a/bio.bib?raw=true \ncsl_url = https://github.com/BohaoSuCC/Groupwork_DeskB/blob/ac05a58f6578083ccab0a4fd5f4f0291a1ef293a/harvard-cite-them-right.csl?raw=true\n\n# Set the Github PATH URL for downloading bio.bib and harvard-cite-them-right.csl\nbib_url = https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/bio.bib?raw=true\ncsl_url = https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/harvard-cite-them-right.csl?raw=true\n\n\n# Downloading bio.bib\nresp = requests.get(bib_url)\nwith open("bio.bib", "wb") as f:\n    f.write(resp.content)\n\n# 下载harvard-cite-them-right.csl文件\nresp = requests.get(csl_url)\nwith open("harvard-cite-them-right.csl", "wb") as f:\n    f.write(resp.content)\n'</code></pre>
+</div>
+</div>
 <section id="declaration-of-authorship" class="level2 unnumbered unlisted">
 <h2 class="unnumbered unlisted anchored" data-anchor-id="declaration-of-authorship">Declaration of Authorship</h2>
 <p>We, [DeskB], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.</p>
-<p>Date: 11th December 2023</p>
+<p>Date: 19th December 2023</p>
 <p>Student Numbers: 20017359 23032922 23081403 23103585 23130397</p>
 </section>
 <section id="brief-group-reflection" class="level2">
@@ -182,70 +153,45 @@ div.csl-indent {
 </section>
 <section id="response-to-questions" class="level1">
 <h1>Response to Questions</h1>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-stdout">
+<pre><code>All NLTK libraries installed...</code></pre>
+</div>
+</div>
 <section id="who-collected-the-data-2-points-answer-due-week-7" class="level2">
 <h2 class="anchored" data-anchor-id="who-collected-the-data-2-points-answer-due-week-7">1. Who collected the data? ( 2 points; Answer due Week 7 )</h2>
-<p>::: 1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : This dataset was created by automatically scraping public information from Airbnb’s Website. Murray Cox was one of the main founder and technicians of this mission driven project that aims to provide data and advocacy about Airbnb’s impact on residential communities. <a href="(http://insideairbnb.com/about)">[1]</a></p>
-<p>2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> and <a href="https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip">London-wards-2018</a> : This dataset is an extract from <a href="https://www.ordnancesurvey.co.uk/">Ordnance Survey</a> Boundary-Line product which is a specialist 1:10 000 scale boundaries dataset.</p>
-<p>:::</p>
+<ol type="1">
+<li><p><a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : This dataset was created by automatically scraping public information from Airbnb’s Website. Murray Cox was one of the main founder and technicians of this mission driven project that aims to provide data and advocacy about Airbnb’s impact on residential communities. <a href="(http://insideairbnb.com/about)">[1]</a></p></li>
+<li><p><a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> and <a href="https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip">London-wards-2018</a> : This dataset is an extract from <a href="https://www.ordnancesurvey.co.uk/">Ordnance Survey</a> Boundary-Line product which is a specialist 1:10 000 scale boundaries dataset.</p></li>
+</ol>
 <p>An inline citation: As discussed on <span class="citation" data-cites="insideairbnb"><span>“Inside airbnb”</span> (<a href="#ref-insideairbnb" role="doc-biblioref">n.d.</a>)</span>, there are many…</p>
-<p>A parenthetical citation: There are many ways to research Airbnb <span class="citation" data-cites="insideairbnb">(see, for example, <a href="#ref-insideairbnb" role="doc-biblioref"><span>“Inside airbnb,”</span> n.d.</a>)</span>…</p>
+<p>A parenthetical citation: There are many ways to research Airbnb <span class="citation" data-cites="insideairbnb">(<a href="#ref-insideairbnb" role="doc-biblioref"><span>“Inside airbnb,”</span> n.d.</a>)</span></p>
 </section>
 <section id="why-did-they-collect-it-4-points-answer-due-week-7" class="level2">
 <h2 class="anchored" data-anchor-id="why-did-they-collect-it-4-points-answer-due-week-7">2. Why did they collect it? ( 4 points; Answer due Week 7 )</h2>
 <p>:::</p>
 <p>1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : Inside Airbnb is a mission driven project that provides data and advocacy about Airbnb’s impact on residential communities. We work towards a vision where communities are empowered with data and information to understand, decide and control the role of renting residential homes to tourists.</p>
 <p>2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> : With a long history and evolving from . The Ordnance Survey aims to help governments make smarter decisions that ensure our safety and security, they also show businesses how to gain a location data edge and we help everyone experience the benefits of the world outside. Under the <a href="https://www.ordnancesurvey.co.uk/customers/public-sector/public-sector-geospatial-agreement">Public Sector Geospatial Agreement</a> (PSGA), Ordnance Survey (OS) provides Great Britain’ national mapping services. OS creates, maintains and provides access to consistent, definitive and authoritative location data of Great Britain, aiming to help organisations to maximise the use, value and benefit of the data for the national interest and the public good. :::</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>Data frame is 87,946 x 75</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
-<p><img src="Group_Work_DeskB_files/figure-html/cell-5-output-1.png" width="623" height="411"></p>
+<p><img src="Group_Work_DeskB_files/figure-html/cell-7-output-1.png" width="623" height="411"></p>
 </div>
 </div>
 </section>
 <section id="how-was-the-data-collected-5-points-answer-due-week-8" class="level2">
 <h2 class="anchored" data-anchor-id="how-was-the-data-collected-5-points-answer-due-week-8">3. How was the data collected? ( 5 points; Answer due Week 8 )</h2>
-<p>::: 1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:</p>
+<p>1.<a href="http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz">*listings.csv</a> : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:</p>
 <p><strong>i.Web Scraping</strong>: Inside Airbnb uses automated scripts to systematically browse and extract data from Airbnb’s listings. These scripts navigate the website just like a human user would, but they do it much faster and on a larger scale.</p>
 <p><strong>ii.Data Extraction</strong>: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.</p>
 <p><strong>iii.Data Aggregation</strong>: The collected data is then aggregated into a database. This database is organized to make it easier to analyze trends, patterns, and insights related to Airbnb’s offerings in various cities and regions.</p>
 <p><strong>iv.Regular Updates</strong>: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.</p>
 <p><strong>v.Public Accessibility</strong>: The aggregated data is often made available to the public through the Inside Airbnb website, enabling researchers, policymakers, and the general public to analyze Airbnb’s impact on housing markets and communities. It’s important to note that web scraping practices, like those used by Inside Airbnb, may face legal and ethical considerations depending on the website’s terms of service and regional laws regarding data privacy and usage.</p>
-<p>2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> : “Boundary-Line for England and Wales was initially digitised from Ordnance Survey’s boundary record sheets at 1:10 000 scale (or, in some cases, at larger scales). The Government Statistical Service (GSS) codes are supplied by the Office for National Statistics and General Register Office for Scotland(GROS). GIS software provides the functionality to store, manage and manipulate this digital map data. The properties of the data make it suitable as a key base for users wishing to develop applications. BoundaryLine is also suitable for use within other digital mapping systems. It’s coordinated on the National Grid which allows for the easy superimposition of other data. :::</p>
-<div class="cell" data-execution_count="5">
-<div class="cell-output cell-output-stdout">
-<pre><code>Index(['id', 'listing_url', 'scrape_id', 'last_scraped', 'source', 'name',
-       'description', 'neighborhood_overview', 'picture_url', 'host_id',
-       'host_url', 'host_name', 'host_since', 'host_location', 'host_about',
-       'host_response_time', 'host_response_rate', 'host_acceptance_rate',
-       'host_is_superhost', 'host_thumbnail_url', 'host_picture_url',
-       'host_neighbourhood', 'host_listings_count',
-       'host_total_listings_count', 'host_verifications',
-       'host_has_profile_pic', 'host_identity_verified', 'neighbourhood',
-       'neighbourhood_cleansed', 'neighbourhood_group_cleansed', 'latitude',
-       'longitude', 'property_type', 'room_type', 'accommodates', 'bathrooms',
-       'bathrooms_text', 'bedrooms', 'beds', 'amenities', 'price',
-       'minimum_nights', 'maximum_nights', 'minimum_minimum_nights',
-       'maximum_minimum_nights', 'minimum_maximum_nights',
-       'maximum_maximum_nights', 'minimum_nights_avg_ntm',
-       'maximum_nights_avg_ntm', 'calendar_updated', 'has_availability',
-       'availability_30', 'availability_60', 'availability_90',
-       'availability_365', 'calendar_last_scraped', 'number_of_reviews',
-       'number_of_reviews_ltm', 'number_of_reviews_l30d', 'first_review',
-       'last_review', 'review_scores_rating', 'review_scores_accuracy',
-       'review_scores_cleanliness', 'review_scores_checkin',
-       'review_scores_communication', 'review_scores_location',
-       'review_scores_value', 'license', 'instant_bookable',
-       'calculated_host_listings_count',
-       'calculated_host_listings_count_entire_homes',
-       'calculated_host_listings_count_private_rooms',
-       'calculated_host_listings_count_shared_rooms', 'reviews_per_month'],
-      dtype='object')</code></pre>
-</div>
-</div>
+<p>2.<a href="https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg">*London_Boroughs.gpkg</a> : “Boundary-Line for England and Wales was initially digitised from Ordnance Survey’s boundary record sheets at 1:10 000 scale (or, in some cases, at larger scales). The Government Statistical Service (GSS) codes are supplied by the Office for National Statistics and General Register Office for Scotland(GROS). GIS software provides the functionality to store, manage and manipulate this digital map data. The properties of the data make it suitable as a key base for users wishing to develop applications. BoundaryLine is also suitable for use within other digital mapping systems. It’s coordinated on the National Grid which allows for the easy superimposition of other data.</p>
 </section>
 <section id="how-does-the-method-of-collection-impact-the-completeness-andor-accuracy-of-its-representation-of-the-process-it-seeks-to-study-and-what-wider-issues-does-this-raise" class="level2">
 <h2 class="anchored" data-anchor-id="how-does-the-method-of-collection-impact-the-completeness-andor-accuracy-of-its-representation-of-the-process-it-seeks-to-study-and-what-wider-issues-does-this-raise">4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?</h2>
@@ -261,16 +207,66 @@ div.csl-indent {
 </section>
 <section id="with-reference-to-the-data-i.e.-using-numbers-figures-maps-and-descriptive-statistics-what-does-an-analysis-of-hosts-and-listing-types-suggest-about-the-nature-of-airbnb-lets-in-london" class="level2">
 <h2 class="anchored" data-anchor-id="with-reference-to-the-data-i.e.-using-numbers-figures-maps-and-descriptive-statistics-what-does-an-analysis-of-hosts-and-listing-types-suggest-about-the-nature-of-airbnb-lets-in-london">6. With reference to the data (<em>i.e.</em> using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?</h2>
-<div class="duedate">
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#定义url，将名称作为key，将url链接作为value。</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>urlmap <span class="op">=</span> {}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>( 15 points; Answer due <strong>?var:assess.group-date</strong> )</p>
-</div>
+<section id="why-should-we-choose-the-textual-information" class="level3">
+<h3 class="anchored" data-anchor-id="why-should-we-choose-the-textual-information">6.1 Why should we choose the textual information?</h3>
+<p>Many studi<span class="citation" data-cites="xiao:2016">(<a href="#ref-xiao:2016" role="doc-biblioref">Xiao, 2016</a>)</span>es have analyzed various aspects of Airbnb listings, including price, spatial distribution, room type, etc. However, the “textual description” also plays a crucial role in shaping renters’ first impressions of the listings and significantly contributes to facilitating successful rental transactions. Additionally, as a form of positive market feedback, hosts would also adjust their descriptions in response to policy requirements to cater to market demand s.### 6.2 What’s in the textual information</p>
+<p>文本特征如何被generalize和classified为Airbnb的推荐系统和branding系统提供 参考？</p>
+<p>1.为什么要看文本特征？</p>
+<p>有很多的研究从xxxx等方面，分析了Airbnb房源各方面的特征。包括价格、空间分布，房源类型等。但同时，不可忽略的一点是，在Airbnb网站平台的介绍中，“文本描述”作为其中重要的一环，影响着renters对房源的第一印象，同时对于促进一笔成功的rental交易起着重要作用，同时作为市场的正向反馈，房东host也会根据<em>政策的要求</em>调整着自己的description来迎合市场。</p>
+<p>因此，对于文本描述的分析既可以xxx，又可以。那么，在STL的大背景regulation下，如何通过分析房源的文本特征与房源的<em>签约成功率，综合income相关联</em>，来分析数据之间的联系relationship。并以这些relationship为指引来进行branding，帮助：</p>
+<ol type="1">
+<li>帮助房东获得更多的收益，</li>
+<li>帮助Airbnb更高效的利用房源，</li>
+<li>“STL”。</li>
+</ol>
+<p>How to maximize listings’ utilize under 90-day STL regulation by their textual features/charactoristic?</p>
+</section>
+<section id="the-definition-of-maximize-income" class="level3">
+<h3 class="anchored" data-anchor-id="the-definition-of-maximize-income">6.1 The definition of maximize income</h3>
+<p>我们用”minimum_nights”列的数据乘以”number_of_review”xxxxx，乘以price。最后得到一个预估的总和’sum_income’.</p>
+<p>再结合各个borough不同的xxxx指标，来与sum_income综合比较之后得到一个综合指标。</p>
+<p>后续的所有文本特征分析，都以这个综合指标X来衡量。（综合指标与’是否超过90天’相结合）</p>
+<p><strong>(综合指标X分布图，与某些文献提到的middle-income neighbourhoods相匹配)</strong></p>
+</section>
+<section id="dataset中有哪些文本特征" class="level3">
+<h3 class="anchored" data-anchor-id="dataset中有哪些文本特征">6.2 dataset中有哪些文本特征？</h3>
+<ol type="1">
+<li><p>‘description’：这一列的主要内容是房东对该房源的描述。那么，在各种各样的描述中，不同的房东会从哪些方面（主题topic）来对自己的房源进行描述（branding）？</p></li>
+<li><p>‘amenities’：这一列的主要内容是一些设施，场地，额外配置等。</p></li>
+<li><p>以上这两个文本特征，在城市的空间分布中有怎样的集聚类型特征？是否在某些特定区域（社区），会有同质性房源的相似描述的高度集中分布？</p></li>
+<li><p>这些文本特征如何与综合指标X来相关联？怎样的文本特征对提升综合指标X有着正向推动作用？</p></li>
+</ol>
+<section id="房东的房源描述有哪些共有主题shared-topic" class="level4">
+<h4 class="anchored" data-anchor-id="房东的房源描述有哪些共有主题shared-topic">6.2.1 房东的房源描述有哪些共有主题（shared topic）？</h4>
+<p>在所有的’description’描述中，通过LDA模型能够提取文本中的主题特征。</p>
+<p>在通过accurary值衡量不同数量topic的拟合程度之后，topic确认为16个。<strong>（折线coherence value）</strong></p>
+<p><strong>16个词云图</strong>（词云图中找出周边环境的特征信息）</p>
+</section>
+<section id="amenities有哪些的空间分布特征" class="level4">
+<h4 class="anchored" data-anchor-id="amenities有哪些的空间分布特征">6.2.2 amenities有哪些的空间分布特征？</h4>
+<p><strong>向量散点图+底图散点分布</strong></p>
+</section>
+<section id="怎样的ameinities对综合指标x有正向作用" class="level4">
+<h4 class="anchored" data-anchor-id="怎样的ameinities对综合指标x有正向作用">6.2.3 怎样的ameinities对综合指标X有正向作用？</h4>
+<p><strong>向量回归模型SVM分类</strong></p>
+<ol type="1">
+<li><p>同质性房源的空间分布（聚集与哪些社区？哪些区域？</p></li>
+<li><p>现有房源描述的关键词有哪些？哪些文本特征有利于提高综合指标X？</p></li>
+</ol>
+</section>
+</section>
 </section>
 <section id="drawing-on-your-previous-answers-and-supporting-your-response-with-evidence-e.g.-figures-maps-and-statistical-analysismodels-how-could-this-data-set-be-used-to-inform-the-regulation-of-short-term-lets-stl-in-london" class="level2">
 <h2 class="anchored" data-anchor-id="drawing-on-your-previous-answers-and-supporting-your-response-with-evidence-e.g.-figures-maps-and-statistical-analysismodels-how-could-this-data-set-be-used-to-inform-the-regulation-of-short-term-lets-stl-in-london">7. Drawing on your previous answers, and supporting your response with evidence (e.g.&nbsp;figures, maps, and statistical analysis/models), how <em>could</em> this data set be used to inform the regulation of Short-Term Lets (STL) in London?</h2>
+<p>文本特征提取信息——————branding的导向（参考</p>
+<p>branding的导向—————— 正向和负向对STL的影响？</p>
+<p>Airbnb 可以参考branding导向做两件事：</p>
+<ol type="1">
+<li><p>更多的推荐那些有着更高<em>出租利润率</em>的房源。（单体收入更高，但是会导致部分房子）</p></li>
+<li><p>更多的推荐那些<em>出租利润率</em>较低的房源，让整体的房屋入住率较为平均（时间上平均+空间上平均）</p></li>
+</ol>
+<p>正向：1.</p>
+<p>负向：1.</p>
 <div class="duedate">
 <p>( 45 points; Answer due <strong>?var:assess.group-date</strong> )</p>
 </div>
@@ -289,6 +285,9 @@ div.csl-indent {
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="list">
 <div id="ref-insideairbnb" class="csl-entry" role="listitem">
 <span>“Inside airbnb”</span> (n.d.). Available at: <a href="http://insideairbnb.com">http://insideairbnb.com</a>.
+</div>
+<div id="ref-xiao:2016" class="csl-entry" role="listitem">
+Xiao, N. (2016) <em>GIS algorithms: Theory and applications for geographic information science &amp; technology</em>. SAGE (Research methods). doi: <a href="https://dx.doi.org/10.4135/9781473921498">https://dx.doi.org/10.4135/9781473921498</a>.
 </div>
 </div></section></div></main>
 <!-- /main column -->
