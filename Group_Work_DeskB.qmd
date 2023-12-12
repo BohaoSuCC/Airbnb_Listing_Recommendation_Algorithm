@@ -282,63 +282,41 @@ plot_hist_Listing.set_xlim([0, 500]);
 
 ### 6.1 Why should we choose the textual information?
 
-Many studi[@xiao:2016]es have analyzed various aspects of Airbnb listings, including price, spatial distribution, room type, etc. However, the "textual description" also plays a crucial role in shaping renters' first impressions of the listings and significantly contributes to facilitating successful rental transactions. Additionally, as a form of positive market feedback, hosts would also adjust their descriptions in response to policy requirements to cater to market demand s.### 6.2 What's in the textual information
+Many studies[@xiao:2016] have analyzed various aspects of Airbnb listings, including price, spatial distribution, room type, etc. However, the "textual description", with more impressive potential than numeric fields, also plays a crucial role in shaping renters' first impressions of the listings, contributing to facilitating successful rental transactions. Additionally, hosts would also focus on the feedback of market demands to adjust their descriptions in response to policy requirements or economic trends.
+
+Therefore, we have the reasonable motivation to scrutinize the textual features/characteristics from the data, aiming to generalize, classify and summarize some insightful conclusion. After correlating the insights with rental potential value, we hope to obtain valuable information about the short-term rental industry based on boroughs or wards as the basic geographical units.
+
+### 6.2 What can we dig from the textual information?
+
+Datasets consists of two textual fields: 'Description' and 'Amenities' both from the host's subjective statement as self-promotion. 'description' column is some sentences describing listing's advantages xxxxxx. 'Amenities' column is bunch of facilities and amenities inside of affiliated with the listing.
+
+After some cleaning and preprocessing of the dataset, there are two set of questions corresponding to the two columns respectively.
+
+1. Which topics would host like to focus on when promoting their properties? 
+
+We could use the LDA model to generalize topics and get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (Figure 1). 
+
+Then, word cloud shows that among 16 topics, there are xxxxxxxxxxxxx.
+
+2. Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
+
+Amenities 有着高度的分类特性，这意味着许多的amenities有着相似性，例如xxxxxxxxxxxxx，因此我们需要从海量的词汇中找出不同amenities的相似性，并将他们进行合适的分类。
+
+We use the Word2Vec model to classify 打量打量的words and phrases. Each of them would be presented as a multi-dimensional vector. 之后通过UMAP方法对他们进行降维至二维(Figure 2)。在图中，每个点都代表着某个房源的amenities特征，而颜色相似的点意味着这两个房源的ameinites特征高度相似。Afterwards, we 重新将这些点按照他们的实际地理位置放回map中。这样我们就可以知道，对于某个特定的区域或社区，区域内的房源是有着高度的同质化特征（颜色高度相似）还是异质化特征（颜色较为杂乱）。
 
 
+### 6.3 Which indicator guide the branding?
 
-文本特征如何被generalize和classified为Airbnb的推荐系统和branding系统提供 参考？
+Branding and recommendation system of Airbnb platform aims to xxxxxxx to make more money. Yet in terms of community and regulation, Airbnb should xxxxxxxx. Therefore comes the value question: what indicator could represent the potential opportunities for listing's branding or promotion?
 
-1.为什么要看文本特征？
+We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. 虽然technically this is an approximate number, but it aligns with the data from the Inside Airbnb. Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'.
 
-有很多的研究从xxxx等方面，分析了Airbnb房源各方面的特征。包括价格、空间分布，房源类型等。但同时，不可忽略的一点是，在Airbnb网站平台的介绍中，"文本描述"作为其中重要的一环，影响着renters对房源的第一印象，同时对于促进一笔成功的rental交易起着重要作用，同时作为市场的正向反馈，房东host也会根据*政策的要求*调整着自己的description来迎合市场。
+### 6.4 How does the indicator correlate with textual information?
 
-因此，对于文本描述的分析既可以xxx，又可以。那么，在STL的大背景regulation下，如何通过分析房源的文本特征与房源的*签约成功率，综合income相关联*，来分析数据之间的联系relationship。并以这些relationship为指引来进行branding，帮助：
+"How are these textual features correlated with the composite index X? What kind of textual features positively contribute to enhancing the composite index X?"
 
-1.  帮助房东获得更多的收益，
-2.  帮助Airbnb更高效的利用房源，
-3.  "STL"。
+"What are the key words in the existing property descriptions? Which textual features are beneficial in improving the composite index X?"
 
-How to maximize listings' utilize under 90-day STL regulation by their textual features/charactoristic?
-
-### 6.1 The definition of maximize income
-
-我们用"minimum_nights"列的数据乘以"number_of_review"xxxxx，乘以price。最后得到一个预估的总和'sum_income'.
-
-再结合各个borough不同的xxxx指标，来与sum_income综合比较之后得到一个综合指标。
-
-后续的所有文本特征分析，都以这个综合指标X来衡量。（综合指标与'是否超过90天'相结合）
-
-**(综合指标X分布图，与某些文献提到的middle-income neighbourhoods相匹配)**
-
-### 6.2 dataset中有哪些文本特征？
-
-1.  'description'：这一列的主要内容是房东对该房源的描述。那么，在各种各样的描述中，不同的房东会从哪些方面（主题topic）来对自己的房源进行描述（branding）？
-
-2.  'amenities'：这一列的主要内容是一些设施，场地，额外配置等。
-
-3.  以上这两个文本特征，在城市的空间分布中有怎样的集聚类型特征？是否在某些特定区域（社区），会有同质性房源的相似描述的高度集中分布？
-
-4.  这些文本特征如何与综合指标X来相关联？怎样的文本特征对提升综合指标X有着正向推动作用？
-
-#### 6.2.1 房东的房源描述有哪些共有主题（shared topic）？
-
-在所有的'description'描述中，通过LDA模型能够提取文本中的主题特征。
-
-在通过accurary值衡量不同数量topic的拟合程度之后，topic确认为16个。**（折线coherence value）**
-
-**16个词云图**（词云图中找出周边环境的特征信息）
-
-#### 6.2.2 amenities有哪些的空间分布特征？
-
-**向量散点图+底图散点分布**
-
-#### 6.2.3 怎样的ameinities对综合指标X有正向作用？
-
-**向量回归模型SVM分类**
-
-1.  同质性房源的空间分布（聚集与哪些社区？哪些区域？
-
-2.  现有房源描述的关键词有哪些？哪些文本特征有利于提高综合指标X？
 
 ```{python}
 ###relating coding for PART6
