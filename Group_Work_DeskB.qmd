@@ -127,10 +127,12 @@ import matplotlib as mpl
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+import matplotlib.patheffects as PathEffects
 import nltk
 import seaborn as sns
 import ast  # 用于安全地将字符串转换为列表
 import umap
+import zipfile
 
 import contextily as ctx
 import urllib.request
@@ -196,7 +198,7 @@ else:
   Airbnb_Listing = pd.read_csv(url, compression='gzip', low_memory=False)
   Airbnb_Listing.to_csv(file)
 
-# Download and read the gpkg file remotel from url
+# Download and read the gpkg file remotely from url
 host = 'https://data.london.gov.uk'
 path = 'download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f'
 file = 'London_Boroughs.gpkg'
@@ -204,10 +206,29 @@ url  = f'{host}/{path}/{file}'
 
 # Save gkpg file
 if os.path.exists(file):
-  London_boroughs = gpd.read_file(file, compression='gzip', low_memory=False)
+  London_boroughs = gpd.read_file(file, low_memory=False)
 else: 
-  London_boroughs = gpd.read_file(url, compression='gzip', low_memory=False)
+  London_boroughs = gpd.read_file(url, low_memory=False)
   London_boroughs.to_file(file, driver='GPKG')
+
+# Download and read the shp file remotely from url
+host = 'https://data.london.gov.uk'
+path = 'download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/'
+file = 'London-wards-2018.zip'
+url  = f'{host}/{path}/{file}'
+
+# Save gkpg file
+if os.path.exists('London_Ward.shp'):
+  London_Wards = gpd.read_file('London_Ward.shp', low_memory=False)
+else: 
+  response = requests.get(url)
+  zip_file = zipfile.ZipFile(io.BytesIO(response.content))
+  shapefile_name = os.path.join('London-wards-2018_ESRI', 'London_Ward.shp')
+  zip_file.extract(shapefile_name, 'extracted_folder')
+  shapefile_path = os.path.join('extracted_folder', shapefile_name)
+  London_Wards = gpd.read_file(shapefile_path)
+  London_Wards.to_file('London_Ward.shp', driver='ESRI Shapefile')
+
 ```
 
 ```{python}
@@ -300,20 +321,20 @@ Then, word cloud shows that among 16 topics, there are xxxxxxxxxxxxx.
 
 2. Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
-Amenities 有着高度的分类特性，这意味着许多的amenities有着相似性，例如xxxxxxxxxxxxx，因此我们需要从海量的词汇中找出不同amenities的相似性，并将他们进行合适的分类。
+Amenities are highly categorizable, meaning lots of similarities, like xxxxxxxxxxxx. Thus, we need to identify the similarities among various amenities from a vast vocabulary and appropriately categorize them.We use the Word2Vec model to classify a large number of words and phrases, each represented as a multi-dimensional vector. We then apply UMAP to reduce their dimensions to two (Figure 2). 
 
-We use the Word2Vec model to classify 打量打量的words and phrases. Each of them would be presented as a multi-dimensional vector. 之后通过UMAP方法对他们进行降维至二维(Figure 2)。在图中，每个点都代表着某个房源的amenities特征，而颜色相似的点意味着这两个房源的ameinites特征高度相似。Afterwards, we 重新将这些点按照他们的实际地理位置放回map中。这样我们就可以知道，对于某个特定的区域或社区，区域内的房源是有着高度的同质化特征（颜色高度相似）还是异质化特征（颜色较为杂乱）。
+In the chart, each point represents the amenities feature of a property, and points with similar colors indicate highly similar amenities features between properties. Afterward, we reposition these points on a map according to their actual geographical locations. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in terms of amenities features.
 
 
 ### 6.3 Which indicator guide the branding?
 
 Branding and recommendation system of Airbnb platform aims to xxxxxxx to make more money. Yet in terms of community and regulation, Airbnb should xxxxxxxx. Therefore comes the value question: what indicator could represent the potential opportunities for listing's branding or promotion?
 
-We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. 虽然technically this is an approximate number, but it aligns with the data from the Inside Airbnb. Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'.
+We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number, but it aligns with the data from the Inside Airbnb. Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'.
 
 ### 6.4 How does the indicator correlate with textual information?
 
-"How are these textual features correlated with the composite index X? What kind of textual features positively contribute to enhancing the composite index X?"
+"How are these textual features correlated with the branding indicator X? What kind of textual features positively contribute to enhancing the branding indicator X?"
 
 "What are the key words in the existing property descriptions? Which textual features are beneficial in improving the composite index X?"
 
@@ -323,20 +344,6 @@ We multiple the price of each listing by its total nights in the last year, tota
 ```
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
-
-文本特征提取信息——————branding的导向（参考
-
-branding的导向—————— 正向和负向对STL的影响？
-
-Airbnb 可以参考branding导向做两件事：
-
-1.  更多的推荐那些有着更高*出租利润率*的房源。（单体收入更高，但是会导致部分房子）
-
-2.  更多的推荐那些*出租利润率*较低的房源，让整体的房屋入住率较为平均（时间上平均+空间上平均）
-
-正向：1.
-
-负向：1.
 
 ::: duedate
 ( 45 points; Answer due {{< var assess.group-date >}} )
