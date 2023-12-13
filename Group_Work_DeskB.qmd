@@ -49,7 +49,6 @@ jupyter:
 ---
 
 ```{python}
-```{python}
 import requests
 """
 # Set the Github PERMALINK URL for downloading bio.bib and harvard-cite-them-right.csl
@@ -186,6 +185,7 @@ from textual import *
 ```
 
 ```{python}
+"""
 # Download and read the csv file remotely from url
 host = 'http://data.insideairbnb.com'
 path = 'united-kingdom/england/london/2023-09-06/data'
@@ -229,7 +229,7 @@ else:
   shapefile_path = os.path.join('extracted_folder', shapefile_name)
   London_Wards = gpd.read_file(shapefile_path)
   London_Wards.to_file('London_Ward.shp', driver='ESRI Shapefile')
-
+"""
 ```
 
 ```{python}
@@ -256,12 +256,12 @@ A parenthetical citation: There are many ways to research Airbnb [@insideairbnb]
 2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : With a long history and evolving from . The Ordnance Survey aims to help governments make smarter decisions that ensure our safety and security, they also show businesses how to gain a location data edge and we help everyone experience the benefits of the world outside. Under the [Public Sector Geospatial Agreement](https://www.ordnancesurvey.co.uk/customers/public-sector/public-sector-geospatial-agreement) (PSGA), Ordnance Survey (OS) provides Great Britain' national mapping services. OS creates, maintains and provides access to consistent, definitive and authoritative location data of Great Britain, aiming to help organisations to maximise the use, value and benefit of the data for the national interest and the public good. :::
 
 ```{python}
-print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
+#print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
 ```
 
 ```{python}
-plot_hist_Listing = Airbnb_Listing.host_listings_count.plot.hist(bins=50)
-plot_hist_Listing.set_xlim([0, 500]);
+#plot_hist_Listing = Airbnb_Listing.host_listings_count.plot.hist(bins=50)
+#plot_hist_Listing.set_xlim([0, 500]);
 ```
 
 ## 3. How was the data collected? ( 5 points; Answer due Week 8 )
@@ -319,7 +319,7 @@ After some cleaning and preprocessing of the dataset, there are two set of quest
 We could use the LDA model to generalize topics and get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (Figure 1). 
 
 ```{python}
-
+"""
 # 读取不同主题的coherence值,csv文件
 LDA_topic_coherence_frame = pd.read_csv("./Data/coherence_values.csv")
 
@@ -360,8 +360,7 @@ for i, topic in enumerate(LDA_topics_and_words_frame['Topic'].unique()):
 fig.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.1, hspace=0.1)
 
 plt.show()
-
-
+"""
 ```
 
 Then, word cloud shows that among 16 topics, there are xxxxxxxxxxxxx.
@@ -372,6 +371,145 @@ Amenities are highly categorizable, meaning lots of similarities, like xxxxxxxxx
 
 ```{python}
 ###relating coding for PART6
+
+# import Word2Vec Model from index
+word2vec_model = Word2Vec.load(os.path.join("..","Model","word2vec-d500-w40.model"))
+
+
+
+# 向量化函数
+def vectorize(text, model):
+    # 将文本分解为单词，并过滤掉模型词汇表中不存在的单词
+    words = [word for word in text if word in model.wv.key_to_index]
+    # 如果文本中没有模型已知的单词，则返回零向量
+    if len(words) == 0:
+        return np.zeros(model.vector_size)
+    # 计算所有单词向量的平均值
+    word_vectors = [model.wv[word] for word in words]
+    return np.mean(word_vectors, axis=0)
+
+Airbnb_Listing['amenities_vector'] = pd.Series(list_of_lists).apply(lambda x: vectorize(x, word2vec_model))
+
+amenities_vector = Airbnb_Listing['amenities_vector']
+
+# UMAP降维可视化word2vec模型 
+# 将pd.Series转换为np.array形式
+amenities_vector_nparray = amenities_vector.to_numpy()
+
+numpy_array = np.array([np.array(x) for x in amenities_vector_nparray])
+
+reducer = umap.UMAP(n_components=2,n_neighbors=10,min_dist=0.9)
+embedding = reducer.fit_transform(numpy_array)
+
+# 计算所有点的中心坐标
+center = np.median(embedding, axis=0)
+
+# 计算平移量
+translation = -center
+
+# 对所有点应用平移变换
+translated_embedding = embedding + translation
+
+# 验证新的中心点
+new_center = translated_embedding.mean(axis=0)
+print(f"New center after translation: {new_center}")
+
+mag = np.sqrt(np.power(translated_embedding[:,0],2) + np.power(translated_embedding[:,1],2)).reshape(-1,1)
+angle = np.arctan2(translated_embedding[:,1], translated_embedding[:,0])
+
+#对角度和距离进行归一化处理
+angle = (angle-np.min(angle)) / (np.max(angle) - np.min(angle))
+#最大最小值缩放到[0,1]
+#mag = (mag-np.min(mag)) / (np.max(mag)-np.min(mag))
+
+#标准化后缩放到[0,1]
+mag = (mag-np.mean(mag)/np.std(mag))
+#mag = (mag-np.min(mag)) / (np.max(mag)-np.min(mag))
+
+#tanh缩放，正切双曲线
+#mag = (np.tanh(mag)+1)/2
+
+#sigmoid缩放
+mag = 1 / (1 + np.exp(-mag))
+
+circ_colors = mpl.colors.hsv_to_rgb(np.concatenate((angle.reshape(-1,1),  
+                                                    np.ones_like(mag).reshape(-1,1), 
+                                                    mag.reshape(-1,1)),
+                                                    axis=1))
+
+plt.savefig(os.path.join("..","Images","Word2Vec_2D_UMAP_Projection.png"), dpi=300)
+
+color_info = np.concatenate((translated_embedding, circ_colors), axis=1)
+
+
+fig, ax = plt.subplots(figsize=(10,10))
+ax.scatter(translated_embedding[:, 0], translated_embedding[:, 1], color=circ_colors, s=0.5);
+ax.axis('off');
+fig.savefig(os.path.join("..","Images","Word2Vec_2D_UMAP_Projection.png"), dpi=300)
+
+Airbnb_Listing = pd.read_csv(os.path.join("..","Data","Airbnb_Ame2Vec_UMAP2color.csv"),low_memory=False)
+
+London_boroughs = gpd.read_file(os.path.join("..","London_Boroughs.gpkg"), compression='gzip', low_memory=False)
+London_wards = gpd.read_file(os.path.join("..","Data","London-wards-2018","London-wards-2018_ESRI","London_Ward.shp"),compression='gzip', low_memory=False)
+
+
+# Transfer pandas dataframe (Airbnb_listing.csv) to geopandas geodataframe
+# By using the coordinates ()
+
+# Converting to GeoDataframe
+gdf_listing = gpd.GeoDataFrame(Airbnb_Listing, geometry=gpd.points_from_xy(Airbnb_Listing.longitude, Airbnb_Listing.latitude))
+
+# Set the CRS
+gdf_listing.set_crs("EPSG:4326", inplace=True)  # (EPSG:4326)
+
+print("Converting successful")
+
+# Drop NAs of columns ['description','amenities']
+gdf_listing = gdf_listing.dropna(subset=['description','amenities'])
+print(f"Now gdf has {gdf_listing.shape[0]:,} rows and {gdf_listing.shape[1]:,} columns.")
+
+gdf_listing = gdf_listing.to_crs(epsg=3857)
+London_boroughs = London_boroughs.to_crs(epsg=3857)
+London_wards = London_wards.to_crs(epsg=3857)
+print("gdf_listing CRS:", gdf_listing.crs)
+print("London_boroughs CRS:", London_boroughs.crs)
+print("London_wards CRS:", London_wards.crs)
+
+# 绘制地图
+fig, ax = plt.subplots(figsize=(16, 16))
+
+London_boroughs.boundary.plot(ax=ax, edgecolor='black', linewidth=1, alpha=0.4)
+London_wards.boundary.plot(ax=ax, edgecolor='black', linewidth=1, alpha=0.2)
+
+# 从 gdf_listing 提取坐标点和 RGB 颜色值
+x = gdf_listing.geometry.x  # 经度
+y = gdf_listing.geometry.y  # 纬度
+colors = gdf_listing[['Word2Vec_UMAP_colorR', 'Word2Vec_UMAP_colorG', 'Word2Vec_UMAP_colorB']].values  # RGB 颜色值
+
+# 增加colors的亮度（通过增加 50% 的亮度）
+brightness_factor = 1.5
+colors_brightened = np.clip(colors * brightness_factor, 0, 1)  # 确保值在 0 到 1 之间
+
+# 绘制散点图
+ax.scatter(x, y, color=colors_brightened, s=40, alpha=0.1)  # 假设 RGB 值在 0-255 范围内
+
+# 添加区域名称的文字标签
+for idx, row in London_boroughs.iterrows():
+    centroid = row.geometry.centroid
+    text = ax.text(centroid.x, centroid.y, row['name'], fontsize=9, color='white',ha='center', va='center', alpha=0.7,
+                   path_effects=[PathEffects.withStroke(linewidth=0.5, foreground='black')])
+ 
+#OSM彩色底图,透明图0.7
+ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha = 0.7)              
+
+# 隐藏坐标轴
+ax.xaxis.set_visible(False)
+ax.yaxis.set_visible(False)
+
+plt.show()
+
+# 保存为 PNG 文件，分辨率为 300 dpi
+fig.savefig(os.path.join("..","Images","Word2Vec_OSM_geospace.png"), dpi=300)  
 ```
 
 In the chart, each point represents the amenities feature of a property, and points with similar colors indicate highly similar amenities features between properties. Afterward, we reposition these points on a map according to their actual geographical locations. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in terms of amenities features.
@@ -382,7 +520,138 @@ In the chart, each point represents the amenities feature of a property, and poi
 Branding and recommendation system of Airbnb platform aims to xxxxxxx to make more money. Yet in terms of community and regulation, Airbnb should xxxxxxxx. Therefore comes the value question: what indicator could represent the potential opportunities for listing's branding or promotion?
 
 ```{python}
+Airbnb_Listing_origin = pd.read_csv(os.path.join("Data","Data_InsideAirbnb","listings.csv.gz"),low_memory=False)
+
+# 每个listing的收入与average收入相比
+if Airbnb_Listing_origin['price'].dtype == 'object':
+    Airbnb_Listing_origin['price'] = Airbnb_Listing_origin['price'].str.replace('$', '').str.replace(',', '').astype(float)
+Airbnb_Listing['sum_income'] = Airbnb_Listing_origin['minimum_nights']*2.7*Airbnb_Listing_origin['number_of_reviews_ltm']*Airbnb_Listing_origin['price']
+
+average_income_forlisting = Airbnb_Listing['sum_income'].mean()
+average_income_forlisting
+
+Airbnb_Listing['price'] = Airbnb_Listing_origin['price']
+
+print((Airbnb_Listing['price'] >= 2000).sum())
+print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
+
+# 仅保留 'price' 小于 2000 的行
+Airbnb_Listing = Airbnb_Listing[Airbnb_Listing['price'] < 2000]
+
+# 检查删除后还有dataframe的shape
+print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
+
+Airbnb_Listing['profitable'] = (Airbnb_Listing['sum_income'] >= average_income_forlisting).astype(int)
+
+median_income_forlisting = Airbnb_Listing['sum_income'].median()
+
+# Transfer pandas dataframe (Airbnb_listing.csv) to geopandas geodataframe
+# By using the coordinates ()
+
+# Converting to GeoDataframe
+gdf_listing = gpd.GeoDataFrame(Airbnb_Listing, geometry=gpd.points_from_xy(Airbnb_Listing.longitude, Airbnb_Listing.latitude))
+
+# Set the CRS
+gdf_listing.set_crs("EPSG:4326", inplace=True)  # (EPSG:4326)
+
+print("Converting successful")
+
+# Drop NAs of columns ['description','amenities']
+gdf_listing = gdf_listing.dropna(subset=['description','amenities'])
+print(f"Now gdf has {gdf_listing.shape[0]:,} rows and {gdf_listing.shape[1]:,} columns.")
+```
+
+```{python}
+gdf_listing = gdf_listing.to_crs(epsg=3857)
+London_boroughs = London_boroughs.to_crs(epsg=3857)
+London_wards = London_wards.to_crs(epsg=3857)
+
+print("gdf_listing CRS:", gdf_listing.crs)
+print("London_boroughs CRS:", London_boroughs.crs)
+print("London_boroughs CRS:", London_wards.crs)
+
+# 添加 borough 名称
+gdf_listing_with_borough = gpd.sjoin(gdf_listing, London_boroughs, how='left', op='within')
+gdf_listing_with_borough = gdf_listing_with_borough.rename(columns={'name': 'borough_name'})
+
+# 添加 ward 名称
+gdf_listing_with_borough_wards = gpd.sjoin(gdf_listing_with_borough, London_wards, how='left', op='within')
+gdf_listing_with_borough_wards = gdf_listing_with_borough_wards.rename(columns={'name': 'ward_name'})
+
+# 查看结果
+print(gdf_listing_with_borough_wards.head())
+
+gdf_listing['log_sum_income'] = np.log(gdf_listing['sum_income'])
+
+gdf_listing['log_sum_income'].value_counts()
+gdf_listing_dropinf = gdf_listing[gdf_listing['log_sum_income'] != -np.inf]
+```
+
+```{python}
+gdf_listing_dropinf['log_sum_income'].hist(bins=150)
+
+# 首先，将数据归一化到 0 和 1 之间
+min_val = gdf_listing_dropinf['log_sum_income'].min()
+max_val = gdf_listing_dropinf['log_sum_income'].max()
+gdf_listing_dropinf['log_sum_income_normalized'] = (gdf_listing_dropinf['log_sum_income'] - min_val) / (max_val - min_val)
+
+
+# 然后，将 0-1 范围调整到 -1 到 1
+gdf_listing_dropinf['log_sum_income_normalized_scaled'] = gdf_listing_dropinf['log_sum_income_normalized'] * 2 - 1
+
+median_num_income = np.median(gdf_listing_dropinf['log_sum_income_normalized_scaled'],axis=0)
+gdf_listing_dropinf['log_sum_income_normalized_scaled'] = gdf_listing_dropinf['log_sum_income_normalized_scaled'] - median_num_income
+
+gdf_listing_dropinf['log_sum_income_normalized_scaled'].hist(bins=150)
+```
+
+```{python}
 ###relating coding for PART6
+
+# 绘制地图
+fig, ax = plt.subplots(figsize=(16, 16))
+
+# 计算 Jenks 自然断点
+#breaks = jenkspy.jenks_breaks(gdf_listing_dropinf['log_sum_income_normalized_scaled'],n_classes=15)
+
+# 手动指定断点
+breaks = [-1,-0.75,-0.5,-0.4,-0.25,-0.20,-0.10,-0.05,-0.04,-0.03,-0.02,-0.01,-0.005,0,0.005,0.01,0.02,0.03,0.04,0.05,0.10,0.20,0.25,0.4,0.5,0.75,1,2]
+
+# 添加区域名称的文字标签
+for idx, row in London_boroughs.iterrows():
+    centroid = row.geometry.centroid
+    text = ax.text(centroid.x, centroid.y, row['name'], fontsize=7, color='black',ha='center', va='center', alpha=0.5,
+                   path_effects=[PathEffects.withStroke(linewidth=0.5, foreground='white')])
+
+# 使用断点对数据进行分类
+gdf_listing_dropinf['income_category'] = np.digitize(gdf_listing_dropinf['log_sum_income_normalized_scaled'], breaks)
+
+#绘制borough与wards的边界
+London_boroughs.boundary.plot(ax=ax, edgecolor='black', linewidth=1, alpha=0.4)
+London_wards.boundary.plot(ax=ax, edgecolor='black', linewidth=0.5, alpha=0.2)
+
+# 绘制点，根据sum_income列进行上色
+# 这里假设gdf具有'geometry'列，包含点的位置
+scatter = ax.scatter(gdf_listing_dropinf.geometry.x, gdf_listing_dropinf.geometry.y, 
+                     c=gdf_listing_dropinf['log_sum_income_normalized_scaled'], edgecolors=None, s=40, cmap='bwr_r', 
+                     vmax=0.4, vmin=-0.5, alpha=0.2)
+
+
+# 添加颜色条
+cbar = plt.colorbar(scatter, ax=ax, label='Income', shrink=0.5, pad=0)
+# 调整颜色条的大小和位置
+cbar.ax.set_aspect(20)  # 这里的数字越大，颜色条越窄
+
+# 隐藏坐标轴
+ax.xaxis.set_visible(False)
+ax.yaxis.set_visible(False)
+
+ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)         #添加OSM底图
+
+plt.show()
+
+# 保存为 PNG 文件，分辨率为 300 dpi
+fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=300)  
 ```
 
 We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number, but it aligns with the data from the Inside Airbnb. Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'.
@@ -390,8 +659,6 @@ We multiple the price of each listing by its total nights in the last year, tota
 ### 6.4 How does the indicator correlate with textual information?
 
 By using the SVM to train the model for better predicting the indicator X according to the textual information, we could apply this method and get an approximately predictive result, which could help the Airbnb platform or Government to assess and evaluate the listings before they are promoted and recommended to the potential renters.
-
-
 
 ```{python}
 ###relating coding for PART6
