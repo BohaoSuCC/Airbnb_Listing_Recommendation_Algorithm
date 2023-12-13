@@ -127,6 +127,7 @@ import matplotlib as mpl
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+from matplotlib.gridspec import GridSpec
 import matplotlib.patheffects as PathEffects
 import nltk
 import seaborn as sns
@@ -317,11 +318,61 @@ After some cleaning and preprocessing of the dataset, there are two set of quest
 
 We could use the LDA model to generalize topics and get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (Figure 1). 
 
+```{python}
+
+# 读取不同主题的coherence值,csv文件
+LDA_topic_coherence_frame = pd.read_csv("./Data/coherence_values.csv")
+
+# 读取先前保存的LDA 模型生成主题结果
+LDA_topics_and_words_frame = pd.read_csv(os.path.join("Data","lda_topics_and_words.csv"))
+
+# 设置大图的大小
+fig = plt.figure(figsize=(24, 12))
+
+# 创建GridSpec布局，分配不同的宽度比例给折线图和词云图
+gs = GridSpec(1, 2, width_ratios=[1, 3], figure=fig)  # 假设您希望词云图占更多空间
+
+# 第一个子图：折线图
+ax1 = fig.add_subplot(gs[0, 0])
+ax1.plot(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score'], marker='o')
+ax1.set_title('Coherence Scores across Different Numbers of Topics')
+ax1.set_xlabel('Number of Topics')
+ax1.set_ylabel('Coherence Score')
+ax1.grid(True)
+for x, y in zip(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score']):
+    ax1.annotate(f'{y:.3f}', (x, y), textcoords="offset points", xytext=(0,5), ha='center')
+
+# 第二个子图区域：词云图
+wordcloud_gs = GridSpec(4, 4, gs[0, 1])
+
+# 为每个主题生成词云图，并放置在wordcloud_gs网格中
+for i, topic in enumerate(LDA_topics_and_words_frame['Topic'].unique()):
+    topic_data = LDA_topics_and_words_frame[LDA_topics_and_words_frame['Topic'] == topic]
+    word_frequencies = {row['Word']: row['Weight'] for index, row in topic_data.iterrows()}
+
+    ax = fig.add_subplot(wordcloud_gs[i])
+    wordcloud = WordCloud(width=400, height=400, background_color='white').generate_from_frequencies(word_frequencies)
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.axis('off')
+    ax.set_title(f'Topic {topic}')
+
+# 手动调整子图间距
+fig.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.1, hspace=0.1)
+
+plt.show()
+
+
+```
+
 Then, word cloud shows that among 16 topics, there are xxxxxxxxxxxxx.
 
 2. Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
 Amenities are highly categorizable, meaning lots of similarities, like xxxxxxxxxxxx. Thus, we need to identify the similarities among various amenities from a vast vocabulary and appropriately categorize them.We use the Word2Vec model to classify a large number of words and phrases, each represented as a multi-dimensional vector. We then apply UMAP to reduce their dimensions to two (Figure 2). 
+
+```{python}
+###relating coding for PART6
+```
 
 In the chart, each point represents the amenities feature of a property, and points with similar colors indicate highly similar amenities features between properties. Afterward, we reposition these points on a map according to their actual geographical locations. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in terms of amenities features.
 
@@ -330,13 +381,16 @@ In the chart, each point represents the amenities feature of a property, and poi
 
 Branding and recommendation system of Airbnb platform aims to xxxxxxx to make more money. Yet in terms of community and regulation, Airbnb should xxxxxxxx. Therefore comes the value question: what indicator could represent the potential opportunities for listing's branding or promotion?
 
+```{python}
+###relating coding for PART6
+```
+
 We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number, but it aligns with the data from the Inside Airbnb. Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'.
 
 ### 6.4 How does the indicator correlate with textual information?
 
-"How are these textual features correlated with the branding indicator X? What kind of textual features positively contribute to enhancing the branding indicator X?"
+By using the SVM to train the model for better predicting the indicator X according to the textual information, we could apply this method and get an approximately predictive result, which could help the Airbnb platform or Government to assess and evaluate the listings before they are promoted and recommended to the potential renters.
 
-"What are the key words in the existing property descriptions? Which textual features are beneficial in improving the composite index X?"
 
 
 ```{python}
