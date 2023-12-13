@@ -1,0 +1,55 @@
+## 1. Who collected the data?(2 points)
+The data was collected by Murray Cox, specifically for the Inside Airbnb project. Murray Cox utilized automated tools to extract publicly available data from the Airbnb website, including location information and pricing， and then compile it into the dataset. 
+
+
+## 2. Why did they collect it?(4 points)
+Murray Cox collected the Inside Airbnb dataset to analyze Airbnb's impact on housing markets and communities in cities globally. The project aims to provide an independent perspective, helping the public, researchers, and policymakers understand how Airbnb affects urban housing affordability and community dynamics. This data offers insights for policy discussions and social understanding of Airbnb's role in urban environments.
+
+
+## 3. How was the data collected? (5 points)
+1).*listings.csv : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:
+i.Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing.
+ii.Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.
+iii.Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions.
+iv.Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.
+v.Public Accessibility: Aggregated data is often made available to the public via the Inside Airbnb website, but the web scraping it employs may face legal and ethical challenges due to website terms of service and regional data privacy and usage laws.
+2).*London_Boroughs.gpkg : Boundary-Line for England and Wales was digitized from Ordnance Survey sheets at 1:10,000 scale, with GSS codes from ONS and GROS. GIS software manages this data, ideal for developing applications and compatible with other digital mapping systems. It's coordinated on the National Grid for easy data superimposition.
+
+
+## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise? (11 points)
+For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it may be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps (Prentice and Pawlicz, 2023).
+Regarding the London_Boroughs.gpkg file, the method of data extraction relies on precise Geographic Information System (GIS) technology and detailed national geographic data. While this approach usually provides high accuracy and quality data, there may be limitations in terms of update frequency, geographic data coverage, and level of detail. Moreover, the processing and management of such data require specialized GIS technology and knowledge, which may limit the broad use and interpretation of the data.
+
+
+## 5. What ethical considerations does the use of this data raise?(18 points)
+(1)Privacy issues: whether the dataset has the consent of the landlord owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours (Vera van den Bemt, 2018). Therefore, obtaining the user's consent is crucial to whether the user's privacy is effectively safeguarded.
+
+(2)Legal compliance: whether the use of the dataset complies with laws and regulations such as GDPR, DPA and EDPS.The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; we must consider the ethical dimensions of data processing. (Hasselbach, 2019) Therefore, legal compliance and ethical considerations should be combined in the digital age.
+
+(3)Social responsibility: it is important to use datasets appropriately, as publishing certain data may exacerbate behaviours such as inequality and bias. The Fairness and Openness Report emphasizes how to use information responsibly and ethically, and it is quite crucial to resist the labelling of low-income communities, people of colour, etc. For example, significant differences in housing prices in different neighbourhoods may reflect economic disparities, which can affect perceptions of the socioeconomic status of those areas. Therefore, there is a need to consider how to disclose the labelled attributes of the data in question to avoid negative impacts.
+
+(4)Data security: Some sensitive information in the dataset, such as personal information descriptions and geographic coordinates, must be stored securely to prevent access and misuse by unauthorized persons, thus avoiding security risks such as identity theft and property loss. By adjusting the norms of the use of network data, it is possible to effectively guarantee data security and increase the level of ethical behaviour of companies when processing data (СкибунО.Ж, 2022). Thus, attention to data security can prevent the conduct of unscrupulous individuals who collect housing data for profit or surveillance purposes.
+
+
+
+## Reference
+Reference list
+'''
+Prentice （, C. and Pawlicz （, A. (2023). ‘Addressing data quality in Airbnb research’. International Journal of Contemporary Hospitality Management, ahead-of-print (ahead-of-print). 
+'''
+'''
+van den Bemt, V., Doornbos, J., Meijering, L., Plegt, M. and Theunissen, N. (2018). Teaching ethics when working with geocoded data: a novel experiential learning approach. Journal of Geography in Higher Education, 42(2), pp.293–310. doi:https://doi.org/10.1080/03098265.2018.1436534.
+'''
+'''
+Скибун О.Ж. (n.d.). Сучасна етика як практична філософія кібербезпеки | Сучасний захист інформації. journals.dut.edu.ua. [online] Available at: https://journals.dut.edu.ua/index.php/dataprotect/article/view/2668 [Accessed 12 Dec. 2023].
+'''
+'''
+GitHub. (n.d.). report/downloads/DataJusticeReport.pdf at gh-pages · datajustice/report. [online] Available at: https://github.com/datajustice/report/blob/gh-pages/downloads/DataJusticeReport.pdf [Accessed 12 Dec. 2023].
+'''
+'''
+Hasselbalch, G. (2019). Making sense of data ethics. The powers behind the data ethics debate in European policymaking. Internet Policy Review, 8(2). doi:https://doi.org/10.14763/2019.2.1401.
+'''
+
+
+
+
