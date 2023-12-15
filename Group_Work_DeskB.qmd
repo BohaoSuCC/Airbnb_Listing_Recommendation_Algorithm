@@ -238,6 +238,7 @@ else:
 
 ## 1. Who collected the data? ( 2 points; Answer due Week 7 )
 
+
 The dataset was collected by Murray Cox through automatic website scraping, specifically for the Inside Airbnb project. Murray Cox utilized automated tools to extract publicly available data from the Airbnb website, including location information and pricing，and then compile it into the dataset. 
 
 1. [\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : This dataset was created by automatically scraping public information from Airbnb's Website. Murray Cox was one of the main founder and technicians of this mission driven project that aims to provide data and advocacy about Airbnb's impact on residential communities. [\[1\]]((http://insideairbnb.com/about))
@@ -268,6 +269,14 @@ Murray Cox collected the Inside Airbnb dataset to analyze Airbnb's impact on hou
 
 ## 3. How was the data collected? ( 5 points; Answer due Week 8 )
 
+1. *listings.csv : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:
+i.Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing.
+ii.Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.
+iii.Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions.
+iv.Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.
+v.Public Accessibility: Aggregated data is often made available to the public via the Inside Airbnb website, but the web scraping it employs may face legal and ethical challenges due to website terms of service and regional data privacy and usage laws.
+2. *London_Boroughs.gpkg : Boundary-Line for England and Wales was digitized from Ordnance Survey sheets at 1:10,000 scale, with GSS codes from ONS and GROS. GIS software manages this data, ideal for developing applications and compatible with other digital mapping systems. It's coordinated on the National Grid for easy data superimposition.
+
 1.[\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:
 
 **i.Web Scraping**: Inside Airbnb uses automated scripts to systematically browse and extract data from Airbnb's listings. These scripts navigate the website just like a human user would, but they do it much faster and on a larger scale.
@@ -284,9 +293,8 @@ Murray Cox collected the Inside Airbnb dataset to analyze Airbnb's impact on hou
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
-::: duedate
-( 11 points; Answer due Week 9 )
-:::
+For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it may be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps (Prentice and Pawlicz, 2023).
+Regarding the London_Boroughs.gpkg file, the method of data extraction relies on precise Geographic Information System (GIS) technology and detailed national geographic data. While this approach usually provides high accuracy and quality data, there may be limitations in terms of update frequency, geographic data coverage, and level of detail. Moreover, the processing and management of such data require specialized GIS technology and knowledge, which may limit the broad use and interpretation of the data.
 
 ```{python}
 ###relating coding for PART4
