@@ -4,6 +4,7 @@ csl: harvard-cite-them-right.csl
 title: DeskB's Group Project
 execute:
   echo: false
+  eval: False
 format:
   html:
     theme:
@@ -90,6 +91,8 @@ Student Numbers: 20017359 23032922 23081403 23103585 23130397
 ## Priorities for Feedback
 
 Are there any areas on which you would appreciate more detailed feedback if we're able to offer it?
+
+Frankly, we've encountered lots of confusion towards the topic of this assessment.
 
 ```{=html}
 <style type="text/css">
@@ -236,27 +239,13 @@ else:
 # Automatically download the BibTeX file.
 ```
 
-## 1. Who collected the data? ( 2 points; Answer due Week 7 )
+## 1. Who collected the data? (44words)
 
+The dataset was collected by Murray Cox through automatic website scraping, specifically for the Inside Airbnb project. Murray Cox utilized automated tools to extract publicly available data from the Airbnb website, including location information and pricing，and then compile it into the dataset.
 
-The dataset was collected by Murray Cox through automatic website scraping, specifically for the Inside Airbnb project. Murray Cox utilized automated tools to extract publicly available data from the Airbnb website, including location information and pricing，and then compile it into the dataset. 
-
-1. [\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : This dataset was created by automatically scraping public information from Airbnb's Website. Murray Cox was one of the main founder and technicians of this mission driven project that aims to provide data and advocacy about Airbnb's impact on residential communities. [\[1\]]((http://insideairbnb.com/about))
-
-2. [\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) and [London-wards-2018](https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip) : This dataset is an extract from [Ordnance Survey](https://www.ordnancesurvey.co.uk/) Boundary-Line product which is a specialist 1:10 000 scale boundaries dataset.
-
-
-An inline citation: As discussed on @insideairbnb, there are many...
-
-A parenthetical citation: There are many ways to research Airbnb [@insideairbnb]
-
-## 2. Why did they collect it? ( 4 points; Answer due Week 7 )
+## 2. Why did they collect it? ( 59words)
 
 Murray Cox collected the Inside Airbnb dataset to analyze Airbnb's impact on housing markets and communities in cities globally. The project aims to provide an independent perspective, helping the public, researchers, and policymakers understand how Airbnb affects urban housing affordability and community dynamics. This data offers insights for policy discussions and social understanding of Airbnb's role in urban environments.
-
-1.[\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb is a mission driven project that provides data and advocacy about Airbnb's impact on residential communities. We work towards a vision where communities are empowered with data and information to understand, decide and control the role of renting residential homes to tourists.
-
-2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : With a long history and evolving from . The Ordnance Survey aims to help governments make smarter decisions that ensure our safety and security, they also show businesses how to gain a location data edge and we help everyone experience the benefits of the world outside. Under the [Public Sector Geospatial Agreement](https://www.ordnancesurvey.co.uk/customers/public-sector/public-sector-geospatial-agreement) (PSGA), Ordnance Survey (OS) provides Great Britain' national mapping services. OS creates, maintains and provides access to consistent, definitive and authoritative location data of Great Britain, aiming to help organisations to maximise the use, value and benefit of the data for the national interest and the public good. 
 
 ```{python}
 #print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
@@ -267,40 +256,20 @@ Murray Cox collected the Inside Airbnb dataset to analyze Airbnb's impact on hou
 #plot_hist_Listing.set_xlim([0, 500]);
 ```
 
-## 3. How was the data collected? ( 5 points; Answer due Week 8 )
+## 3. How was the data collected? ( 190words )
 
-1. *listings.csv : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:
-i.Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing.
-ii.Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.
-iii.Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions.
-iv.Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.
-v.Public Accessibility: Aggregated data is often made available to the public via the Inside Airbnb website, but the web scraping it employs may face legal and ethical challenges due to website terms of service and regional data privacy and usage laws.
-2. *London_Boroughs.gpkg : Boundary-Line for England and Wales was digitized from Ordnance Survey sheets at 1:10,000 scale, with GSS codes from ONS and GROS. GIS software manages this data, ideal for developing applications and compatible with other digital mapping systems. It's coordinated on the National Grid for easy data superimposition.
+1.  [\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps: i.Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing. ii.Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled. iii.Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions. iv.Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones. v.Public Accessibility: Aggregated data is often made available to the public via the Inside Airbnb website, but the web scraping it employs may face legal and ethical challenges due to website terms of service and regional data privacy and usage laws.
+2.  [\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : Boundary-Line for England and Wales was digitized from Ordnance Survey sheets at 1:10,000 scale, with GSS codes from ONS and GROS. GIS software manages this data, ideal for developing applications and compatible with other digital mapping systems. It's coordinated on the National Grid for easy data superimposition.
 
-1.[\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:
+## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise? (186words)
 
-**i.Web Scraping**: Inside Airbnb uses automated scripts to systematically browse and extract data from Airbnb's listings. These scripts navigate the website just like a human user would, but they do it much faster and on a larger scale.
-
-**ii.Data Extraction**: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.
-
-**iii.Data Aggregation**: The collected data is then aggregated into a database. This database is organized to make it easier to analyze trends, patterns, and insights related to Airbnb's offerings in various cities and regions.
-
-**iv.Regular Updates**: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.
-
-**v.Public Accessibility**: The aggregated data is often made available to the public through the Inside Airbnb website, enabling researchers, policymakers, and the general public to analyze Airbnb's impact on housing markets and communities. It's important to note that web scraping practices, like those used by Inside Airbnb, may face legal and ethical considerations depending on the website's terms of service and regional laws regarding data privacy and usage.
-
-2.[\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : "Boundary-Line for England and Wales was initially digitised from Ordnance Survey's boundary record sheets at 1:10 000 scale (or, in some cases, at larger scales). The Government Statistical Service (GSS) codes are supplied by the Office for National Statistics and General Register Office for Scotland(GROS). GIS software provides the functionality to store, manage and manipulate this digital map data. The properties of the data make it suitable as a key base for users wishing to develop applications. BoundaryLine is also suitable for use within other digital mapping systems. It's coordinated on the National Grid which allows for the easy superimposition of other data.
-
-## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
-
-For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it may be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps (Prentice and Pawlicz, 2023).
-Regarding the London_Boroughs.gpkg file, the method of data extraction relies on precise Geographic Information System (GIS) technology and detailed national geographic data. While this approach usually provides high accuracy and quality data, there may be limitations in terms of update frequency, geographic data coverage, and level of detail. Moreover, the processing and management of such data require specialized GIS technology and knowledge, which may limit the broad use and interpretation of the data.
+For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it may be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps (Prentice and Pawlicz, 2023). Regarding the London_Boroughs.gpkg file, the method of data extraction relies on precise Geographic Information System (GIS) technology and detailed national geographic data. While this approach usually provides high accuracy and quality data, there may be limitations in terms of update frequency, geographic data coverage, and level of detail. Moreover, the processing and management of such data require specialized GIS technology and knowledge, which may limit the broad use and interpretation of the data.
 
 ```{python}
 ###relating coding for PART4
 ```
 
-## 5. What ethical considerations does the use of this data raise?
+## 5. What ethical considerations does the use of this data raise?(300words)
 
 (1)Privacy issues: whether the dataset has the consent of the landlord owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours[@Vera_van_den_Bemt:2018]. Therefore, obtaining the user's consent is crucial to whether the user's privacy is effectively safeguarded.
 
@@ -328,9 +297,9 @@ Datasets consists of two textual fields: 'Description' and 'Amenities' both from
 
 After some cleaning and preprocessing of the dataset, there are two set of questions corresponding to the two columns respectively.
 
-1. Which topics would host like to focus on when promoting their properties? 
+1.  Which topics would host like to focus on when promoting their properties?
 
-We could use the LDA model to generalize topics and get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (Figure 1). 
+We could use the LDA model to generalize topics and get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (Figure 1).
 
 ```{python}
 """
@@ -379,9 +348,9 @@ plt.show()
 
 Then, word cloud shows that among 16 topics, there are xxxxxxxxxxxxx.
 
-2. Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
+2.  Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
-Amenities are highly categorizable, meaning lots of similarities, like xxxxxxxxxxxx. Thus, we need to identify the similarities among various amenities from a vast vocabulary and appropriately categorize them.We use the Word2Vec model to classify a large number of words and phrases, each represented as a multi-dimensional vector. We then apply UMAP to reduce their dimensions to two (Figure 2). 
+Amenities are highly categorizable, meaning lots of similarities, like xxxxxxxxxxxx. Thus, we need to identify the similarities among various amenities from a vast vocabulary and appropriately categorize them.We use the Word2Vec model to classify a large number of words and phrases, each represented as a multi-dimensional vector. We then apply UMAP to reduce their dimensions to two (Figure 2).
 
 ```{python}
 ###relating coding for PART6
@@ -527,7 +496,6 @@ fig.savefig(os.path.join("..","Images","Word2Vec_OSM_geospace.png"), dpi=300)
 ```
 
 In the chart, each point represents the amenities feature of a property, and points with similar colors indicate highly similar amenities features between properties. Afterward, we reposition these points on a map according to their actual geographical locations. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in terms of amenities features.
-
 
 ### 6.3 Which indicator guide the branding?
 
@@ -680,18 +648,32 @@ By using the SVM to train the model for better predicting the indicator X accord
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
-::: duedate
-( 45 points; Answer due {{< var assess.group-date >}} )
-:::
+STL: In an effort to preserve the city's current housing supply, the government legalized short-term rentals in London for a maximum of 90 days per calendar year with the introduction of the 2011 Localism Act and the 2015 Deregulation Act. Nevertheless, a number of studies point out that this deadline isn't always adhered to in reality. Most of the Airbnb listings (77%) did respect the 90-day limit, which nonetheless leaves an important proportion (23%) that did not. Of the listings surpassing the 90-day limit, the average estimated occupancy was 145 nights a year. Of these lettings, 6,140 (or 55%) were entire homes and 5,000 (or 45%) were private rooms.
 
-```{python}
-###relating coding for PART7
-```
+The majority of London Airbnb hosts (84%) manage only one listing, while 1% (280 hosts) with over 10 properties each, accounting for 15% of all active short-term lettings, are predominantly commercial entities, contradicting government policy and legislation intentions. Some 72 of these companies were found to actively encourage hosts to exceed the 90-day limit with different platforms, a practice considered illegal.
 
-## Sustainable Authorship Tools
+Much of the existing research has focused on the role of Airbnb as the most prominent and prevalent online platform for short-term lets in the UK and internationally. Researchers, policymakers, and the public have voiced increasing concern about the possible negative externalities caused by the exponential rise in short-term lets this past decade. Local governments, in particular, are exploring viable ways to regulate and facilitate the practice while minimizing its potential negative effects.
 
-Your QMD file should automatically download your BibTeX file. We will then re-run the QMD file to generate the output successfully.
+Enhancing Airbnb Branding:
 
-Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) ([sansfont]{style="font-family:Sans-Serif;"}) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`).
+To enhance the Airbnb platform strategically, leveraging text features for branding and recommendation algorithms is crucial. The following strategies can be implemented:
+
+-   Homogeneous listing selection: Utilizing text features enables the screening of homogeneous listings, reducing the addition of new listings in spatially concentrated areas. This fosters a more balanced distribution of listings to improve overall equity in housing availability, while homogeneity might contribute to housing market distortions.
+
+-   Reinforcing recommendation algorithms in low occupancy areas: In regions with lower occupancy rates, strengthening recommendation algorithms ensures a more balanced overall occupancy rate. This proactive approach mitigates vacancy concerns, contributing to the dynamic equilibrium of London's housing market and boosting hosts' profitability.
+
+-   Positive feedback for high rental profitability listings: For listings with high rental profitability, providing additional positive feedback serves to incentivize competitive listings. This stimulates a positive feedback loop, promoting sound business operations beneficial for both Airbnb and landlords.
+
+Government Regulatory Options:
+
+Furukawa & Onuki's tri-categorical definition indicates that effective policies should be less restrictive for Primary Hosted & Unhosted Short-term lets within appropriate timeframes, while regulating Nonprimary short-term lets more firmly to provide the right incentives to landlords to rent long-term.
+
+Tailored Policies Based on Spatial Distribution Features: Tailoring policies for diverse community types is essential. In high-density areas, consider limiting the addition of new listings to prevent overcrowding. In contrast, for areas with lower occupancy rates, policies can encourage landlords to adopt more proactive occupancy promotion strategies.
+
+Dynamic Policy Adjustments for Supply-Demand Balance: Utilize spatial distribution features to monitor market dynamics and make dynamic policy adjustments based on actual demand. In high-demand areas, policies can be more flexible, encouraging short-term rentals, while in oversupplied regions, stricter policies can reduce vacancy rates. Connect the identified branding opportunities with STL regulations to strike a balance between encouraging tourism and preventing negative impacts on housing markets. For areas with distinctive amenities or features, consider regulations that preserve the uniqueness without contributing to housing shortages.
+
+Encouraging Landlord Engagement in Community Development: Airbnb transforms residential communities into tourist spaces and changes the socio-cultural landscape of urban neighborhoods. It specifically propagates the experience of 'living like a local, but this consumption of everyday local residential life has implications for the well-being of long-term tenants, including the disruption and erasure of long-term communities and housing insecurity. Critical urbanists have accordingly linked Airbnb to touristification/gentrification - what Peters has called 'Airbnbification'. Governments can consider incentivizing landlords to participate in community development, aiming to increase the 90-day occupancy rate. This not only reduces long-term property vacancies but also fosters community vitality and helps maintain supply-demand equilibrium.
+
+Create a Registration Service to Bridge Gaps in Data: In a context where the lack of data is cited as a major limitation in research and decision-making outcomes, a registration service could provide some of the information necessary to bridge this gap. Use statistical analysis and models to support regulatory decisions, ensuring they are evidence-based and grounded in the specific characteristics of each area. Incorporate figures, maps, and statistical insights to demonstrate the impact of STL on housing prices, availability, and community well-being.
 
 ## References
