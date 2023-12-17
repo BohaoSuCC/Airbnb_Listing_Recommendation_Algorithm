@@ -1,55 +1,3 @@
----
-bibliography: bio.bib
-csl: harvard-cite-them-right.csl
-title: DeskB's Group Project
-execute:
-  echo: false
-  eval: false
-format:
-  html:
-    theme:
-      - minty
-      - css/web.scss
-    code-copy: true
-    code-link: true
-    toc: true
-    toc-title: On this page
-    toc-depth: 2
-    toc_float:
-      collapsed: false
-      smooth_scroll: true
-  pdf:
-    include-in-header:
-      text: |
-        \addtokomafont{disposition}{\rmfamily}
-    mainfont: Spectral
-    sansfont: Roboto
-    monofont: JetBrainsMono-Regular
-    papersize: a4
-    geometry:
-      - top=25mm
-      - left=40mm
-      - right=30mm
-      - bottom=25mm
-      - heightrounded
-    toc: false
-    number-sections: false
-    colorlinks: true
-    highlight-style: github
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .qmd
-      format_name: quarto
-      format_version: '1.0'
-      jupytext_version: 1.15.2
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
----
-
-
 ```{python}
 import os
 import spacy
@@ -121,6 +69,7 @@ from joblib import load
 from bs4 import BeautifulSoup
 from wordcloud import WordCloud, STOPWORDS
 ```
+
 ```{python}
 # get the current directory
 current_dir = os.getcwd()
@@ -138,7 +87,7 @@ response = requests.get(bib_url)
 with open(local_bib_path, 'wb') as file:
     file.write(response.content)
 
-csl_url = "https://raw.githubusercontent.com/jreades/fsds/master/assessments/harvard-cite-them-right.csl"
+csl_url = "https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/harvard-cite-them-right.csl"
 
 # create local path for saving
 local_csl_path = os.path.join(current_dir, "harvard-cite-them-right.csl")
@@ -149,6 +98,56 @@ with open(local_csl_path, 'wb') as file:
     file.write(response.content)
 
 ```
+
+---
+bibliography: bio.bib
+csl: harvard-cite-them-right.csl
+title: DeskB's Group Project
+execute:
+  echo: false
+format:
+  html:
+    theme:
+      - minty
+      - css/web.scss
+    code-copy: true
+    code-link: true
+    toc: true
+    toc-title: On this page
+    toc-depth: 2
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+  pdf:
+    include-in-header:
+      text: |
+        \addtokomafont{disposition}{\rmfamily}
+    mainfont: Spectral
+    sansfont: Roboto
+    monofont: JetBrainsMono-Regular
+    papersize: a4
+    geometry:
+      - top=25mm
+      - left=40mm
+      - right=30mm
+      - bottom=25mm
+      - heightrounded
+    toc: false
+    number-sections: false
+    colorlinks: true
+    highlight-style: github
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .qmd
+      format_name: quarto
+      format_version: '1.0'
+      jupytext_version: 1.15.2
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
 
 ## Declaration of Authorship {.unnumbered .unlisted}
 
@@ -224,6 +223,7 @@ else:
   Airbnb_Listing = pd.read_csv(url, compression='gzip', low_memory=False)
   Airbnb_Listing.to_csv(os.path.join("Data","listing.csv"))
 ```
+
 ```{python}
 # Download and read the gpkg file remotely from url
 host = 'https://data.london.gov.uk'
@@ -238,6 +238,7 @@ else:
   London_boroughs = gpd.read_file(url, low_memory=False)
   London_boroughs.to_file(os.path.join("Data","London_Boroughs.gpkg"), driver='GPKG')
 ```
+
 ```{python}
 
 data_dir = os.path.join(current_dir, "Data")
@@ -258,36 +259,39 @@ London_wards = gpd.read_file(os.path.join("Data","London-wards-2018_ESRI","Londo
 
 ```
 
-## 1. Who collected the data? 
+## 1. Who collected the data?
 
 The dataset was collected by [Murray Cox](https://en.wikipedia.org/wiki/Inside_Airbnb) through automatic website scraping, specifically for the Inside Airbnb project. Murray Cox utilized automated tools to extract publicly available data from the Airbnb website, including location information and pricing，and then compile it into the dataset.
 
-## 2. Why did they collect it? 
+## 2. Why did they collect it?
 
 Murray Cox collected the [Inside Airbnb](http://insideairbnb.com/about) dataset to analyze Airbnb's impact on housing markets and communities in cities globally. The project aims to provide an independent perspective, helping the public, researchers, and policymakers understand how Airbnb affects urban housing affordability and community dynamics. This data offers insights for policy discussions and social understanding of Airbnb's role in urban environments.
 
-
-## 3. How was the data collected? 
+## 3. How was the data collected?
 
 1.  [listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps: i.Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing. ii.Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled. iii.Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions. iv.Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones. v.Public Accessibility: Aggregated data is often made available to the public via the Inside Airbnb website, but the web scraping it employs may face legal and ethical challenges due to website terms of service and regional data privacy and usage laws.
 2.  [London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : Boundary-Line for England and Wales was digitized from Ordnance Survey sheets at 1:10,000 scale, with GSS codes from ONS and GROS. GIS software manages this data, ideal for developing applications and compatible with other digital mapping systems. It's coordinated on the National Grid for easy data superimposition.
 
-## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise? 
+## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
 For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it may be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps [@prentice_addressing_2023]. Regarding the London_Boroughs.gpkg file, the method of data extraction relies on precise Geographic Information System (GIS) technology and detailed national geographic data. While this approach usually provides high accuracy and quality data, there may be limitations in terms of update frequency, geographic data coverage, and level of detail. Moreover, the processing and management of such data require specialized GIS technology and knowledge, which may limit the broad use and interpretation of the data.
 
 ## 5. What ethical considerations does the use of this data raise?
 
 ## Privacy issues
+
 Whether the dataset has the consent of the landlord owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours[@van_den_bemt_teaching_2018]. Therefore, obtaining the user's consent is crucial to whether the user's privacy is effectively safeguarded.
 
 ## Legal compliance
+
 Whether the use of the dataset complies with laws and regulations such as GDPR, DPA and EDPS.The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; we must consider the ethical dimensions of data processing.[@hasselbalch_making_2019] Therefore, legal compliance and ethical considerations should be combined in the digital age.
 
 ## Social responsibility
-It is important to use datasets appropriately, as publishing certain data may exacerbate behaviours such as inequality and bias. The Fairness and Openness Report emphasizes how to use information responsibly and ethically, and it is quite crucial to resist the labelling of low-income communities, people of colour, etc. For example, significant differences in housing prices in different neighbourhoods may reflect economic disparities, which can affect perceptions of the socioeconomic status of those areas. Therefore, there is a need to consider how to disclose the labelled attributes of the data in question to avoid negative impacts.
+
+It is important to use datasets appropriately, as publishing certain data may exacerbate behaviours such as inequality and bias. The Fairness and Openness Report[@DataJusticeReport] emphasizes how to use information responsibly and ethically, and it is quite crucial to resist the labelling of low-income communities, people of colour, etc. For example, significant differences in housing prices in different neighbourhoods may reflect economic disparities, which can affect perceptions of the socioeconomic status of those areas. Therefore, there is a need to consider how to disclose the labelled attributes of the data in question to avoid negative impacts.
 
 ## Data security
+
 Some sensitive information in the dataset, such as personal information descriptions and geographic coordinates, must be stored securely to prevent access and misuse by unauthorized persons, thus avoiding security risks such as identity theft and property loss. By adjusting the norms of the use of network data, it is possible to effectively guarantee data security and increase the level of ethical behaviour of companies when processing data[@СкибунО.Ж_2022]. Thus, attention to data security can prevent the conduct of unscrupulous individuals who collect housing data for profit or surveillance purposes.
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
@@ -300,13 +304,13 @@ Therefore, we have the reasonable motivation to scrutinize the textual features/
 
 ### 6.2 What can we dig from the textual information?
 
-Datasets consists of two textual fields: 'Description' and 'Amenities' both from the host's subjective statement as self-promotion. 'description' column is some sentences describing listing's advantages xxxxxx. 'Amenities' column is bunch of facilities and amenities inside of affiliated with the listing.
+Datasets consists of two textual fields: 'Description' and 'Amenities' both from the host's subjective statement as self-promotion. 'description' column is some sentences describing listing's advantages and characteristics. 'Amenities' column is bunch of facilities and amenities inside of affiliated with the listing.
 
-After some cleaning and preprocessing of the dataset, there are two set of questions corresponding to the two columns respectively.
+After some [cleaning and preprocessing](https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Processing_Modeling/Processing_Airbnb_listing_normalising.ipynb) of the dataset, there are two set of questions corresponding to the two columns respectively.
 
 #### Which topics would host like to focus on when promoting their properties?
 
-We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions *<u>Figure1a</u>*.
+We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions [***Figure1a***]{.underline}.
 
 ```{python}
 
@@ -356,6 +360,8 @@ ax1.grid(True)
 for x, y in zip(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score']):
     ax1.annotate(f'{y:.3f}', (x, y), textcoords="offset points", xytext=(0, 5), ha='center')
 
+plt.savefig("CoherenceScoreOfLDA.png")
+
 plt.show()
 
 ```
@@ -378,14 +384,19 @@ for i, topic in enumerate(LDA_topics_and_words_frame['Topic'].unique()):
 
 
 plt.tight_layout()
+
+plt.savefig("LDA_topic16_wordcloud.png")
+
 plt.show()
+
+
 ```
 
-The whole [\*LDA operating](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so I just save the output and read the csv remotely from my github. Then, words clouds shows that among 16 topics *<u>Figure1b</u>*, there are some topics mainly describe the location of areas, just like topic8 and topic6. Also, there are also some containing information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about what do most of Airbnb listings look like. Additionally, this key words could be of great value to the recommendation algorithms in platform's branding.
+The whole [LDA operating](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so I just save the output and read the csv remotely from my Github. Then, words clouds shows that among 16 topics [***Figure1b***]{.underline}, there are some topics mainly describe the location of areas, just like topic8 and topic6. Also, there are also some containing information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about what do most of Airbnb listings look like. Additionally, this key words could be of great value to the recommendation algorithms in platform's branding.
 
 #### Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
-Amenities are highly categorizable, meaning lots of similarities, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify the similarities among various amenities and appropriately categorize them, just like group all the synonyms from a vast vocabulary. We use the Word2Vec model to classify a large number of words and phrases, and then apply UMAP to reduce their dimensions to two for better visualization *<u>Figure2a</u>*. 
+Amenities are highly categorizable, meaning lots of similarities, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify the similarities among various amenities and appropriately categorize them, just like group all the synonyms from a vast vocabulary. We use the Word2Vec model to classify a large number of words and phrases, and then apply UMAP to reduce their dimensions to two for better visualization [***Figure2a***]{.underline}.
 
 ```{python}
 # import Word2Vec Model remotely
@@ -401,6 +412,7 @@ with open(local_word2vec_path, 'wb') as file:
 
 
 word2vec_model = Word2Vec.load(os.path.join("Model","word2vec.model"))
+
 ```
 
 ```{python}
@@ -487,7 +499,12 @@ translated_embedding = embedding + translation
 new_center = translated_embedding.mean(axis=0)
 print(f"New center after translation: {new_center}")
 ```
+
 ```{python, fig.cap="Figure2a: Features clustering after UMAP", #Figure2a}
+
+import warnings
+warnings.filterwarnings('ignore') 
+
 mag = np.sqrt(np.power(translated_embedding[:,0],2) + np.power(translated_embedding[:,1],2)).reshape(-1,1)
 angle = np.arctan2(translated_embedding[:,1], translated_embedding[:,0])
 
@@ -512,7 +529,7 @@ circ_colors = mpl.colors.hsv_to_rgb(np.concatenate((angle.reshape(-1,1),
                                                     mag.reshape(-1,1)),
                                                     axis=1))
 
-plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png"), dpi=300)
+plt.savefig("Word2Vec_2D_UMAP_Projection.png", dpi=300)
 
 color_info = np.concatenate((translated_embedding, circ_colors), axis=1)
 
@@ -520,7 +537,8 @@ color_info = np.concatenate((translated_embedding, circ_colors), axis=1)
 fig, ax = plt.subplots(figsize=(10,10))
 ax.scatter(translated_embedding[:, 0], translated_embedding[:, 1], color=circ_colors, s=0.5);
 ax.axis('off');
-fig.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png"), dpi=300)
+
+
 ```
 
 ```{python}
@@ -536,6 +554,7 @@ Airbnb_Listing['Word2Vec_UMAP_colorB'] = color_info[:, 4]  # 第五列
 Airbnb_Listing.to_csv(os.path.join("Data","Airbnb_Ame2Vec_UMAP2color.csv"))
 
 ```
+
 ```{python}
 
 Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_Ame2Vec_UMAP2color.csv"),low_memory=False)
@@ -553,18 +572,18 @@ gdf_listing = gpd.GeoDataFrame(Airbnb_Listing, geometry=gpd.points_from_xy(Airbn
 # Set the CRS
 gdf_listing.set_crs("EPSG:4326", inplace=True)  # (EPSG:4326)
 
-print("Converting successful")
+#print("Converting successful")
 
 # Drop NAs of columns ['amenities_norm','longitude','latitude']
 gdf_listing = gdf_listing.dropna(subset=['amenities_norm','longitude','latitude'])
-print(f"Now gdf has {gdf_listing.shape[0]:,} rows and {gdf_listing.shape[1]:,} columns.")
+#print(f"Now gdf has {gdf_listing.shape[0]:,} rows and {gdf_listing.shape[1]:,} columns.")
 
 gdf_listing = gdf_listing.to_crs(epsg=3857)
 London_boroughs = London_boroughs.to_crs(epsg=3857)
 London_wards = London_wards.to_crs(epsg=3857)
-print("gdf_listing CRS:", gdf_listing.crs)
-print("London_boroughs CRS:", London_boroughs.crs)
-print("London_wards CRS:", London_wards.crs)
+#print("gdf_listing CRS:", gdf_listing.crs)
+#print("London_boroughs CRS:", London_boroughs.crs)
+#print("London_wards CRS:", London_wards.crs)
 
 # 绘制地图
 fig, ax = plt.subplots(figsize=(16, 16))
@@ -603,14 +622,15 @@ ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha = 0.7)
 ax.xaxis.set_visible(False)
 ax.yaxis.set_visible(False)
 
+# 保存为 PNG 文件，分辨率为 300 dpi
+fig.savefig("Word2Vec_OSM_geospace.png", dpi=300)  
+
 plt.show()
 
-# 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.png"), dpi=300)  
+
 ```
 
-
-In the *<u>Figure2a</u>*, each kind of colours represents the amenities feature of a property, and areas with similar colors indicate highly similar amenities features between properties. Afterward, we reposition these points on a map according to their actual geographical locations. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in terms of amenities features.
+In the [***Figure2b***]{.underline}, each kind of colours represents the amenities feature of a property, and areas with similar colors indicate highly similar amenities features between properties. Afterward, we reposition these points on a map according to their actual geographical locations. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in terms of amenities features.
 
 ### 6.3 Which indicator guide the branding?
 
@@ -646,21 +666,24 @@ gdf_listing = gpd.GeoDataFrame(Airbnb_Listing, geometry=gpd.points_from_xy(Airbn
 # Set the CRS
 gdf_listing.set_crs("EPSG:4326", inplace=True)  # (EPSG:4326)
 
-print("Converting successful")
+#print("Converting successful")
 
 # Drop NAs of columns ['description','amenities']
 gdf_listing = gdf_listing.dropna(subset=['amenities_norm'])
-print(f"Now gdf has {gdf_listing.shape[0]:,} rows and {gdf_listing.shape[1]:,} columns.")
+#print(f"Now gdf has {gdf_listing.shape[0]:,} rows and {gdf_listing.shape[1]:,} columns.")
 ```
 
 ```{python}
+import warnings
+warnings.filterwarnings('ignore') 
+
 gdf_listing = gdf_listing.to_crs(epsg=3857)
 London_boroughs = London_boroughs.to_crs(epsg=3857)
 London_wards = London_wards.to_crs(epsg=3857)
 
-print("gdf_listing CRS:", gdf_listing.crs)
-print("London_boroughs CRS:", London_boroughs.crs)
-print("London_boroughs CRS:", London_wards.crs)
+#print("gdf_listing CRS:", gdf_listing.crs)
+#print("London_boroughs CRS:", London_boroughs.crs)
+#print("London_boroughs CRS:", London_wards.crs)
 """
 # 添加 borough 名称
 gdf_listing_with_borough = gpd.sjoin(gdf_listing, London_boroughs, how='left', op='within')
@@ -678,6 +701,10 @@ gdf_listing_dropinf = gdf_listing[gdf_listing['log_sum_income'] != -np.inf]
 ```
 
 ```{python, fig.cap="Figure3a: Statistical distribution of Listings' profit-cost ratio", #Figure3a}
+
+import warnings
+warnings.filterwarnings('ignore') 
+
 gdf_listing_dropinf['log_sum_income'].hist(bins=150)
 
 # 首先，将数据归一化到 0 和 1 之间
@@ -695,8 +722,11 @@ gdf_listing_dropinf['log_sum_income_normalized_scaled'] = gdf_listing_dropinf['l
 gdf_listing_dropinf['log_sum_income_normalized_scaled'].hist(bins=150)
 ```
 
-```{python, fig.cap="Figure3b: spatial distribution of Listings' profit-cost ratio", #Figure3b}
-###relating coding for PART6
+```{python, fig.cap="Figure3b: spatial distribution of Listings profit-cost ratio", #Figure3b}
+
+import warnings
+warnings.filterwarnings('ignore') 
+
 
 # 绘制地图
 fig, ax = plt.subplots(figsize=(16, 16))
@@ -738,19 +768,21 @@ ax.yaxis.set_visible(False)
 
 ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)         #添加OSM底图
 
+# 保存为 PNG 文件，分辨率为 300 dpi
+fig.savefig("Listings_profit_ratio.png", dpi=300)
+
 plt.show()
 
-# 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=300)  
+
+
+
 ```
 
-
-We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number with normal distribution *<u>Figure3a</u>*, but it aligns with the data from the [\@Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'. Then we standarlize the data and visualize it in the map *<u>Figure3b</u>*. The blue area means these listings have the potential to make more profit and fullfill more contract, which should be highlighted when branding and promoting.
+We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number with normal distribution [***Figure3a***]{.underline}, but it aligns with the data from the [Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'. Then we standarlize the data and visualize it in the map [***Figure3b***]{.underline}. The blue area means these listings have the potential to make more profit and fullfill more contract, which should be highlighted when branding and promoting.
 
 ### 6.4 How does the indicator correlate with textual information?
 
-By using the SVM to train the model for better predicting the indicator X according to the textual information, we could apply this method and get an [trained model with accuracy more than 85%](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb), which could help the Airbnb platform or Government to assess and evaluate the listings before they are promoted and recommended to the potential renters. The SVM model is not easy to visualize, yet we have the confidence that it could offer some valuable insights both for the platform and community.
-
+By using the SVM to train the model for better predicting the indicator X according to the textual information, we could apply this method and get an [trained model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) with accuracy more than **85%**, which could help the Airbnb platform or Government to assess and evaluate the listings before they are promoted and recommended to the potential renters. The SVM model is not easy to visualize, yet we have the confidence that it could offer some valuable insights both for the platform and community.
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
