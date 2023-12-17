@@ -308,11 +308,21 @@ After some cleaning and preprocessing of the dataset, there are two set of quest
 
 We could use the LDA model to generalize topics and get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (Figure 1).
 ```{python}
+coherence_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/blob/05ead1ddb032b1b686eeeaa10ad435ee0d70c6a1/reference.bib"
 
+# create local path for saving
+local_coherence_path = os.path.join(current_dir, "Data","bio.bib")
+
+# download and save .bib
+response = requests.get(coherence_url)
+with open(local_coherence_path, 'wb') as file:
+    file.write(response.content)
 
 ```
 ```{python}
 """
+
+
 # 读取不同主题的coherence值,csv文件
 LDA_topic_coherence_frame = pd.read_csv("./Data/coherence_values.csv")
 
