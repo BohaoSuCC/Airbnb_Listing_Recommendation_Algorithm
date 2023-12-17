@@ -196,6 +196,11 @@ data_dir = os.path.join(current_dir, "Data")
 
 if not os.path.exists(data_dir):
     os.makedirs(data_dir)
+
+# check the "Model" folder
+model_dir = os.path.join(current_dir, "Model")
+if not os.path.exists(model_dir):
+    os.makedirs(model_dir)
 ```
 
 ```{python}
@@ -271,29 +276,29 @@ with open(local_csl_path, 'wb') as file:
     file.write(response.content)
 ```
 
-## 1. Who collected the data? (44words)
+## 1. Who collected the data? 
 
 The dataset was collected by Murray Cox through automatic website scraping, specifically for the Inside Airbnb project. Murray Cox utilized automated tools to extract publicly available data from the Airbnb website, including location information and pricing，and then compile it into the dataset.
 
-## 2. Why did they collect it? ( 59words)
+## 2. Why did they collect it? 
 
 Murray Cox collected the Inside Airbnb dataset to analyze Airbnb's impact on housing markets and communities in cities globally. The project aims to provide an independent perspective, helping the public, researchers, and policymakers understand how Airbnb affects urban housing affordability and community dynamics. This data offers insights for policy discussions and social understanding of Airbnb's role in urban environments.
 
 
-## 3. How was the data collected? ( 190words )
+## 3. How was the data collected? 
 
 1.  [\*listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps: i.Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing. ii.Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled. iii.Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions. iv.Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones. v.Public Accessibility: Aggregated data is often made available to the public via the Inside Airbnb website, but the web scraping it employs may face legal and ethical challenges due to website terms of service and regional data privacy and usage laws.
 2.  [\*London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : Boundary-Line for England and Wales was digitized from Ordnance Survey sheets at 1:10,000 scale, with GSS codes from ONS and GROS. GIS software manages this data, ideal for developing applications and compatible with other digital mapping systems. It's coordinated on the National Grid for easy data superimposition.
 
-## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise? (186words)
+## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise? 
 
 For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it may be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps (Prentice and Pawlicz, 2023). Regarding the London_Boroughs.gpkg file, the method of data extraction relies on precise Geographic Information System (GIS) technology and detailed national geographic data. While this approach usually provides high accuracy and quality data, there may be limitations in terms of update frequency, geographic data coverage, and level of detail. Moreover, the processing and management of such data require specialized GIS technology and knowledge, which may limit the broad use and interpretation of the data.
 
-## 5. What ethical considerations does the use of this data raise?(300words)
+## 5. What ethical considerations does the use of this data raise?
 
-(1)Privacy issues: whether the dataset has the consent of the landlord owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours[@Vera_van_den_Bemt:2018]. Therefore, obtaining the user's consent is crucial to whether the user's privacy is effectively safeguarded.
+(1)Privacy issues: whether the dataset has the consent of the landlord owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours[@van_den_bemt_teaching_2018]. Therefore, obtaining the user's consent is crucial to whether the user's privacy is effectively safeguarded.
 
-(2)Legal compliance: whether the use of the dataset complies with laws and regulations such as GDPR, DPA and EDPS.The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; we must consider the ethical dimensions of data processing.[@Hasselbach:2019] Therefore, legal compliance and ethical considerations should be combined in the digital age.
+(2)Legal compliance: whether the use of the dataset complies with laws and regulations such as GDPR, DPA and EDPS.The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; we must consider the ethical dimensions of data processing.[@hasselbalch_making_2019] Therefore, legal compliance and ethical considerations should be combined in the digital age.
 
 (3)Social responsibility: it is important to use datasets appropriately, as publishing certain data may exacerbate behaviours such as inequality and bias. The Fairness and Openness Report emphasizes how to use information responsibly and ethically, and it is quite crucial to resist the labelling of low-income communities, people of colour, etc. For example, significant differences in housing prices in different neighbourhoods may reflect economic disparities, which can affect perceptions of the socioeconomic status of those areas. Therefore, there is a need to consider how to disclose the labelled attributes of the data in question to avoid negative impacts.
 
@@ -303,7 +308,7 @@ For the listings.csv file, its data is mainly obtained by scraping information f
 
 ### 6.1 Why should we choose the textual information?
 
-Many studies[@xiao:2016] have analyzed various aspects of Airbnb listings, including price, spatial distribution, room type, etc. However, the "textual description", with more impressive potential than numeric fields, also plays a crucial role in shaping renters' first impressions of the listings, contributing to facilitating successful rental transactions. Additionally, hosts would also focus on the feedback of market demands to adjust their descriptions in response to policy requirements or economic trends.
+Many studies have analyzed various aspects of Airbnb listings, including price[@KeyFactorsAffecting], spatial distribution[@LocationofAirbnbandhotels], room type, etc. However, the "textual description", with more impressive potential than numeric fields, also plays a crucial role in shaping renters' first impressions of the listings, contributing to facilitating successful rental transactions. Additionally, hosts would also focus on the feedback of market demands to adjust their descriptions in response to policy requirements or economic trends.
 
 Therefore, we have the reasonable motivation to scrutinize the textual features/characteristics from the data, aiming to generalize, classify and summarize some insightful conclusion. After correlating the insights with rental potential value, we hope to obtain valuable information about the short-term rental industry based on boroughs or wards as the basic geographical units.
 
@@ -313,32 +318,91 @@ Datasets consists of two textual fields: 'Description' and 'Amenities' both from
 
 After some cleaning and preprocessing of the dataset, there are two set of questions corresponding to the two columns respectively.
 
-1.  Which topics would host like to focus on when promoting their properties?
+#### Which topics would host like to focus on when promoting their properties?
 
-We could use the LDA model to generalize topics and get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (Figure 1).
+We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (@Figure1a).
 
 ```{python}
-coherence_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/blob/05ead1ddb032b1b686eeeaa10ad435ee0d70c6a1/reference.bib"
+
+coherence_url = "https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Data/coherence_values.csv"
 
 # create local path for saving
-local_coherence_path = os.path.join(current_dir, "Data","bio.bib")
+local_coherence_path = os.path.join(current_dir, "Data","coherence_values.csv")
 
 # download and save .bib
 response = requests.get(coherence_url)
 with open(local_coherence_path, 'wb') as file:
     file.write(response.content)
+
+# because it might cost several minutes to run the LDA modle
+# so we just directly read the model's output remotely
+# the detailed coding info could be accessed through project's github
+LDAtopicwords_url = "https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Data/lda_topics_and_words.csv"
+
+# create local path for saving
+local_LDAtopicwords_path = os.path.join(current_dir, "Data","lda_topics_and_words.csv")
+
+# download and save .bib
+response = requests.get(LDAtopicwords_url)
+with open(local_LDAtopicwords_path, 'wb') as file:
+    file.write(response.content)
 ```
 
 ```{python}
-"""
 
+# read coherence,csv
+LDA_topic_coherence_frame = pd.read_csv(os.path.join("Data","coherence_values.csv"))
 
-# 读取不同主题的coherence值,csv文件
-LDA_topic_coherence_frame = pd.read_csv("./Data/coherence_values.csv")
-
-# 读取先前保存的LDA 模型生成主题结果
+# read the LDA model output
 LDA_topics_and_words_frame = pd.read_csv(os.path.join("Data","lda_topics_and_words.csv"))
+```
 
+```{python}
+# create the line chart
+fig, ax1 = plt.subplots(figsize=(12, 4))
+ax1.plot(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score'], marker='o')
+ax1.set_title('Coherence Scores across Different Numbers of Topics')
+ax1.set_xlabel('Number of Topics')
+ax1.set_ylabel('Coherence Score')
+ax1.grid(True)
+
+# add the label for Y value
+for x, y in zip(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score']):
+    ax1.annotate(f'{y:.3f}', (x, y), textcoords="offset points", xytext=(0, 5), ha='center')
+
+plt.show()
+
+```
+
+#+ label: Figure1a
+#+ fig.cap: "Figure1a: best number of topics for summarizing key words"
+
+```{python}
+
+fig, axes = plt.subplots(4, 4, figsize=(24, 24))  
+
+axes = axes.flatten()  
+
+# plot wordcloud for each topic
+for i, topic in enumerate(LDA_topics_and_words_frame['Topic'].unique()):
+    topic_data = LDA_topics_and_words_frame[LDA_topics_and_words_frame['Topic'] == topic]
+    word_frequencies = {row['Word']: row['Weight'] for index, row in topic_data.iterrows()}
+
+    wordcloud = WordCloud(width=400, height=400, background_color='white').generate_from_frequencies(word_frequencies)
+    axes[i].imshow(wordcloud, interpolation='bilinear')
+    axes[i].axis('off')
+    axes[i].set_title(f'Topic {topic}')
+
+
+plt.tight_layout()
+plt.show()
+```
+
+#+ label: Figure1b
+#+ fig.cap: "Figure1b: Topics and key words"
+
+```{python}
+"""
 # 设置大图的大小
 fig = plt.figure(figsize=(24, 12))
 
@@ -376,19 +440,70 @@ plt.show()
 """
 ```
 
-Then, word cloud shows that among 16 topics, there are xxxxxxxxxxxxx.
+Then, words clouds shows that among 16 topics, there are some topics mainly describe the location of areas, just like topic8 and topic6. Also, there are also some containing information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about what do most of Airbnb listings look like. Additionally, this key words could be of great value to the recommendation algorithms in platform's branding.
 
-2.  Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
+#### Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
-Amenities are highly categorizable, meaning lots of similarities, like xxxxxxxxxxxx. Thus, we need to identify the similarities among various amenities from a vast vocabulary and appropriately categorize them.We use the Word2Vec model to classify a large number of words and phrases, each represented as a multi-dimensional vector. We then apply UMAP to reduce their dimensions to two (Figure 2).
+Amenities are highly categorizable, meaning lots of similarities, like '500Mb WiFi' and 'highspeed Internet access'. Thus, we need to identify the similarities among various amenities and appropriately categorize them, just like group all the synonyms from a vast vocabulary.We use the Word2Vec model to classify a large number of words and phrases, each represented as a multi-dimensional vector. We then apply UMAP to reduce their dimensions to two for better visualization (Figure 2).
 
 ```{python}
-###relating coding for PART6
+# import Word2Vec Model remotely
+word2vec_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/raw/main/Model/word2vec-d500-w40.model"
 
-# import Word2Vec Model from index
-word2vec_model = Word2Vec.load(os.path.join("..","Model","word2vec-d500-w40.model"))
+# create local path for saving
+local_word2vec_path = os.path.join(current_dir, "Model","word2vec.model")
+
+# download and save .bib
+response = requests.get(word2vec_url)
+with open(local_word2vec_path, 'wb') as file:
+    file.write(response.content)
 
 
+word2vec_model = Word2Vec.load(os.path.join("Model","word2vec.model"))
+```
+
+```{python}
+# read csv after norm and split
+amenities_norm_split = pd.read_csv("https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Data/amenities_norm_split.csv",low_memory=False)
+
+```
+
+```{python}
+
+NormListing_url = "https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip"
+
+local_NormListing_path = os.path.join(data_dir, "Airbnb_listing_norm_min.zip")
+
+response = requests.get(NormListing_url)
+with open(local_NormListing_path, 'wb') as file:
+    file.write(response.content)
+
+with zipfile.ZipFile(local_NormListing_path, 'r') as zip_ref:
+    zip_ref.extractall(data_dir)
+
+Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_listing_norm_min.csv"))
+
+
+```
+
+```{python}
+
+Airbnb_Listing = pd.read_csv("https://drive.google.com/file/d/1LE7YfYL_2g20PpisSlQheYXwxnBrWB_6/view?usp=drive_link")
+
+texts_word2vec = Airbnb_Listing['amenities_norm']
+
+
+# 将 'amenities' 列中的字符串转换为列表
+# 使用 ast.literal_eval 安全地评估字符串表达的列表
+amenities_ast_literal = amenities_norm_split
+amenities_ast_literal.drop('Unnamed: 0',axis=1)
+
+
+list_of_lists = amenities_ast_literal.apply(lambda row: [item for item in row if item is not None], axis=1).tolist()
+
+```
+
+```{python}
 
 # 向量化函数
 def vectorize(text, model):
