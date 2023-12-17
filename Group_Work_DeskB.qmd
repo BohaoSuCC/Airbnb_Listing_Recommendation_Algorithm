@@ -4,7 +4,7 @@ csl: harvard-cite-them-right.csl
 title: DeskB's Group Project
 execute:
   echo: false
-  eval: False
+  eval: false
 format:
   html:
     theme:
@@ -192,6 +192,7 @@ from textual import *
 # get the current directory
 current_dir = os.path.dirname(__file__)
 ```
+
 ```{python}
 # Download and read the csv file remotely from url
 host = 'http://data.insideairbnb.com'
@@ -307,6 +308,7 @@ After some cleaning and preprocessing of the dataset, there are two set of quest
 1.  Which topics would host like to focus on when promoting their properties?
 
 We could use the LDA model to generalize topics and get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (Figure 1).
+
 ```{python}
 coherence_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/blob/05ead1ddb032b1b686eeeaa10ad435ee0d70c6a1/reference.bib"
 
@@ -317,8 +319,8 @@ local_coherence_path = os.path.join(current_dir, "Data","bio.bib")
 response = requests.get(coherence_url)
 with open(local_coherence_path, 'wb') as file:
     file.write(response.content)
-
 ```
+
 ```{python}
 """
 
