@@ -136,6 +136,7 @@ import seaborn as sns
 import ast  # 用于安全地将字符串转换为列表
 import umap
 import zipfile
+import requests
 
 import contextily as ctx
 import urllib.request
@@ -188,7 +189,10 @@ from textual import *
 ```
 
 ```{python}
-"""
+# get the current directory
+current_dir = os.path.dirname(__file__)
+```
+```{python}
 # Download and read the csv file remotely from url
 host = 'http://data.insideairbnb.com'
 path = 'united-kingdom/england/london/2023-09-06/data'
@@ -232,11 +236,30 @@ else:
   shapefile_path = os.path.join('extracted_folder', shapefile_name)
   London_Wards = gpd.read_file(shapefile_path)
   London_Wards.to_file('London_Ward.shp', driver='ESRI Shapefile')
-"""
 ```
 
 ```{python}
 # Automatically download the BibTeX file.
+
+bib_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/blob/05ead1ddb032b1b686eeeaa10ad435ee0d70c6a1/reference.bib"
+
+# create local path for saving
+local_bib_path = os.path.join(current_dir, "bio.bib")
+
+# download and save .bib
+response = requests.get(bib_url)
+with open(local_bib_path, 'wb') as file:
+    file.write(response.content)
+
+csl_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/blob/05ead1ddb032b1b686eeeaa10ad435ee0d70c6a1/harvard-cite-them-right.csl"
+
+# create local path for saving
+local_csl_path = os.path.join(current_dir, "harvard-cite-them-right.csl")
+
+# download and save .csl 
+response = requests.get(csl_url)
+with open(local_csl_path, 'wb') as file:
+    file.write(response.content)
 ```
 
 ## 1. Who collected the data? (44words)
@@ -247,14 +270,6 @@ The dataset was collected by Murray Cox through automatic website scraping, spec
 
 Murray Cox collected the Inside Airbnb dataset to analyze Airbnb's impact on housing markets and communities in cities globally. The project aims to provide an independent perspective, helping the public, researchers, and policymakers understand how Airbnb affects urban housing affordability and community dynamics. This data offers insights for policy discussions and social understanding of Airbnb's role in urban environments.
 
-```{python}
-#print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
-```
-
-```{python}
-#plot_hist_Listing = Airbnb_Listing.host_listings_count.plot.hist(bins=50)
-#plot_hist_Listing.set_xlim([0, 500]);
-```
 
 ## 3. How was the data collected? ( 190words )
 
@@ -265,10 +280,6 @@ Murray Cox collected the Inside Airbnb dataset to analyze Airbnb's impact on hou
 
 For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it may be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps (Prentice and Pawlicz, 2023). Regarding the London_Boroughs.gpkg file, the method of data extraction relies on precise Geographic Information System (GIS) technology and detailed national geographic data. While this approach usually provides high accuracy and quality data, there may be limitations in terms of update frequency, geographic data coverage, and level of detail. Moreover, the processing and management of such data require specialized GIS technology and knowledge, which may limit the broad use and interpretation of the data.
 
-```{python}
-###relating coding for PART4
-```
-
 ## 5. What ethical considerations does the use of this data raise?(300words)
 
 (1)Privacy issues: whether the dataset has the consent of the landlord owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours[@Vera_van_den_Bemt:2018]. Therefore, obtaining the user's consent is crucial to whether the user's privacy is effectively safeguarded.
@@ -278,10 +289,6 @@ For the listings.csv file, its data is mainly obtained by scraping information f
 (3)Social responsibility: it is important to use datasets appropriately, as publishing certain data may exacerbate behaviours such as inequality and bias. The Fairness and Openness Report emphasizes how to use information responsibly and ethically, and it is quite crucial to resist the labelling of low-income communities, people of colour, etc. For example, significant differences in housing prices in different neighbourhoods may reflect economic disparities, which can affect perceptions of the socioeconomic status of those areas. Therefore, there is a need to consider how to disclose the labelled attributes of the data in question to avoid negative impacts.
 
 (4)Data security: Some sensitive information in the dataset, such as personal information descriptions and geographic coordinates, must be stored securely to prevent access and misuse by unauthorized persons, thus avoiding security risks such as identity theft and property loss. By adjusting the norms of the use of network data, it is possible to effectively guarantee data security and increase the level of ethical behaviour of companies when processing data[@СкибунО.Ж:2022]. Thus, attention to data security can prevent the conduct of unscrupulous individuals who collect housing data for profit or surveillance purposes.
-
-```{python}
-###relating coding for PART5
-```
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
 
@@ -300,7 +307,10 @@ After some cleaning and preprocessing of the dataset, there are two set of quest
 1.  Which topics would host like to focus on when promoting their properties?
 
 We could use the LDA model to generalize topics and get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions (Figure 1).
+```{python}
 
+
+```
 ```{python}
 """
 # 读取不同主题的coherence值,csv文件
