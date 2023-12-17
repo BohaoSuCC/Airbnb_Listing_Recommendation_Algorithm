@@ -183,3 +183,9 @@ RTest/
 Processing_Modeling/randforest_classfier_model.joblib
 Processing_Modeling/svm_classfier_model.joblib
 Model/word2vec-d500-w20.model
+Data/Data_InsideAirbnb/reviews.csv
+Data/Data_InsideAirbnb/listings_other.csv
+Data/Data_InsideAirbnb/listings(1).csv
+Data/Data_InsideAirbnb/calendar.csv
+Data/Data_InsideAirbnb/neighbourhoods.csv
+Data/Data_InsideAirbnb/Origin_version/reviews.csv
