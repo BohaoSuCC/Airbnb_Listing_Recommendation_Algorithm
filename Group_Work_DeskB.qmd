@@ -191,6 +191,11 @@ from textual import *
 ```{python}
 # get the current directory
 current_dir = os.path.dirname(__file__)
+# check the "Data" folder
+data_dir = os.path.join(current_dir, "Data")
+
+if not os.path.exists(data_dir):
+    os.makedirs(data_dir)
 ```
 
 ```{python}
@@ -205,8 +210,9 @@ if os.path.exists(file):
   Airbnb_Listing = pd.read_csv(file, compression='gzip', low_memory=False)
 else: 
   Airbnb_Listing = pd.read_csv(url, compression='gzip', low_memory=False)
-  Airbnb_Listing.to_csv(file)
-
+  Airbnb_Listing.to_csv(os.path.join("Data","listing.csv"))
+```
+```{python}
 # Download and read the gpkg file remotely from url
 host = 'https://data.london.gov.uk'
 path = 'download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f'
@@ -218,31 +224,32 @@ if os.path.exists(file):
   London_boroughs = gpd.read_file(file, low_memory=False)
 else: 
   London_boroughs = gpd.read_file(url, low_memory=False)
-  London_boroughs.to_file(file, driver='GPKG')
+  London_boroughs.to_file(os.path.join("Data","London_Boroughs.gpkg"), driver='GPKG')
+```
+```{python}
 
-# Download and read the shp file remotely from url
-host = 'https://data.london.gov.uk'
-path = 'download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/'
-file = 'London-wards-2018.zip'
-url  = f'{host}/{path}/{file}'
+data_dir = os.path.join(current_dir, "Data")
 
-# Save gkpg file
-if os.path.exists('London_Ward.shp'):
-  London_Wards = gpd.read_file('London_Ward.shp', low_memory=False)
-else: 
-  response = requests.get(url)
-  zip_file = zipfile.ZipFile(io.BytesIO(response.content))
-  shapefile_name = os.path.join('London-wards-2018_ESRI', 'London_Ward.shp')
-  zip_file.extract(shapefile_name, 'extracted_folder')
-  shapefile_path = os.path.join('extracted_folder', shapefile_name)
-  London_Wards = gpd.read_file(shapefile_path)
-  London_Wards.to_file('London_Ward.shp', driver='ESRI Shapefile')
+zip_url = "https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip"
+
+local_zip_path = os.path.join(data_dir, "London-wards-2018.zip")
+
+
+response = requests.get(zip_url)
+with open(local_zip_path, 'wb') as file:
+    file.write(response.content)
+
+with zipfile.ZipFile(local_zip_path, 'r') as zip_ref:
+    zip_ref.extractall(data_dir)
+
+London_Wards = gpd.read_file(os.path.join("Data","London-wards-2018_ESRI","London_Ward.shp"))
+
 ```
 
 ```{python}
 # Automatically download the BibTeX file.
 
-bib_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/blob/05ead1ddb032b1b686eeeaa10ad435ee0d70c6a1/reference.bib"
+bib_url = "https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/bio.bib"
 
 # create local path for saving
 local_bib_path = os.path.join(current_dir, "bio.bib")
@@ -251,8 +258,9 @@ local_bib_path = os.path.join(current_dir, "bio.bib")
 response = requests.get(bib_url)
 with open(local_bib_path, 'wb') as file:
     file.write(response.content)
-
-csl_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/blob/05ead1ddb032b1b686eeeaa10ad435ee0d70c6a1/harvard-cite-them-right.csl"
+```
+```{python}
+csl_url = "https://raw.githubusercontent.com/jreades/fsds/master/assessments/harvard-cite-them-right.csl"
 
 # create local path for saving
 local_csl_path = os.path.join(current_dir, "harvard-cite-them-right.csl")
