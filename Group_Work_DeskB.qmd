@@ -427,11 +427,11 @@ plt.show()
 """
 ```
 
-Then, words clouds shows that among 16 topics, there are some topics mainly describe the location of areas, just like topic8 and topic6. Also, there are also some containing information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about what do most of Airbnb listings look like. Additionally, this key words could be of great value to the recommendation algorithms in platform's branding.
+The whole [\*LDA operating](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so I just save the output and read the csv remotely from my github. Then, words clouds shows that among 16 topics, there are some topics mainly describe the location of areas, just like topic8 and topic6. Also, there are also some containing information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about what do most of Airbnb listings look like. Additionally, this key words could be of great value to the recommendation algorithms in platform's branding.
 
 #### Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
-Amenities are highly categorizable, meaning lots of similarities, like '500Mb WiFi' and 'highspeed Internet access'. Thus, we need to identify the similarities among various amenities and appropriately categorize them, just like group all the synonyms from a vast vocabulary.We use the Word2Vec model to classify a large number of words and phrases, each represented as a multi-dimensional vector. We then apply UMAP to reduce their dimensions to two for better visualization (Figure 2).
+Amenities are highly categorizable, meaning lots of similarities, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify the similarities among various amenities and appropriately categorize them, just like group all the synonyms from a vast vocabulary. We use the Word2Vec model to classify a large number of words and phrases, and then apply UMAP to reduce their dimensions to two for better visualization (@Figure2a). 
 
 ```{python}
 # import Word2Vec Model remotely
@@ -520,16 +520,16 @@ embedding = reducer.fit_transform(numpy_array)
 ```
 
 ```{python}
-# 计算所有点的中心坐标
-center = np.median(embedding, axis=0)
+# caculate the centroid 计算所有点的中心坐标
+center = (np.median(embedding, axis=0)+np.mean(embedding, axis=0))*0.5
 
-# 计算平移量
+# get the moving amount计算平移量
 translation = -center
 
-# 对所有点应用平移变换
+# transform all points 对所有点应用平移变换
 translated_embedding = embedding + translation
 
-# 验证新的中心点
+# verify the new centroid 验证新的中心点
 new_center = translated_embedding.mean(axis=0)
 print(f"New center after translation: {new_center}")
 ```
@@ -537,16 +537,17 @@ print(f"New center after translation: {new_center}")
 mag = np.sqrt(np.power(translated_embedding[:,0],2) + np.power(translated_embedding[:,1],2)).reshape(-1,1)
 angle = np.arctan2(translated_embedding[:,1], translated_embedding[:,0])
 
-#对角度和距离进行归一化处理
+# normalization to angle and distance 对角度和距离进行归一化处理
 angle = (angle-np.min(angle)) / (np.max(angle) - np.min(angle))
-#最大最小值缩放到[0,1]
+
+#min-max scaling to [0,1]
 #mag = (mag-np.min(mag)) / (np.max(mag)-np.min(mag))
 
-#标准化后缩放到[0,1]
+#standarlizing scaling to [0,1]
 mag = (mag-np.mean(mag)/np.std(mag))
 #mag = (mag-np.min(mag)) / (np.max(mag)-np.min(mag))
 
-#tanh缩放，正切双曲线
+#tanh scaling，正切双曲线
 #mag = (np.tanh(mag)+1)/2
 
 #sigmoid缩放
@@ -645,9 +646,6 @@ for idx, row in London_wards.iterrows():
 #OSM彩色底图,透明图0.7
 ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha = 0.7)              
 
-# 隐藏子坐标轴的坐标轴
-ax_inset.axis('off')
-
 # 隐藏坐标轴
 ax.xaxis.set_visible(False)
 ax.yaxis.set_visible(False)
@@ -668,26 +666,20 @@ Even though Airbnb,as a responsible company, should take community and regulatio
 
 ```{python}
 
-Airbnb_Listing_origin = pd.read_csv(os.path.join("Data","listings.csv"),low_memory=False)
 
 # 每个listing的收入与average收入相比
-if Airbnb_Listing_origin['price'].dtype == 'object':
-    Airbnb_Listing_origin['price'] = Airbnb_Listing_origin['price'].str.replace('$', '').str.replace(',', '').astype(float)
-Airbnb_Listing['sum_income'] = Airbnb_Listing_origin['minimum_nights']*2.7*Airbnb_Listing_origin['number_of_reviews_ltm']*Airbnb_Listing_origin['price']
-
 average_income_forlisting = Airbnb_Listing['sum_income'].mean()
-average_income_forlisting
 
-Airbnb_Listing['price'] = Airbnb_Listing_origin['price']
 
-print((Airbnb_Listing['price'] >= 2000).sum())
-print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
 
-# 仅保留 'price' 小于 2000 的行
+#print((Airbnb_Listing['price'] >= 2000).sum())
+#print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
+
+# remain column 'price' less than 2000
 Airbnb_Listing = Airbnb_Listing[Airbnb_Listing['price'] < 2000]
 
-# 检查删除后还有dataframe的shape
-print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
+# check dataframe's shape
+#print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
 
 Airbnb_Listing['profitable'] = (Airbnb_Listing['sum_income'] >= average_income_forlisting).astype(int)
 
@@ -726,8 +718,6 @@ gdf_listing_with_borough = gdf_listing_with_borough.rename(columns={'name': 'bor
 gdf_listing_with_borough_wards = gpd.sjoin(gdf_listing_with_borough, London_wards, how='left', op='within')
 gdf_listing_with_borough_wards = gdf_listing_with_borough_wards.rename(columns={'name': 'ward_name'})
 
-# 查看结果
-print(gdf_listing_with_borough_wards.head())
 
 gdf_listing['log_sum_income'] = np.log(gdf_listing['sum_income'])
 
@@ -802,7 +792,7 @@ plt.show()
 fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=300)  
 ```
 
-We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number, but it aligns with the data from the Inside Airbnb. Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'.
+We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number, but it aligns with the data from the [\@Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'.
 
 ### 6.4 How does the indicator correlate with textual information?
 
