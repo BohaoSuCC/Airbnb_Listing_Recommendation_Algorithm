@@ -261,7 +261,7 @@ London_wards = gpd.read_file(os.path.join("Data","London-wards-2018_ESRI","Londo
 
 ## 1. Who collected the data?
 
-The dataset was collected by [Murray Cox](https://en.wikipedia.org/wiki/Inside_Airbnb) through automatic website scraping, specifically for the Inside Airbnb project. Murray Cox utilized automated tools to extract publicly available data from the Airbnb website, including location information and pricing，and then compile it into the dataset.
+The dataset was collected by [Murray Cox](https://en.wikipedia.org/wiki/Inside_Airbnb) through automatic website scraping, specifically for the Inside Airbnb project. Murray Cox utilized automated tools to extract publicly available data from the Airbnb website and then compile it into the dataset.
 
 ## 2. Why did they collect it?
 
@@ -269,12 +269,11 @@ Murray Cox collected the [Inside Airbnb](http://insideairbnb.com/about) dataset 
 
 ## 3. How was the data collected?
 
-1.  [listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps: i.Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing. ii.Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled. iii.Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions. iv.Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones. v.Public Accessibility: Aggregated data is often made available to the public via the Inside Airbnb website, but the web scraping it employs may face legal and ethical challenges due to website terms of service and regional data privacy and usage laws.
-2.  [London_Boroughs.gpkg](https://data.london.gov.uk/download/london_boroughs/9502cdec-5df0-46e3-8aa1-2b5c5233a31f/London_Boroughs.gpkg) : Boundary-Line for England and Wales was digitized from Ordnance Survey sheets at 1:10,000 scale, with GSS codes from ONS and GROS. GIS software manages this data, ideal for developing applications and compatible with other digital mapping systems. It's coordinated on the National Grid for easy data superimposition.
+[listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps: \* Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing. \* Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled. \* Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions. \* Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
-For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it may be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps [@prentice_addressing_2023]. Regarding the London_Boroughs.gpkg file, the method of data extraction relies on precise Geographic Information System (GIS) technology and detailed national geographic data. While this approach usually provides high accuracy and quality data, there may be limitations in terms of update frequency, geographic data coverage, and level of detail. Moreover, the processing and management of such data require specialized GIS technology and knowledge, which may limit the broad use and interpretation of the data.
+For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it might be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps [@prentice_addressing_2023]. .
 
 ## 5. What ethical considerations does the use of this data raise?
 
@@ -284,33 +283,31 @@ Whether the dataset has the consent of the landlord owner to disclose its inform
 
 ## Legal compliance
 
-Whether the use of the dataset complies with laws and regulations such as GDPR, DPA and EDPS.The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; we must consider the ethical dimensions of data processing.[@hasselbalch_making_2019] Therefore, legal compliance and ethical considerations should be combined in the digital age.
+Usage of the dataset should comply with laws and regulations such as GDPR, DPA and EDPS.The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; we must consider the ethical dimensions of data processing.[@hasselbalch_making_2019] Therefore, legal compliance and ethical considerations should be combined in the digital age.
 
 ## Social responsibility
 
-It is important to use datasets appropriately, as publishing certain data may exacerbate behaviours such as inequality and bias. The Fairness and Openness Report[@DataJusticeReport] emphasizes how to use information responsibly and ethically, and it is quite crucial to resist the labelling of low-income communities, people of colour, etc. For example, significant differences in housing prices in different neighbourhoods may reflect economic disparities, which can affect perceptions of the socioeconomic status of those areas. Therefore, there is a need to consider how to disclose the labelled attributes of the data in question to avoid negative impacts.
+It is important to use datasets appropriately, as publishing certain data may exacerbate behaviours such as inequality and bias. The Fairness and Openness Report(@DataJusticeReport) emphasizes how to use information responsibly and ethically, and it is quite crucial to resist the labelling of low-income communities, people of colour, etc. For example, significant differences in housing prices in different neighbourhoods may reflect economic disparities, which can affect perceptions of the socioeconomic status of those areas. Therefore, there is a need to consider how to disclose the labelled attributes of the data in question to avoid negative impacts.
 
 ## Data security
 
-Some sensitive information in the dataset, such as personal information descriptions and geographic coordinates, must be stored securely to prevent access and misuse by unauthorized persons, thus avoiding security risks such as identity theft and property loss. By adjusting the norms of the use of network data, it is possible to effectively guarantee data security and increase the level of ethical behaviour of companies when processing data[@СкибунО.Ж_2022]. Thus, attention to data security can prevent the conduct of unscrupulous individuals who collect housing data for profit or surveillance purposes.
+Some sensitive information in the dataset, such as personal information descriptions and geographic coordinates, must be stored securely to prevent access and misuse by unauthorized persons. By adjusting the norms of the use of network data, it is possible to effectively guarantee data security and increase the level of ethical behaviour of companies when processing data(@СкибунО.Ж_2022). Thus, attention to data security can prevent the conduct of unscrupulous individuals who collect housing data for profit or surveillance purposes.
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
 
 ### 6.1 Why should we choose the textual information?
 
-Many studies have analyzed various aspects of Airbnb listings, including price[@zhang_key_2017], spatial distribution[@la_location_2021], room type, etc. However, the "textual description", with more impressive potential than numeric fields, also plays a crucial role in shaping renters' first impressions of the listings, contributing to facilitating successful rental transactions. Additionally, hosts would also focus on the feedback of market demands to adjust their descriptions in response to policy requirements or economic trends.
-
-Therefore, we have the reasonable motivation to scrutinize the textual features/characteristics from the data, aiming to generalize, classify and summarize some insightful conclusion. After correlating the insights with rental potential value, we hope to obtain valuable information about the short-term rental industry based on boroughs or wards as the basic geographical units.
+Many studies have analyzed various aspects of Airbnb listings, including price[@zhang_key_2017], spatial distribution[@la_location_2021], room type[@voltes-dorta_drivers_2020], etc. However, the "textual description", with more impressive potential than numeric fields, also plays a crucial role in shaping renters' first impressions of the listings, contributing to facilitating successful rental transactions. Therefore, we scrutinize the textual features/characteristics from the data, generalize, classify and summarize insightful conclusion which is correlated with the branding potential value[@ji_analysis_2021].
 
 ### 6.2 What can we dig from the textual information?
 
 Datasets consists of two textual fields: 'Description' and 'Amenities' both from the host's subjective statement as self-promotion. 'description' column is some sentences describing listing's advantages and characteristics. 'Amenities' column is bunch of facilities and amenities inside of affiliated with the listing.
 
-After some [cleaning and preprocessing](https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Processing_Modeling/Processing_Airbnb_listing_normalising.ipynb) of the dataset, there are two set of questions corresponding to the two columns respectively.
+After some [cleaning and preprocessing](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Processing_Airbnb_listing_normalising.ipynb) of the dataset, there are two set of questions corresponding to the two columns respectively.
 
 #### Which topics would host like to focus on when promoting their properties?
 
-We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. Firstly, we need to calculate iteratively the coherence of the LDA model with the number of topics ranging from 1 to 40, in order to determine the most appropriate number of topics for summarizing the hosts' textual descriptions [***Figure1a***]{.underline}.
+We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. After calculating iteratively the model, we determine the best topics' number for summarizing 'descriptions' column should be 16. ([***Figure1a***]{.underline})
 
 ```{python}
 
@@ -360,6 +357,8 @@ ax1.grid(True)
 for x, y in zip(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score']):
     ax1.annotate(f'{y:.3f}', (x, y), textcoords="offset points", xytext=(0, 5), ha='center')
 
+fig.text(0.5, 0.02, 'Figure1a: Best number of topics for summarizing key words', ha='center', va='bottom')
+
 plt.savefig("CoherenceScoreOfLDA.png")
 
 plt.show()
@@ -392,11 +391,11 @@ plt.show()
 
 ```
 
-The whole [LDA operating](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so I just save the output and read the csv remotely from my Github. Then, words clouds shows that among 16 topics [***Figure1b***]{.underline}, there are some topics mainly describe the location of areas, just like topic8 and topic6. Also, there are also some containing information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about what do most of Airbnb listings look like. Additionally, this key words could be of great value to the recommendation algorithms in platform's branding.
+The [LDA process](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so we just save and re-read the output remotely from Github. Then, results shows that among 16 topics [***Figure1b***]{.underline}, there are some topics mainly describe the location of areas, just like topic8 and topic6. Also, there are also some containing information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about Airbnb listings which is of great value to the recommendation algorithms in platform's branding[@mody_airbnb_2018].
 
 #### Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
-Amenities are highly categorizable, meaning lots of similarities, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify the similarities among various amenities and appropriately categorize them, just like group all the synonyms from a vast vocabulary. We use the Word2Vec model to classify a large number of words and phrases, and then apply UMAP to reduce their dimensions to two for better visualization [***Figure2a***]{.underline}.
+Amenities are highly categorizable, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify the similarities among various amenities just like group all the synonyms from a vast vocabulary. We use the [Word2Vec model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) to classify a large number of words and phrases, and then apply UMAP for better visualization [***Figure2a***]{.underline}.
 
 ```{python}
 # import Word2Vec Model remotely
@@ -529,7 +528,7 @@ circ_colors = mpl.colors.hsv_to_rgb(np.concatenate((angle.reshape(-1,1),
                                                     mag.reshape(-1,1)),
                                                     axis=1))
 
-plt.savefig("Word2Vec_2D_UMAP_Projection.png", dpi=300)
+plt.savefig("Word2Vec_2D_UMAP_Projection.png", dpi=150)
 
 color_info = np.concatenate((translated_embedding, circ_colors), axis=1)
 
@@ -623,7 +622,7 @@ ax.xaxis.set_visible(False)
 ax.yaxis.set_visible(False)
 
 # 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig("Word2Vec_OSM_geospace.png", dpi=300)  
+fig.savefig("Word2Vec_OSM_geospace.png", dpi=100)  
 
 plt.show()
 
@@ -769,20 +768,18 @@ ax.yaxis.set_visible(False)
 ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)         #添加OSM底图
 
 # 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig("Listings_profit_ratio.png", dpi=300)
+fig.savefig("Listings_profit_ratio.png", dpi=150)
 
 plt.show()
 
 
-
-
 ```
 
-We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number with normal distribution [***Figure3a***]{.underline}, but it aligns with the data from the [Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'. Then we standarlize the data and visualize it in the map [***Figure3b***]{.underline}. The blue area means these listings have the potential to make more profit and fullfill more contract, which should be highlighted when branding and promoting.
+We use several numeric columns to calculate the total income for every listing. Though, technically this is an approximate number with normal distribution [***Figure3a***]{.underline}, but it aligns with the data from the [Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average property in that wards to indicate this listing's 'cost-benefit ratio'. Then we standarlize the data and visualize it in the map [***Figure3b***]{.underline}. The blue area means these listings have the potential to make more profit and fullfill more contract, which should be highlighted and coordinated with \[***Figure2b***\] when branding and promoting.
 
 ### 6.4 How does the indicator correlate with textual information?
 
-By using the SVM to train the model for better predicting the indicator X according to the textual information, we could apply this method and get an [trained model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) with accuracy more than **85%**, which could help the Airbnb platform or Government to assess and evaluate the listings before they are promoted and recommended to the potential renters. The SVM model is not easy to visualize, yet we have the confidence that it could offer some valuable insights both for the platform and community.
+By using the SVM to train the model for better predicting the indicator X according to the textual information, we could apply this method and get an [trained model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) with accuracy more than **85%**, which could help the Airbnb platform or Government to evaluate the listings before they are promoted and recommended to the potential renters.
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
