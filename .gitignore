@@ -189,3 +189,6 @@ Data/Data_InsideAirbnb/listings(1).csv
 Data/Data_InsideAirbnb/calendar.csv
 Data/Data_InsideAirbnb/neighbourhoods.csv
 Data/Data_InsideAirbnb/Origin_version/reviews.csv
+Data/Airbnb_Ame2Vec_UMAP2color.csv
+Data/Airbnb_listing_ame_vec.csv
+Data/Airbnb_Listing_norm.csv
