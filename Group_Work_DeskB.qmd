@@ -697,7 +697,7 @@ gdf_listing.set_crs("EPSG:4326", inplace=True)  # (EPSG:4326)
 print("Converting successful")
 
 # Drop NAs of columns ['description','amenities']
-gdf_listing = gdf_listing.dropna(subset=['description','amenities'])
+gdf_listing = gdf_listing.dropna(subset=['amenities_norm'])
 print(f"Now gdf has {gdf_listing.shape[0]:,} rows and {gdf_listing.shape[1]:,} columns.")
 ```
 
@@ -709,16 +709,16 @@ London_wards = London_wards.to_crs(epsg=3857)
 print("gdf_listing CRS:", gdf_listing.crs)
 print("London_boroughs CRS:", London_boroughs.crs)
 print("London_boroughs CRS:", London_wards.crs)
-
+"""
 # 添加 borough 名称
 gdf_listing_with_borough = gpd.sjoin(gdf_listing, London_boroughs, how='left', op='within')
 gdf_listing_with_borough = gdf_listing_with_borough.rename(columns={'name': 'borough_name'})
 
 # 添加 ward 名称
 gdf_listing_with_borough_wards = gpd.sjoin(gdf_listing_with_borough, London_wards, how='left', op='within')
-gdf_listing_with_borough_wards = gdf_listing_with_borough_wards.rename(columns={'name': 'ward_name'})
+gdf_listing_with_borough_wards = gdf_listing_with_borough_wards.rename(columns={'NAME': 'ward_name'})
 
-
+"""
 gdf_listing['log_sum_income'] = np.log(gdf_listing['sum_income'])
 
 gdf_listing['log_sum_income'].value_counts()
@@ -742,6 +742,8 @@ gdf_listing_dropinf['log_sum_income_normalized_scaled'] = gdf_listing_dropinf['l
 
 gdf_listing_dropinf['log_sum_income_normalized_scaled'].hist(bins=150)
 ```
++ label: Figure3a
+#+ fig.cap: "Figure3a: Statistical distribution of Listings' profit-cost ratio"
 
 ```{python}
 ###relating coding for PART6
@@ -791,16 +793,15 @@ plt.show()
 # 保存为 PNG 文件，分辨率为 300 dpi
 fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=300)  
 ```
++ label: Figure3b
+#+ fig.cap: "Figure3b: spatial distribution of Listings' profit-cost ratio"
 
-We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number, but it aligns with the data from the [\@Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'.
+We multiple the price of each listing by its total nights in the last year, total nights was calculated by minimum nights, maximum nights and number of reviews. Though, technically this is an approximate number with normal distribution[@Figure3a], but it aligns with the data from the [\@Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average property value to get an integrated index to indicate this listing's 'cost-benefit ratio'. Then we standarlize the data and visualize it in the map[@Figure3b]. The blue area means these listings have the potential to make more profit and fullfill more contract, which should be highlighted when branding and promoting.
 
 ### 6.4 How does the indicator correlate with textual information?
 
 By using the SVM to train the model for better predicting the indicator X according to the textual information, we could apply this method and get an [\*trained model with accuracy more than 85%](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb), which could help the Airbnb platform or Government to assess and evaluate the listings before they are promoted and recommended to the potential renters. The SVM model is not easy to visualize, yet we have the confidence that it could offer some valuable insights both for the platform and community.
 
-```{python}
-###relating coding for PART6
-```
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
