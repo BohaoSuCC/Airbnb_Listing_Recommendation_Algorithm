@@ -311,6 +311,7 @@ We could use the LDA model to generalize and extract topics to get the most freq
 
 ```{python}
 
+current_dir = os.getcwd()
 coherence_url = "https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Data/coherence_values.csv"
 
 # create local path for saving
@@ -346,7 +347,7 @@ LDA_topics_and_words_frame = pd.read_csv(os.path.join("Data","lda_topics_and_wor
 
 ```{python, fig.cap="Figure1a: best number of topics for summarizing key words", #Figure1a}
 # create the line chart
-fig, ax1 = plt.subplots(figsize=(12, 4))
+fig, ax1 = plt.subplots(figsize=(12, 6))
 ax1.plot(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score'], marker='o')
 ax1.set_title('Coherence Scores across Different Numbers of Topics')
 ax1.set_xlabel('Number of Topics')
@@ -357,9 +358,13 @@ ax1.grid(True)
 for x, y in zip(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score']):
     ax1.annotate(f'{y:.3f}', (x, y), textcoords="offset points", xytext=(0, 5), ha='center')
 
-fig.text(0.5, 0.02, 'Figure1a: Best number of topics for summarizing key words', ha='center', va='bottom')
+# add extra space for label
+plt.subplots_adjust(bottom=0.2)
 
-plt.savefig("CoherenceScoreOfLDA.png")
+# labels of the picture on the bottom
+fig.text(0.5, 0.08, 'Figure1a: Best number of topics for summarizing key words', ha='center', va='bottom')
+
+plt.savefig(os.path.join("Images","CoherenceScoreOfLDA.png"))
 
 plt.show()
 
@@ -383,8 +388,12 @@ for i, topic in enumerate(LDA_topics_and_words_frame['Topic'].unique()):
 
 
 plt.tight_layout()
+# add extra space for label
+plt.subplots_adjust(bottom=0.1)
+# labels of the picture on the bottom
+fig.text(0.5, 0.05, 'Figure1b: Topics and key words', ha='center', va='bottom', fontsize=30)
 
-plt.savefig("LDA_topic16_wordcloud.png")
+plt.savefig(os.path.join("Images","LDA_topic16_wordcloud.png"))
 
 plt.show()
 
@@ -496,7 +505,7 @@ translated_embedding = embedding + translation
 
 # verify the new centroid 验证新的中心点
 new_center = translated_embedding.mean(axis=0)
-print(f"New center after translation: {new_center}")
+#print(f"New center after translation: {new_center}")
 ```
 
 ```{python, fig.cap="Figure2a: Features clustering after UMAP", #Figure2a}
@@ -510,15 +519,8 @@ angle = np.arctan2(translated_embedding[:,1], translated_embedding[:,0])
 # normalization to angle and distance 对角度和距离进行归一化处理
 angle = (angle-np.min(angle)) / (np.max(angle) - np.min(angle))
 
-#min-max scaling to [0,1]
-#mag = (mag-np.min(mag)) / (np.max(mag)-np.min(mag))
-
 #standarlizing scaling to [0,1]
 mag = (mag-np.mean(mag)/np.std(mag))
-#mag = (mag-np.min(mag)) / (np.max(mag)-np.min(mag))
-
-#tanh scaling，正切双曲线
-#mag = (np.tanh(mag)+1)/2
 
 #sigmoid缩放
 mag = 1 / (1 + np.exp(-mag))
@@ -528,15 +530,26 @@ circ_colors = mpl.colors.hsv_to_rgb(np.concatenate((angle.reshape(-1,1),
                                                     mag.reshape(-1,1)),
                                                     axis=1))
 
-plt.savefig("Word2Vec_2D_UMAP_Projection.png", dpi=150)
+
+
+
+
 
 color_info = np.concatenate((translated_embedding, circ_colors), axis=1)
 
+# 创建图形并调整布局
+fig, ax = plt.subplots(figsize=(10, 10))
+plt.subplots_adjust(bottom=0.05)  # 为题注留出空间
 
-fig, ax = plt.subplots(figsize=(10,10))
-ax.scatter(translated_embedding[:, 0], translated_embedding[:, 1], color=circ_colors, s=0.5);
-ax.axis('off');
+# 绘制散点图
+ax.scatter(translated_embedding[:, 0], translated_embedding[:, 1], color=circ_colors, s=0.5)
+ax.axis('off')
 
+# 添加题注
+fig.text(0.5, 0.05, 'Figure2a: Features clustering after UMAP', ha='center', va='bottom', fontsize=12)
+
+plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png", dpi=150))
+plt.show()
 
 ```
 
@@ -611,18 +624,23 @@ for idx, row in London_boroughs.iterrows():
 # add the label for wards
 for idx, row in London_wards.iterrows():
     centroid = row.geometry.centroid
-    text = ax.text(centroid.x, centroid.y, row['NAME'], fontsize=2, color='white',ha='center', va='center', alpha=0.7,
-                   path_effects=[PathEffects.withStroke(linewidth=0.5, foreground='black')])
+    text = ax.text(centroid.x, centroid.y, row['NAME'], fontsize=3, color='white',ha='center', va='center', alpha=0.5,
+                   path_effects=[PathEffects.withStroke(linewidth=0.4, foreground='black')])
  
 #OSM彩色底图,透明图0.7
-ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha = 0.7)              
+ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha = 0.7)  
+
+plt.subplots_adjust(bottom=0.05)  # 为题注留出空间
 
 # 隐藏坐标轴
 ax.xaxis.set_visible(False)
 ax.yaxis.set_visible(False)
 
+# 添加题注
+fig.text(0.5, 0.15, 'Figure2b: spatial distribution of Listings  similarities', ha='center', va='bottom', fontsize=16)
+
 # 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig("Word2Vec_OSM_geospace.png", dpi=100)  
+fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.png", dpi=300))  
 
 plt.show()
 
@@ -704,7 +722,6 @@ gdf_listing_dropinf = gdf_listing[gdf_listing['log_sum_income'] != -np.inf]
 import warnings
 warnings.filterwarnings('ignore') 
 
-gdf_listing_dropinf['log_sum_income'].hist(bins=150)
 
 # 首先，将数据归一化到 0 和 1 之间
 min_val = gdf_listing_dropinf['log_sum_income'].min()
@@ -718,7 +735,26 @@ gdf_listing_dropinf['log_sum_income_normalized_scaled'] = gdf_listing_dropinf['l
 median_num_income = np.median(gdf_listing_dropinf['log_sum_income_normalized_scaled'],axis=0)
 gdf_listing_dropinf['log_sum_income_normalized_scaled'] = gdf_listing_dropinf['log_sum_income_normalized_scaled'] - median_num_income
 
-gdf_listing_dropinf['log_sum_income_normalized_scaled'].hist(bins=150)
+# 创建图形和轴对象
+fig, ax = plt.subplots(figsize=(10, 6))
+
+
+# 绘制第一个直方图
+gdf_listing_dropinf['log_sum_income'].hist(bins=150, ax=ax, alpha=0.5, label='Original Data')
+
+# 绘制第二个直方图
+gdf_listing_dropinf['log_sum_income_normalized_scaled'].hist(bins=150, ax=ax, alpha=0.5, label='Normalized & Scaled Data')
+
+ax.legend()
+
+plt.subplots_adjust(bottom=0.15)  # 为题注留出空间
+# 添加题注
+fig.text(0.5, 0.07, 'Figure3a: Statistical distribution of Listings\' profit-cost ratio', ha='center', va='bottom', fontsize=12)
+
+# 保存为 PNG 文件，分辨率为 300 dpi
+fig.savefig(os.path.join("Images","Profit-cost ratio distribution.png", dpi=150))  
+
+plt.show()
 ```
 
 ```{python, fig.cap="Figure3b: spatial distribution of Listings profit-cost ratio", #Figure3b}
@@ -757,18 +793,23 @@ scatter = ax.scatter(gdf_listing_dropinf.geometry.x, gdf_listing_dropinf.geometr
 
 
 # 添加颜色条
-cbar = plt.colorbar(scatter, ax=ax, label='Income', shrink=0.5, pad=0)
+cbar = plt.colorbar(scatter, ax=ax, label='Profit-cost Ratio', shrink=0.5, pad=0.02)
 # 调整颜色条的大小和位置
 cbar.ax.set_aspect(20)  # 这里的数字越大，颜色条越窄
 
 # 隐藏坐标轴
-ax.xaxis.set_visible(False)
-ax.yaxis.set_visible(False)
+ax.xaxis.set_visible(True)
+ax.yaxis.set_visible(True)
 
-ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)         #添加OSM底图
+ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha=0.7)         #添加OSM底图
+
+
+plt.subplots_adjust(bottom=0.1)  # 为题注留出空间
+# 添加题注
+fig.text(0.5, 0.2, 'Figure3b: spatial distribution of Listings profit-cost ratio', ha='center', va='bottom', fontsize=16)
 
 # 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig("Listings_profit_ratio.png", dpi=150)
+fig.savefig(os.path.join("Images","Listings_profit_ratio.png", dpi=300))
 
 plt.show()
 
@@ -783,13 +824,14 @@ By using the SVM to train the model for better predicting the indicator X accord
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
-STL: In an effort to preserve the city's current housing supply, the government legalized short-term rentals in London for a maximum of 90 days per calendar year with the introduction of the 2011 Localism Act and the 2015 Deregulation Act. Nevertheless, a number of studies point out that this deadline isn't always adhered to in reality. Most of the Airbnb listings (77%) did respect the 90-day limit, which nonetheless leaves an important proportion (23%) that did not. Of the listings surpassing the 90-day limit, the average estimated occupancy was 145 nights a year. Of these lettings, 6,140 (or 55%) were entire homes and 5,000 (or 45%) were private rooms.
+### Short Term Letting(STL)
+In an effort to preserve the city's current housing supply, the government legalized short-term rentals in London for a maximum of 90 days per calendar year with the introduction of the 2011 Localism Act and the 2015 Deregulation Act. Nevertheless, a number of studies point out that this deadline isn't always adhered to in reality. Most of the Airbnb listings (77%) did respect the 90-day limit, which nonetheless leaves an important proportion (23%) that did not. Of the listings surpassing the 90-day limit, the average estimated occupancy was 145 nights a year. Of these lettings, 6,140 (or 55%) were entire homes and 5,000 (or 45%) were private rooms.
 
 The majority of London Airbnb hosts (84%) manage only one listing, while 1% (280 hosts) with over 10 properties each, accounting for 15% of all active short-term lettings, are predominantly commercial entities, contradicting government policy and legislation intentions. Some 72 of these companies were found to actively encourage hosts to exceed the 90-day limit with different platforms, a practice considered illegal.
 
 Much of the existing research has focused on the role of Airbnb as the most prominent and prevalent online platform for short-term lets in the UK and internationally. Researchers, policymakers, and the public have voiced increasing concern about the possible negative externalities caused by the exponential rise in short-term lets this past decade. Local governments, in particular, are exploring viable ways to regulate and facilitate the practice while minimizing its potential negative effects.
 
-Enhancing Airbnb Branding:
+### Enhancing Airbnb Branding
 
 To enhance the Airbnb platform strategically, leveraging text features for branding and recommendation algorithms is crucial. The following strategies can be implemented:
 
@@ -799,7 +841,7 @@ To enhance the Airbnb platform strategically, leveraging text features for brand
 
 -   Positive feedback for high rental profitability listings: For listings with high rental profitability, providing additional positive feedback serves to incentivize competitive listings. This stimulates a positive feedback loop, promoting sound business operations beneficial for both Airbnb and landlords.
 
-Government Regulatory Options:
+### Government Regulatory Options
 
 Furukawa & Onuki's tri-categorical definition indicates that effective policies should be less restrictive for Primary Hosted & Unhosted Short-term lets within appropriate timeframes, while regulating Nonprimary short-term lets more firmly to provide the right incentives to landlords to rent long-term.
 
