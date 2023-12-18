@@ -272,7 +272,15 @@ Murray Cox collected the [Inside Airbnb](http://insideairbnb.com/about) dataset 
 
 ## 3. How was the data collected?
 
-[listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps: \* Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing. \* Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled. \* Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions. \* Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.
+[listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:
+
+-   Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing.
+
+-   Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.
+
+-   Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions.
+
+-   Regular Updates: The scraping process is repeated periodically to keep the database current, capturing new listings and updates to existing ones.
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
@@ -413,11 +421,11 @@ plt.show()
 
 ```
 
-The [LDA process](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so wesave and re-read the output remotely from Github. Then, results shows that among 16 topics *Figure1b*, there are some topics mainly describe the location like *topic8* and *topic6*. Also, some contains information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about Airbnb listings which is essential to the recommendation algorithms in platform's branding[@mody_airbnb_2018].
+The [LDA process](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so wesave and re-read the output remotely from Github. Then, results shows that among 16 topics *Figure1b*, there are some topics mainly describe the location like *topic8* and *topic6*. Also, some contains information about the facilities and some adjectives towards surrounding environments like *topic13* and *topic14*. In short, all of those key words could illustrate the general features about Airbnb listings which is essential to the recommendation algorithms in platform's branding[@mody_airbnb_2018].
 
 #### Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
-Amenities are highly categorizable, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify various amenities' similarities just like group synonyms out from dictionaries. We use the [Word2Vec model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) to classify voluminous t words and phrases, and then apply UMAP[@[@stalder_self-supervised_2023]] for better visualization in *Figure2a*.
+Amenities are highly categorizable, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify various amenities' similarities just like group synonyms out from dictionaries. We use the [Word2Vec model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) to classify voluminous t words and phrases, and then apply UMAP[\@[@stalder_self-supervised_2023]\] for better visualization in *Figure2a*.
 
 ```{python}
 # import Word2Vec Model remotely
@@ -700,7 +708,7 @@ In the *Figure2b*, each kind of colours represents the amenities feature of a pr
 
 ### 6.3 Which indicator guide the branding?
 
-Even though Airbnb, as a responsible company, should take community and regulation into consideration, the essence of branding and recommendation system is aiming for profit. Therefore comes the question: what indicator could represent the potential economic opportunities for listing's branding or promotion?
+Even though Airbnb, as a responsible company, should take community and regulation into consideration, the essence of branding and recommendation system is still aiming for profit. Therefore comes the question: what indicator could represent the potential economic opportunities for listing's branding or promotion?
 
 ```{python}
 
@@ -877,36 +885,50 @@ By using the SVM model for better predicting the 'profit-cost ratio' according t
 
 ### 6.5 Summary
 
-
+After the analysis, we have the key topics and words for better generalization(*Figure1*), the features spatial distribution for better classification(*Figure2*) and the 'profit-cost ratio' spatial distribution for better investment(*Figure3*), all of which would be utilized to inform the strategies for Airbnb, communities and governments(*Figure4*).
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
 ### Short Term Lets(STL)
 
-In an effort to preserve the city's current housing supply, the government legalized short-term rentals in London for a maximum of 90 days per calendar year with the introduction of the [2011 Localism Act](https://www.legislation.gov.uk/ukpga/2011/20/contents/enacted) and the [2015 Deregulation Act](https://www.legislation.gov.uk/ukpga/2015/20/contents/enacted). Nevertheless, a number of studies point out that this regulation isn't always adhered to in reality. Most of the Airbnb listings (77%) did respect the 90-day limit. Out from the listings surpassing the 90-day limit, the average estimated occupancy was 145 nights a year. Of these lettings, 6,140 (or 55%) were entire homes and 5,000 (or 45%) were private rooms.
+In an effort to preserve the city's current housing supply, the government legalized short-term rentals in London for a maximum of 90 days per calendar year with the introduction of the [2011 Localism Act](https://www.legislation.gov.uk/ukpga/2011/20/contents/enacted) and the [2015 Deregulation Act](https://www.legislation.gov.uk/ukpga/2015/20/contents/enacted). Nevertheless, a number of studies[@jefferson-jones_can_2015] point out that this regulation isn't always adhered to in reality. Most of the Airbnb listings (77%) did respect the 90-day limit. Out from the listings surpassing the 90-day limit, the average estimated occupancy was 145 nights a year. Of these lettings, 6,140 (or 55%) were entire homes and 5,000 (or 45%) were private rooms.
 
 Much of the existing research[@shabrina_airbnb_2022] has focused on the role of Airbnb as the most prominent and prevalent online platform for short-term lets in the UK and internationally. Researchers, policymakers, and the public have voiced increasing concern about the possible negative externalities caused by the exponential rise in short-term lets this past decade. Local governments, in particular, are exploring viable ways to regulate and facilitate the practice while minimizing its potential negative effects.
 
-### Enhancing Airbnb Branding
+### Airbnb Branding
 
 To enhance the Airbnb platform strategically, leveraging text features for branding and recommendation algorithms is crucial. Based on the comparison between *Figure2b* and *Figure3b*, The following strategies can be implemented:
 
--   Homogeneous listing selection: Considering that homogeneity might contribute to housing market distortions[@zhou_asymmetric_2015]. For example, in the London Bridge & West Bermondsey area, the income rate of properties is quite low, while at the same time, the homogeneity of property features is relatively similar. It is possible that these two factors are causally related. Utilizing text features could filter and identify the homogeneity in certain areas, reducing the addition of new listings in spatially concentrated areas. This could assist platform in rationally branding homogenous properties over a time series and making arrangement according to various peak demand period.
+-   Positive feedback cycle:
 
--   Reinforcing recommendation algorithms in low occupancy areas: In regions with lower occupancy rates, strengthening recommendation algorithms ensures a more balanced overall occupancy rate. This proactive approach mitigates vacancy concerns, contributing to the dynamic equilibrium of London's housing market and boosting hosts' profitability.
+In regions with lower occupancy rates, recommendation algorithms adjustment ensures balanced occupancy rate over different areas. This proactive approach mitigates vacancy concerns, contributing to the dynamic balance of London's housing market and boosting hosts' profitability. Moreover, for listings with high rental profitability, providing additional positive feedback serves to incentivize competitive listings, which means positive feedback cycles, promoting business operations beneficial for both Airbnb and landlords.
 
--   Positive feedback for high rental profitability listings: For listings with high rental profitability, providing additional positive feedback serves to incentivize competitive listings. This stimulates a positive feedback loop, promoting business operations beneficial for both Airbnb and landlords.
+-   Negative Homogeneous listing:
+
+Considering that homogeneity might contribute to housing market distortions[@zhou_asymmetric_2015]. For example, in the London Bridge & West Bermondsey area, the income rate of properties is quite low, while at the same time, the homogeneity of property features is relatively similar. It is possible that these two factors are synchronized with each other. Utilizing text features could filter and identify the homogeneity in certain areas, reducing the addition of new listings in spatially concentrated areas. This could assist platform in rationally branding homogenous properties in time series and making arrangement according to various peak demand period.
+
+-   Airbnb's trade-off:
+
+For the interest of business's essence, it is undoutedfully to achieve positive cycle by promoting more competitive listing to renters. However, the competence may contribute back to homogeneity, instead mitigating the formation of positive cycle. On the other hand, Airbnb could develop certain area's diversity(heterogeneity) by manually instructing competitor hosts to modify their amenities or description for attracting renters more effectively. Overall, the trade-off should always be improvised by various situations.
 
 ### Government Regulatory Options
 
 Furukawa & Onuki's tri-categorical definition[@furukawa_design_2019] indicates that effective policies should be less restrictive for Primary Hosted & Unhosted Short-term lets within appropriate timeframes, while regulating Nonprimary short-term lets more firmly to provide the right incentives to landlords to rent long-term.
 
-Tailored Policies Based on Spatial Distribution Features: Tailoring policies for diverse community types is essential. In high-density areas, consider limiting the addition of new listings to prevent overcrowding. In contrast, for areas with lower occupancy rates, policies can encourage landlords to adopt more proactive occupancy promotion strategies.
+-   Tailored Policies Based on Spatial Distribution Features
 
-Dynamic Policy Adjustments for Supply-Demand Balance: Utilize spatial distribution features to monitor market dynamics and make dynamic policy adjustments based on actual demand. In high-demand areas, policies can be more flexible, encouraging short-term rentals, while in oversupplied regions, stricter policies can reduce vacancy rates. Connect the identified branding opportunities with STL regulations to strike a balance between encouraging tourism and preventing negative impacts on housing markets. For areas with distinctive amenities or features, consider regulations that preserve the uniqueness without contributing to housing shortages.
+Tailoring policies for diverse community types is essential. In high-density areas, consider limiting the addition of new listings to prevent overcrowding. In contrast, for areas with lower occupancy rates, policies can encourage landlords to adopt more proactive occupancy promotion strategies.
 
-Encouraging Landlord Engagement in Community Development: Airbnb transforms residential communities into tourist spaces and changes the socio-cultural landscape of urban neighborhoods. It specifically propagates the experience of 'living like a local, but this consumption of everyday local residential life has implications for the well-being of long-term tenants, including the disruption and erasure of long-term communities and housing insecurity. Critical urbanists have accordingly linked Airbnb to touristification/gentrification - what Peters has called 'Airbnbification'. Governments can consider incentivizing landlords to participate in community development, aiming to increase the 90-day occupancy rate. This not only reduces long-term property vacancies but also fosters community vitality and helps maintain supply-demand equilibrium.
+-   Dynamic Policy Adjustments for Supply-Demand Balance
 
-Create a Registration Service to Bridge Gaps in Data: In a context where the lack of data is cited as a major limitation in research and decision-making outcomes, a registration service could provide some of the information necessary to bridge this gap. Use statistical analysis and models to support regulatory decisions, ensuring they are evidence-based and grounded in the specific characteristics of each area. Incorporate figures, maps, and statistical insights to demonstrate the impact of STL on housing prices, availability, and community well-being.
+Utilize spatial distribution features to monitor market dynamics and make dynamic policy adjustments based on actual demand. In high-demand areas, policies can be more flexible, encouraging short-term rentals, while in oversupplied regions, stricter policies can reduce vacancy rates. Connect the identified branding opportunities with STL regulations to strike a balance between encouraging tourism and preventing negative impacts on housing markets. For areas with distinctive amenities or features, consider regulations that preserve the uniqueness without contributing to housing shortages.
+
+-   Encouraging Landlord Engagement in Community Development
+
+Airbnb transforms residential communities into tourist spaces and changes the socio-cultural landscape of urban neighborhoods. It specifically propagates the experience of 'living like a local, but this consumption of everyday local residential life has implications for the well-being of long-term tenants, including the disruption and erasure of long-term communities and housing insecurity. Critical urbanists have accordingly linked Airbnb to touristification/gentrification - what Peters has called 'Airbnbification'. Governments can consider incentivizing landlords to participate in community development, aiming to increase the 90-day occupancy rate. This not only reduces long-term property vacancies but also fosters community vitality and helps maintain supply-demand equilibrium.
+
+-   Create a Registration Service to Bridge Gaps in Data
+
+In a context where the lack of data is cited as a major limitation in research and decision-making outcomes, a registration service could provide some of the information necessary to bridge this gap. Use statistical analysis and models to support regulatory decisions, ensuring they are evidence-based and grounded in the specific characteristics of each area. Incorporate figures, maps, and statistical insights to demonstrate the impact of STL on housing prices, availability, and community well-being.
 
 ## References
