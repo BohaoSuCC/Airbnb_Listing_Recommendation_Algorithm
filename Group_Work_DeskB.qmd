@@ -105,6 +105,7 @@ csl: harvard-cite-them-right.csl
 title: DeskB's Group Project
 execute:
   echo: false
+jupyter: python3
 format:
   html:
     theme:
@@ -114,7 +115,7 @@ format:
     code-link: true
     toc: true
     toc-title: On this page
-    toc-depth: 2
+    toc-depth: 3
     toc_float:
       collapsed: false
       smooth_scroll: true
@@ -159,16 +160,18 @@ Student Numbers: 20017359 23032922 23081403 23103585 23130397
 
 ## Brief Group Reflection
 
-| What Went Well | What Was Challenging |
-|----------------|----------------------|
-| A              | B                    |
-| C              | D                    |
+| What Went Well   | What Was Challenging |
+|------------------|----------------------|
+| data description | plotting             |
+| data cleaning    | SVM classifier model |
 
 ## Priorities for Feedback
 
 Are there any areas on which you would appreciate more detailed feedback if we're able to offer it?
 
-Frankly, we've encountered lots of confusion towards the topic of this assessment.
+Frankly, we've encountered lots of confusion towards the topic of this assessment. Especially in the topic selection, among all the predictive topis in the website, we can not propose the very specific quesiton and structure at the beginning. How to build the bridge between NLP recommending system for branding and inform valuable proposal for STL regulation could be the key issue for us.
+
+So, if convinient, we would like to know did we structure the whole report with a solid logical chain. Also, did we successfully propose some constructive and feasible suggestions? And what should be NLP analysis used for proposal looked like in a real comapny project?
 
 ```{=html}
 <style type="text/css">
@@ -273,23 +276,23 @@ Murray Cox collected the [Inside Airbnb](http://insideairbnb.com/about) dataset 
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
-For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it might be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps [@prentice_addressing_2023]. .
+For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it might be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps [@prentice_addressing_2023].
 
 ## 5. What ethical considerations does the use of this data raise?
 
-## Privacy issues
+### Privacy issues
 
 Whether the dataset has the consent of the landlord owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours[@van_den_bemt_teaching_2018]. Therefore, obtaining the user's consent is crucial to whether the user's privacy is effectively safeguarded.
 
-## Legal compliance
+### Legal compliance
 
 Usage of the dataset should comply with laws and regulations such as GDPR, DPA and EDPS.The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; we must consider the ethical dimensions of data processing.[@hasselbalch_making_2019] Therefore, legal compliance and ethical considerations should be combined in the digital age.
 
-## Social responsibility
+### Social responsibility
 
 It is important to use datasets appropriately, as publishing certain data may exacerbate behaviours such as inequality and bias. The Fairness and Openness Report(@DataJusticeReport) emphasizes how to use information responsibly and ethically, and it is quite crucial to resist the labelling of low-income communities, people of colour, etc. For example, significant differences in housing prices in different neighbourhoods may reflect economic disparities, which can affect perceptions of the socioeconomic status of those areas. Therefore, there is a need to consider how to disclose the labelled attributes of the data in question to avoid negative impacts.
 
-## Data security
+### Data security
 
 Some sensitive information in the dataset, such as personal information descriptions and geographic coordinates, must be stored securely to prevent access and misuse by unauthorized persons. By adjusting the norms of the use of network data, it is possible to effectively guarantee data security and increase the level of ethical behaviour of companies when processing data(@СкибунО.Ж_2022). Thus, attention to data security can prevent the conduct of unscrupulous individuals who collect housing data for profit or surveillance purposes.
 
@@ -301,13 +304,13 @@ Many studies have analyzed various aspects of Airbnb listings, including price[@
 
 ### 6.2 What can we dig from the textual information?
 
-Datasets consists of two textual fields: 'Description' and 'Amenities' both from the host's subjective statement as self-promotion. 'description' column is some sentences describing listing's advantages and characteristics. 'Amenities' column is bunch of facilities and amenities inside of affiliated with the listing.
+Datasets consists of two textual fields: 'Description' and 'Amenities' from the host's self-promotion. 'description' column is to describe advantages and characteristics. 'Amenities' is about facilities affiliated with the listing.
 
-After some [cleaning and preprocessing](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Processing_Airbnb_listing_normalising.ipynb) of the dataset, there are two set of questions corresponding to the two columns respectively.
+After some [cleaning and preprocessing](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Processing_Airbnb_listing_normalising.ipynb) , there are two set of questions corresponding to the two columns respectively.
 
 #### Which topics would host like to focus on when promoting their properties?
 
-We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. After calculating iteratively the model, we determine the best topics' number for summarizing 'descriptions' column should be 16. ([***Figure1a***]{.underline})
+We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. After calculating iteratively the model, we determine the best topics' number for summarizing 'descriptions' column should be 16. (*Figure1a*)
 
 ```{python}
 
@@ -359,12 +362,17 @@ for x, y in zip(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_fram
     ax1.annotate(f'{y:.3f}', (x, y), textcoords="offset points", xytext=(0, 5), ha='center')
 
 # add extra space for label
-plt.subplots_adjust(bottom=0.2)
+#plt.subplots_adjust(bottom=0.2)
 
 # labels of the picture on the bottom
-fig.text(0.5, 0.08, 'Figure1a: Best number of topics for summarizing key words', ha='center', va='bottom')
+#fig.text(0.5, 0.08, 'Figure1a: Best number of topics for summarizing key words', ha='center', va='bottom')
+
+#修改处，删除标题，标题和b图结合，并左上角添加ab
+fig.text(0.1, 0.9, '(a)', ha='left', va='top', fontsize=14, color='black', weight='bold')  # 修改处
 
 plt.savefig(os.path.join("Images","CoherenceScoreOfLDA.png"))
+
+# 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
 
 plt.show()
 
@@ -372,7 +380,7 @@ plt.show()
 
 ```{python, fig.cap="Figure1b: Topics and key words", #Figure1b}
 
-fig, axes = plt.subplots(4, 4, figsize=(24, 24))  
+fig, axes = plt.subplots(4, 4, figsize=(24,24))  
 
 axes = axes.flatten()  
 
@@ -384,14 +392,19 @@ for i, topic in enumerate(LDA_topics_and_words_frame['Topic'].unique()):
     wordcloud = WordCloud(width=400, height=400, background_color='white').generate_from_frequencies(word_frequencies)
     axes[i].imshow(wordcloud, interpolation='bilinear')
     axes[i].axis('off')
-    axes[i].set_title(f'Topic {topic}')
+    axes[i].set_title(f'Topic {topic}', fontsize=15)
 
 
 plt.tight_layout()
 # add extra space for label
 plt.subplots_adjust(bottom=0.1)
 # labels of the picture on the bottom
-fig.text(0.5, 0.05, 'Figure1b: Topics and key words', ha='center', va='bottom', fontsize=30)
+
+
+# 修改处，合并ab，并左上角添加ab
+fig.text(0, 0.97, '(b)', ha='left', va='top', fontsize=30, color='black', weight='bold')  
+# 修改处
+fig.text(0.5, 0.05, 'Figure1:(a)Variation of LDA Model Coherence Scores with Topic Quantity.\n(b)Airbnb Listing Topic Analysis: LDA Modeling and Keyword Visualization', ha='center', va='bottom', fontsize=30)
 
 plt.savefig(os.path.join("Images","LDA_topic16_wordcloud.png"))
 
@@ -400,11 +413,11 @@ plt.show()
 
 ```
 
-The [LDA process](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so we just save and re-read the output remotely from Github. Then, results shows that among 16 topics [***Figure1b***]{.underline}, there are some topics mainly describe the location of areas, just like topic8 and topic6. Also, there are also some containing information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about Airbnb listings which is of great value to the recommendation algorithms in platform's branding[@mody_airbnb_2018].
+The [LDA process](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so wesave and re-read the output remotely from Github. Then, results shows that among 16 topics *Figure1b*, there are some topics mainly describe the location like *topic8* and *topic6*. Also, some contains information about the facilities and some adjectives towards surrounding environments like topic13 and topic14. In short, all of those key words could illustrate the general features about Airbnb listings which is essential to the recommendation algorithms in platform's branding[@mody_airbnb_2018].
 
 #### Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
-Amenities are highly categorizable, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify the similarities among various amenities just like group all the synonyms from a vast vocabulary. We use the [Word2Vec model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) to classify a large number of words and phrases, and then apply UMAP for better visualization [***Figure2a***]{.underline}.
+Amenities are highly categorizable, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify various amenities' similarities just like group synonyms out from dictionaries. We use the [Word2Vec model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) to classify voluminous t words and phrases, and then apply UMAP[@[@stalder_self-supervised_2023]] for better visualization in *Figure2a*.
 
 ```{python}
 # import Word2Vec Model remotely
@@ -482,6 +495,10 @@ amenities_vector = Airbnb_Listing['amenities_vector']
 ```
 
 ```{python}
+
+import warnings
+warnings.filterwarnings('ignore') 
+
 # UMAP降维可视化word2vec模型 
 # 将pd.Series转换为np.array形式
 amenities_vector_nparray = amenities_vector.to_numpy()
@@ -538,17 +555,24 @@ circ_colors = mpl.colors.hsv_to_rgb(np.concatenate((angle.reshape(-1,1),
 color_info = np.concatenate((translated_embedding, circ_colors), axis=1)
 
 # 创建图形并调整布局
-fig, ax = plt.subplots(figsize=(10, 10))
-plt.subplots_adjust(bottom=0.05)  # 为题注留出空间
+fig, ax = plt.subplots(figsize=(10, 6))
+
 
 # 绘制散点图
 ax.scatter(translated_embedding[:, 0], translated_embedding[:, 1], color=circ_colors, s=0.5)
 ax.axis('off')
 
 # 添加题注
-fig.text(0.5, 0.05, 'Figure2a: Features clustering after UMAP', ha='center', va='bottom', fontsize=12)
+# 修改处,删除标题，并左上角添加ab
+fig.text(0.1, 0.9, '(a)', ha='left', va='top', fontsize=10, color='black', weight='bold') 
 
-plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png", dpi=150))
+
+
+
+plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png"), dpi=150)
+
+# 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
+#plt.close(fig)
 plt.show()
 
 ```
@@ -600,8 +624,9 @@ London_wards = London_wards.to_crs(epsg=3857)
 # 绘制地图
 fig, ax = plt.subplots(figsize=(16, 16))
 
-London_boroughs.boundary.plot(ax=ax, edgecolor='black', linewidth=1, alpha=0.4)
-London_wards.boundary.plot(ax=ax, edgecolor='black', linewidth=1, alpha=0.2)
+
+London_boroughs.boundary.plot(ax=ax, edgecolor='black', linewidth=0.5, alpha=0.4)
+London_wards.boundary.plot(ax=ax, edgecolor='black', linewidth=0.5, alpha=0.2)
 
 # 从 gdf_listing 提取坐标点和 RGB 颜色值
 x = gdf_listing.geometry.x  # 经度
@@ -615,43 +640,67 @@ colors_brightened = np.clip(colors * brightness_factor, 0, 1)  # 确保值在 0 
 # 绘制散点图
 ax.scatter(x, y, color=colors_brightened, s=40, alpha=0.1)  # 假设 RGB 值在 0-255 范围内
 
+# 创建子图的轴
+"""
+subax = plt.axes([0.1, 0.2, 0.3, 0.4]) # 左下角位置
+"""
+
 # add the label for boroughs
 for idx, row in London_boroughs.iterrows():
     centroid = row.geometry.centroid
-    text = ax.text(centroid.x, centroid.y, row['name'], fontsize=9, color='white',ha='center', va='center', alpha=0.7,
+    text = ax.text(centroid.x, centroid.y, row['name'], fontsize=7, color='white',ha='center', va='center', alpha=0.7,
                    path_effects=[PathEffects.withStroke(linewidth=0.5, foreground='black')])
 
 # add the label for wards
 for idx, row in London_wards.iterrows():
     centroid = row.geometry.centroid
-    text = ax.text(centroid.x, centroid.y, row['NAME'], fontsize=3, color='white',ha='center', va='center', alpha=0.5,
+    text = ax.text(centroid.x, centroid.y, row['NAME'], fontsize=2, color='white',ha='center', va='center', alpha=0.5,
                    path_effects=[PathEffects.withStroke(linewidth=0.4, foreground='black')])
- 
-#OSM彩色底图,透明图0.7
+
+"""
+# 例如，如果您想放大地图的一个特定区域
+x_min, x_max, y_min, y_max = -25000, 5000, 6695000, 6725000
+
+# 在子图上绘制相同的数据，但只限于选定区域
+subax.set_xlim(x_min, x_max)
+subax.set_ylim(y_min, y_max)
+London_boroughs.boundary.plot(ax=subax, edgecolor='black', linewidth=1, alpha=0.4)
+London_wards.boundary.plot(ax=subax, edgecolor='black', linewidth=0.5, alpha=0.2)
+subax.scatter(x, y, 
+              color=colors_brightened, s=40,
+              vmax=0.4, vmin=-0.5, alpha=0.2)
+"""
+
+ #OSM彩色底图,透明图0.7
 ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha = 0.7)  
 
-plt.subplots_adjust(bottom=0.05)  # 为题注留出空间
+plt.subplots_adjust(bottom=0.1)  # 为题注留出空间
+
 
 # 隐藏坐标轴
+
 ax.xaxis.set_visible(False)
 ax.yaxis.set_visible(False)
 
-# 添加题注
-fig.text(0.5, 0.15, 'Figure2b: spatial distribution of Listings  similarities', ha='center', va='bottom', fontsize=16)
+
+# 修改处，结合两个图标题，并左上角添加ab
+fig.text(0.1, 0.79, '(b)', ha='left', va='top', fontsize=20, color='black', weight='bold')  # 修改处
+fig.text(0.5, 0.15, 'Figure2:(a)Spectrum of Features: A UMAP Clustering of Word Embeddings.\n(b) Geographic Distribution of Residential Similarities in London', ha='center', va='bottom', fontsize=20)
 
 # 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.png", dpi=300))  
-
+fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.jpg"), dpi=200)  
+# 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
+#plt.close(fig)
 plt.show()
 
 
 ```
 
-In the [***Figure2b***]{.underline}, each kind of colours represents the amenities feature of a property, and areas with similar colors indicate highly similar amenities features between properties. Afterward, we reposition these points on a map according to their actual geographical locations. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in terms of amenities features.
+In the *Figure2b*, each kind of colours represents the amenities feature of a property, and areas with similar colors indicate highly similar amenities features between properties. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in listing features.
 
 ### 6.3 Which indicator guide the branding?
 
-Even though Airbnb,as a responsible company, should take community and regulation into consideration, the essence of branding and recommendation system is aiming to increase profit rate. Therefore comes the value question: what indicator could represent the potential opportunities for listing's branding or promotion?
+Even though Airbnb, as a responsible company, should take community and regulation into consideration, the essence of branding and recommendation system is aiming for profit. Therefore comes the question: what indicator could represent the potential economic opportunities for listing's branding or promotion?
 
 ```{python}
 
@@ -661,7 +710,7 @@ average_income_forlisting = Airbnb_Listing['sum_income'].mean()
 
 
 
-#print((Airbnb_Listing['price'] >= 2000).sum())
+#print((Airbnb_Listing['price'] >= 2000).sum()) 
 #print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
 
 # remain column 'price' less than 2000
@@ -748,11 +797,11 @@ gdf_listing_dropinf['log_sum_income_normalized_scaled'].hist(bins=150, ax=ax, al
 ax.legend()
 
 plt.subplots_adjust(bottom=0.15)  # 为题注留出空间
-# 添加题注
-fig.text(0.5, 0.07, 'Figure3a: Statistical distribution of Listings\' profit-cost ratio', ha='center', va='bottom', fontsize=12)
 
+# 修改处,这里删除了标题，和figure3b写在一起，并左上角添加ab
+fig.text(0.02, 0.95, '(a)', ha='left', va='top', fontsize=14, color='black', weight='bold') 
 # 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig(os.path.join("Images","Profit-cost ratio distribution.png", dpi=150))  
+fig.savefig(os.path.join("Images","Profit-cost ratio distribution.png"), dpi=150)  
 
 plt.show()
 ```
@@ -764,7 +813,7 @@ warnings.filterwarnings('ignore')
 
 
 # 绘制地图
-fig, ax = plt.subplots(figsize=(16, 16))
+fig, ax = plt.subplots(figsize=(24,24))
 
 # 计算 Jenks 自然断点
 #breaks = jenkspy.jenks_breaks(gdf_listing_dropinf['log_sum_income_normalized_scaled'],n_classes=15)
@@ -801,49 +850,56 @@ cbar.ax.set_aspect(20)  # 这里的数字越大，颜色条越窄
 ax.xaxis.set_visible(True)
 ax.yaxis.set_visible(True)
 
+
 ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha=0.7)         #添加OSM底图
 
 
 plt.subplots_adjust(bottom=0.1)  # 为题注留出空间
-# 添加题注
-fig.text(0.5, 0.2, 'Figure3b: spatial distribution of Listings profit-cost ratio', ha='center', va='bottom', fontsize=16)
+
+# 修改处，参考网址https://www.datascience.ch/articles/self-learning-change-urban-housing-street-level，把ab标题写在一起了，并左上角添加ab
+fig.text(0.08, 0.75, '(b)', ha='left', va='top', fontsize=24, color='black', weight='bold')  
+fig.text(0.45, 0.2, 'Figure3:(a)Statistical Distribution of Annual Revenue for Listings in London.\n(b)Geographical Distribution of Cost-Benefit Ratio for Listings in London', ha='center', va='bottom', fontsize=18)
+
 
 # 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig(os.path.join("Images","Listings_profit_ratio.png", dpi=300))
+fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=300)
 
 plt.show()
 
 
 ```
 
-We use several numeric columns to calculate the total income for every listing. Though, technically this is an approximate number with normal distribution [***Figure3a***]{.underline}, but it aligns with the data from the [Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average property in that wards to indicate this listing's 'cost-benefit ratio'. Then we standarlize the data and visualize it in the map [***Figure3b***]{.underline}. The blue area means these listings have the potential to make more profit and fullfill more contract, which should be highlighted and coordinated with \[***Figure2b***\] when branding and promoting.
+We use several numeric columns to calculate the total income for every listing. Though, technically this is an approximate number with normal distribution *Figure3a*, but it aligns with the data from the [Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average in that wards to indicate this listing's 'profit-cost ratio'. Then we standarlize the data and visualize it in the map *Figure3b*. The blue area means potential for more profit and more lease, which should be highlighted and coordinated with *Figure2b* when branding and promoting.
 
 ### 6.4 How does the indicator correlate with textual information?
 
-By using the SVM to train the model for better predicting the indicator X according to the textual information, we could apply this method and get an [trained model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) with accuracy more than **85%**, which could help the Airbnb platform or Government to evaluate the listings before they are promoted and recommended to the potential renters.
+By using the SVM model for better predicting the 'profit-cost ratio' according to the textual information, we gat an [trained model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) with accuracy more than **85%**, which could help the Airbnb platform or Government to evaluate the listings before they are promoted and recommended to the potential renters.
+
+### 6.5 Summary
+
+
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
-### Short Term Letting(STL)
-In an effort to preserve the city's current housing supply, the government legalized short-term rentals in London for a maximum of 90 days per calendar year with the introduction of the 2011 Localism Act and the 2015 Deregulation Act. Nevertheless, a number of studies point out that this deadline isn't always adhered to in reality. Most of the Airbnb listings (77%) did respect the 90-day limit, which nonetheless leaves an important proportion (23%) that did not. Of the listings surpassing the 90-day limit, the average estimated occupancy was 145 nights a year. Of these lettings, 6,140 (or 55%) were entire homes and 5,000 (or 45%) were private rooms.
+### Short Term Lets(STL)
 
-The majority of London Airbnb hosts (84%) manage only one listing, while 1% (280 hosts) with over 10 properties each, accounting for 15% of all active short-term lettings, are predominantly commercial entities, contradicting government policy and legislation intentions. Some 72 of these companies were found to actively encourage hosts to exceed the 90-day limit with different platforms, a practice considered illegal.
+In an effort to preserve the city's current housing supply, the government legalized short-term rentals in London for a maximum of 90 days per calendar year with the introduction of the [2011 Localism Act](https://www.legislation.gov.uk/ukpga/2011/20/contents/enacted) and the [2015 Deregulation Act](https://www.legislation.gov.uk/ukpga/2015/20/contents/enacted). Nevertheless, a number of studies point out that this regulation isn't always adhered to in reality. Most of the Airbnb listings (77%) did respect the 90-day limit. Out from the listings surpassing the 90-day limit, the average estimated occupancy was 145 nights a year. Of these lettings, 6,140 (or 55%) were entire homes and 5,000 (or 45%) were private rooms.
 
-Much of the existing research has focused on the role of Airbnb as the most prominent and prevalent online platform for short-term lets in the UK and internationally. Researchers, policymakers, and the public have voiced increasing concern about the possible negative externalities caused by the exponential rise in short-term lets this past decade. Local governments, in particular, are exploring viable ways to regulate and facilitate the practice while minimizing its potential negative effects.
+Much of the existing research[@shabrina_airbnb_2022] has focused on the role of Airbnb as the most prominent and prevalent online platform for short-term lets in the UK and internationally. Researchers, policymakers, and the public have voiced increasing concern about the possible negative externalities caused by the exponential rise in short-term lets this past decade. Local governments, in particular, are exploring viable ways to regulate and facilitate the practice while minimizing its potential negative effects.
 
 ### Enhancing Airbnb Branding
 
-To enhance the Airbnb platform strategically, leveraging text features for branding and recommendation algorithms is crucial. The following strategies can be implemented:
+To enhance the Airbnb platform strategically, leveraging text features for branding and recommendation algorithms is crucial. Based on the comparison between *Figure2b* and *Figure3b*, The following strategies can be implemented:
 
--   Homogeneous listing selection: Utilizing text features enables the screening of homogeneous listings, reducing the addition of new listings in spatially concentrated areas. This fosters a more balanced distribution of listings to improve overall equity in housing availability, while homogeneity might contribute to housing market distortions.
+-   Homogeneous listing selection: Considering that homogeneity might contribute to housing market distortions[@zhou_asymmetric_2015]. For example, in the London Bridge & West Bermondsey area, the income rate of properties is quite low, while at the same time, the homogeneity of property features is relatively similar. It is possible that these two factors are causally related. Utilizing text features could filter and identify the homogeneity in certain areas, reducing the addition of new listings in spatially concentrated areas. This could assist platform in rationally branding homogenous properties over a time series and making arrangement according to various peak demand period.
 
 -   Reinforcing recommendation algorithms in low occupancy areas: In regions with lower occupancy rates, strengthening recommendation algorithms ensures a more balanced overall occupancy rate. This proactive approach mitigates vacancy concerns, contributing to the dynamic equilibrium of London's housing market and boosting hosts' profitability.
 
--   Positive feedback for high rental profitability listings: For listings with high rental profitability, providing additional positive feedback serves to incentivize competitive listings. This stimulates a positive feedback loop, promoting sound business operations beneficial for both Airbnb and landlords.
+-   Positive feedback for high rental profitability listings: For listings with high rental profitability, providing additional positive feedback serves to incentivize competitive listings. This stimulates a positive feedback loop, promoting business operations beneficial for both Airbnb and landlords.
 
 ### Government Regulatory Options
 
-Furukawa & Onuki's tri-categorical definition indicates that effective policies should be less restrictive for Primary Hosted & Unhosted Short-term lets within appropriate timeframes, while regulating Nonprimary short-term lets more firmly to provide the right incentives to landlords to rent long-term.
+Furukawa & Onuki's tri-categorical definition[@furukawa_design_2019] indicates that effective policies should be less restrictive for Primary Hosted & Unhosted Short-term lets within appropriate timeframes, while regulating Nonprimary short-term lets more firmly to provide the right incentives to landlords to rent long-term.
 
 Tailored Policies Based on Spatial Distribution Features: Tailoring policies for diverse community types is essential. In high-density areas, consider limiting the addition of new listings to prevent overcrowding. In contrast, for areas with lower occupancy rates, policies can encourage landlords to adopt more proactive occupancy promotion strategies.
 
