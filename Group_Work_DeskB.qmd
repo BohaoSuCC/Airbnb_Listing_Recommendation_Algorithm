@@ -479,15 +479,17 @@ fig.text(0.1, 0.9, '(a)', ha='left', va='top', fontsize=10, color='black', weigh
 
 plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png"), dpi=150)
 
-#the image rendered by quarto would be multi-layers and really slow to reload and appear in PDF file, 
-#so I will just read the rendered picture locally or remotely
+#the image rendered by quarto would be multi-layers and take eras to reload and appear in PDF file, 
+#so I will just re-read the rendered picture locally or remotely
 #and definitely they are the same version with no difference
+
+plt.close(fig)
 
 #plt.show()
 ```
 
 <img src="Images/Word2Vec_2D_UMAP_Projection.png" 
-     onerror="this.onerror=null; this.src='your-backup-image-url.png'"
+     onerror="this.onerror=null; this.src='https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Word2Vec_2D_UMAP_Projection.png?raw=true'"
      alt="Image description">
 
 ```{python}
@@ -567,10 +569,20 @@ ax.yaxis.set_visible(False)
 fig.text(0.1, 0.79, '(b)', ha='left', va='top', fontsize=20, color='black', weight='bold')  # 修改处
 fig.text(0.5, 0.15, 'Figure2:(a)Spectrum of Features: A UMAP Clustering of Word Embeddings.\n(b) Geographic Distribution of Residential Similarities in London', ha='center', va='bottom', fontsize=20)
 # save as PNG file，150 dpi
-fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.jpg"), dpi=150)  
+fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.png"), dpi=350)  
 
-plt.show()
+#the image rendered by quarto would be multi-layers and really slow to reload and appear in PDF file, 
+#so I will just read the rendered picture locally or remotely
+#and definitely they are the same version with no difference
+
+plt.close(fig)
+
+#plt.show()
 ```
+
+<img src="Images/Word2Vec_OSM_geospace.png" 
+     onerror="this.onerror=null; this.src='https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Word2Vec_OSM_geospace.png?raw=true'"
+     alt="Image description">
 
 In the *Figure2b*, each kind of colours represents the amenities feature of a property, and areas with similar colors indicate highly similar amenities features between properties. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in listing features.
 
@@ -694,9 +706,20 @@ plt.subplots_adjust(bottom=0.1)  # save extra space for label
 fig.text(0.08, 0.75, '(b)', ha='left', va='top', fontsize=24, color='black', weight='bold')  
 fig.text(0.45, 0.2, 'Figure3:(a)Statistical Distribution of Annual Revenue for Listings in London.\n(b)Geographical Distribution of Cost-Benefit Ratio for Listings in London', ha='center', va='bottom', fontsize=18)
 # save to png，150 dpi
-fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=150)
-plt.show()
+fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=350)
+
+#the image rendered by quarto would be multi-layers and really slow to reload and appear in PDF file, 
+#so I will just read the rendered picture locally or remotely
+#and definitely they are the same version with no difference
+
+plt.close(fig)
+
+#plt.show()
 ```
+
+<img src="Images/Listings_profit_ratio.png" 
+     onerror="this.onerror=null; this.src='https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Listings_profit_ratio.png?raw=true'"
+     alt="Image description">
 
 We use several numeric columns to calculate the total income for every listing. Though, technically this is an approximate number with normal distribution *Figure3a*, but it aligns with the data from the [Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average in that wards to indicate this listing's 'profit-cost ratio'. Then we standarlize the data and visualize it in the map *Figure3b*. The blue area means potential for more profit and more lease, which should be highlighted and coordinated with *Figure2b* when branding and promoting.
 
