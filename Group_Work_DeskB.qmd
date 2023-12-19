@@ -1,4 +1,7 @@
 ```{python}
+# A lot of packages are not used in this qmd file 
+# but it did be used in some other ipynb files which provide solid support as a basic point, 
+# including cleaning/preprocessing part, Word2Vec part, SVM part, etc.
 import os
 import spacy
 import pandas as pd
@@ -18,7 +21,7 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import matplotlib.patheffects as PathEffects
 import nltk
 import seaborn as sns
-import ast  # 用于安全地将字符串转换为列表
+import ast  
 import umap
 import zipfile
 import requests
@@ -30,7 +33,7 @@ from scipy.spatial import cKDTree
 from scipy.spatial.distance import cdist
 from scipy.ndimage import convolve
 from shapely.geometry import Point
-from sklearn.preprocessing import OneHotEncoder  # We don't use this but I point out where you *could*
+from sklearn.preprocessing import OneHotEncoder  
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
@@ -62,6 +65,8 @@ from joblib import dump
 from joblib import load
 from bs4 import BeautifulSoup
 from wordcloud import WordCloud, STOPWORDS
+
+
 ```
 
 ```{python}
@@ -335,10 +340,10 @@ for x, y in zip(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_fram
 #plt.subplots_adjust(bottom=0.2)
 # labels of the picture on the bottom
 #fig.text(0.5, 0.08, 'Figure1a: Best number of topics for summarizing key words', ha='center', va='bottom')
-#修改处，删除标题，标题和b图结合，并左上角添加ab
-fig.text(0.1, 0.9, '(a)', ha='left', va='top', fontsize=14, color='black', weight='bold')  # 修改处
+#add (a) in the left top corner
+fig.text(0.1, 0.9, '(a)', ha='left', va='top', fontsize=14, color='black', weight='bold')  
 plt.savefig(os.path.join("Images","CoherenceScoreOfLDA.png"))
-# 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
+
 plt.show()
 ```
 
@@ -357,9 +362,9 @@ plt.tight_layout()
 # add extra space for label
 plt.subplots_adjust(bottom=0.1)
 # labels of the picture on the bottom
-# 修改处，合并ab，并左上角添加ab
+# add (b) in the left top corner
 fig.text(0, 0.97, '(b)', ha='left', va='top', fontsize=30, color='black', weight='bold')  
-# 修改处
+
 fig.text(0.5, 0.05, 'Figure1:(a)Variation of LDA Model Coherence Scores with Topic Quantity.\n(b)Airbnb Listing Topic Analysis: LDA Modeling and Keyword Visualization', ha='center', va='bottom', fontsize=30)
 plt.savefig(os.path.join("Images","LDA_topic16_wordcloud.png"))
 plt.show()
@@ -402,22 +407,22 @@ Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_listing_norm_min.csv"))
 ```{python}
 Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_listing_norm_min.csv"))
 texts_word2vec = Airbnb_Listing['amenities_norm']
-# 将 'amenities' 列中的字符串转换为列表
-# 使用 ast.literal_eval 安全地评估字符串表达的列表
+# convert every word in column 'amenities' into a list
+
 amenities_ast_literal = amenities_norm_split
 amenities_ast_literal.drop('Unnamed: 0',axis=1)
 list_of_lists = amenities_ast_literal.apply(lambda row: [item for item in row if item is not None], axis=1).tolist()
 ```
 
 ```{python}
-# 向量化函数
+# def vectorizing function
 def vectorize(text, model):
-    # 将文本分解为单词，并过滤掉模型词汇表中不存在的单词
+    # distort the text into words and filter those unrelated words
     words = [word for word in text if word in model.wv.key_to_index]
-    # 如果文本中没有模型已知的单词，则返回零向量
+    # if no words, return 0
     if len(words) == 0:
         return np.zeros(model.vector_size)
-    # 计算所有单词向量的平均值
+    # get the mean of all vectors
     word_vectors = [model.wv[word] for word in words]
     return np.mean(word_vectors, axis=0)
 Airbnb_Listing['amenities_vector'] = pd.Series(list_of_lists).apply(lambda x: vectorize(x, word2vec_model))
@@ -427,8 +432,8 @@ amenities_vector = Airbnb_Listing['amenities_vector']
 ```{python}
 import warnings
 warnings.filterwarnings('ignore') 
-# UMAP降维可视化word2vec模型 
-# 将pd.Series转换为np.array形式
+# decrease the dimension by UMAP 
+# convert pd.Series to np.array
 amenities_vector_nparray = amenities_vector.to_numpy()
 numpy_array = np.array([np.array(x) for x in amenities_vector_nparray])
 reducer = umap.UMAP(n_components=2,n_neighbors=10,min_dist=0.9)
@@ -436,13 +441,13 @@ embedding = reducer.fit_transform(numpy_array)
 ```
 
 ```{python}
-# caculate the centroid 计算所有点的中心坐标
+# caculate the centroid 
 center = (np.median(embedding, axis=0)+np.mean(embedding, axis=0))*0.5
-# get the moving amount计算平移量
+# get the moving amount
 translation = -center
-# transform all points 对所有点应用平移变换
+# transform all points 
 translated_embedding = embedding + translation
-# verify the new centroid 验证新的中心点
+# verify the new centroid 
 new_center = translated_embedding.mean(axis=0)
 #print(f"New center after translation: {new_center}")
 ```
@@ -452,43 +457,39 @@ import warnings
 warnings.filterwarnings('ignore') 
 mag = np.sqrt(np.power(translated_embedding[:,0],2) + np.power(translated_embedding[:,1],2)).reshape(-1,1)
 angle = np.arctan2(translated_embedding[:,1], translated_embedding[:,0])
-# normalization to angle and distance 对角度和距离进行归一化处理
+# normalization to angle and distance 
 angle = (angle-np.min(angle)) / (np.max(angle) - np.min(angle))
 #standarlizing scaling to [0,1]
 mag = (mag-np.mean(mag)/np.std(mag))
-#sigmoid缩放
+#sigmoid scaling
 mag = 1 / (1 + np.exp(-mag))
 circ_colors = mpl.colors.hsv_to_rgb(np.concatenate((angle.reshape(-1,1),  
                                                     np.ones_like(mag).reshape(-1,1), 
                                                     mag.reshape(-1,1)),
                                                     axis=1))
 color_info = np.concatenate((translated_embedding, circ_colors), axis=1)
-# 创建图形并调整布局
+# create the fig
 fig, ax = plt.subplots(figsize=(10, 6))
-# 绘制散点图
+# sctter plot
 ax.scatter(translated_embedding[:, 0], translated_embedding[:, 1], color=circ_colors, s=0.5)
 ax.axis('off')
-# 添加题注
-# 修改处,删除标题，并左上角添加ab
+
+# add (a) in the left top corner
 fig.text(0.1, 0.9, '(a)', ha='left', va='top', fontsize=10, color='black', weight='bold') 
 plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png"), dpi=150)
-# 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
-#plt.close(fig)
+
 plt.show()
 ```
 
 ```{python}
-# 将颜色信息保存至Airbnb_Listing
-Airbnb_Listing['Word2Vec_UMAP_Xcor'] = color_info[:, 0]  # 第一列
-Airbnb_Listing['Word2Vec_UMAP_Ycor'] = color_info[:, 1]  # 第二列
-Airbnb_Listing['Word2Vec_UMAP_colorR'] = color_info[:, 2]  # 第三列
-Airbnb_Listing['Word2Vec_UMAP_colorG'] = color_info[:, 3]  # 第四列
-Airbnb_Listing['Word2Vec_UMAP_colorB'] = color_info[:, 4]  # 第五列
-Airbnb_Listing.to_csv(os.path.join("Data","Airbnb_Ame2Vec_UMAP2color.csv"))
-```
+# save the color info in Airbnb_Listing
+Airbnb_Listing['Word2Vec_UMAP_Xcor'] = color_info[:, 0]  
+Airbnb_Listing['Word2Vec_UMAP_Ycor'] = color_info[:, 1]  
+Airbnb_Listing['Word2Vec_UMAP_colorR'] = color_info[:, 2]  
+Airbnb_Listing['Word2Vec_UMAP_colorG'] = color_info[:, 3]  
+Airbnb_Listing['Word2Vec_UMAP_colorB'] = color_info[:, 4]  
+Airbnb_Listing = Airbnb_Listing.drop(['amenities_vector'], axis=1)
 
-```{python}
-Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_Ame2Vec_UMAP2color.csv"),low_memory=False)
 ```
 
 ```{python, fig.cap="Figure2b: spatial distribution of Listing's similarities", #Figure2b}
@@ -508,20 +509,20 @@ London_wards = London_wards.to_crs(epsg=3857)
 #print("gdf_listing CRS:", gdf_listing.crs)
 #print("London_boroughs CRS:", London_boroughs.crs)
 #print("London_wards CRS:", London_wards.crs)
-# 绘制地图
+# plot the map
 fig, ax = plt.subplots(figsize=(16, 16))
 London_boroughs.boundary.plot(ax=ax, edgecolor='black', linewidth=0.5, alpha=0.4)
 London_wards.boundary.plot(ax=ax, edgecolor='black', linewidth=0.5, alpha=0.2)
-# 从 gdf_listing 提取坐标点和 RGB 颜色值
-x = gdf_listing.geometry.x  # 经度
-y = gdf_listing.geometry.y  # 纬度
-colors = gdf_listing[['Word2Vec_UMAP_colorR', 'Word2Vec_UMAP_colorG', 'Word2Vec_UMAP_colorB']].values  # RGB 颜色值
-# 增加colors的亮度（通过增加 50% 的亮度）
+# extract the coordinates and RGB info from gdf_listing 
+x = gdf_listing.geometry.x  
+y = gdf_listing.geometry.y  
+colors = gdf_listing[['Word2Vec_UMAP_colorR', 'Word2Vec_UMAP_colorG', 'Word2Vec_UMAP_colorB']].values  # RGB info
+
 brightness_factor = 1.5
-colors_brightened = np.clip(colors * brightness_factor, 0, 1)  # 确保值在 0 到 1 之间
-# 绘制散点图
-ax.scatter(x, y, color=colors_brightened, s=40, alpha=0.1)  # 假设 RGB 值在 0-255 范围内
-# 创建子图的轴
+colors_brightened = np.clip(colors * brightness_factor, 0, 1)  # make sure the value is between [0,1]
+
+ax.scatter(x, y, color=colors_brightened, s=40, alpha=0.1)  
+
 """
 subax = plt.axes([0.1, 0.2, 0.3, 0.4]) # 左下角位置
 """
@@ -533,12 +534,12 @@ for idx, row in London_boroughs.iterrows():
 # add the label for wards
 for idx, row in London_wards.iterrows():
     centroid = row.geometry.centroid
-    text = ax.text(centroid.x, centroid.y, row['NAME'], fontsize=2, color='white',ha='center', va='center', alpha=0.5,
-                   path_effects=[PathEffects.withStroke(linewidth=0.4, foreground='black')])
+    text = ax.text(centroid.x, centroid.y, row['NAME'], fontsize=2, color='black',ha='center', va='center', alpha=0.5,
+                   path_effects=[PathEffects.withStroke(linewidth=0.2, foreground='white')])
 """
-# 例如，如果您想放大地图的一个特定区域
+
 x_min, x_max, y_min, y_max = -25000, 5000, 6695000, 6725000
-# 在子图上绘制相同的数据，但只限于选定区域
+
 subax.set_xlim(x_min, x_max)
 subax.set_ylim(y_min, y_max)
 London_boroughs.boundary.plot(ax=subax, edgecolor='black', linewidth=1, alpha=0.4)
@@ -547,19 +548,18 @@ subax.scatter(x, y,
               color=colors_brightened, s=40,
               vmax=0.4, vmin=-0.5, alpha=0.2)
 """
- #OSM彩色底图,透明图0.7
+ #OSM map, 
 ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha = 0.7)  
-plt.subplots_adjust(bottom=0.1)  # 为题注留出空间
-# 隐藏坐标轴
+plt.subplots_adjust(bottom=0.1)  # set extra space for label
+# hide the axes
 ax.xaxis.set_visible(False)
 ax.yaxis.set_visible(False)
-# 修改处，结合两个图标题，并左上角添加ab
+# add (b) in the left top corner
 fig.text(0.1, 0.79, '(b)', ha='left', va='top', fontsize=20, color='black', weight='bold')  # 修改处
 fig.text(0.5, 0.15, 'Figure2:(a)Spectrum of Features: A UMAP Clustering of Word Embeddings.\n(b) Geographic Distribution of Residential Similarities in London', ha='center', va='bottom', fontsize=20)
-# 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.jpg"), dpi=200)  
-# 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
-#plt.close(fig)
+# save as PNG file，150 dpi
+fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.jpg"), dpi=150)  
+
 plt.show()
 ```
 
@@ -570,7 +570,7 @@ In the *Figure2b*, each kind of colours represents the amenities feature of a pr
 Even though Airbnb, as a responsible company, should take community and regulation into consideration, the essence of branding and recommendation system is still aiming for profit. Therefore comes the question: what indicator could represent the potential economic opportunities for listing's branding or promotion?
 
 ```{python}
-# 每个listing的收入与average收入相比
+# compare the average one
 average_income_forlisting = Airbnb_Listing['sum_income'].mean()
 #print((Airbnb_Listing['price'] >= 2000).sum()) 
 #print(f"Data frame is {Airbnb_Listing.shape[0]:,} x {Airbnb_Listing.shape[1]:,}")
@@ -602,10 +602,10 @@ London_wards = London_wards.to_crs(epsg=3857)
 #print("London_boroughs CRS:", London_boroughs.crs)
 #print("London_boroughs CRS:", London_wards.crs)
 """
-# 添加 borough 名称
+# add borough names
 gdf_listing_with_borough = gpd.sjoin(gdf_listing, London_boroughs, how='left', op='within')
 gdf_listing_with_borough = gdf_listing_with_borough.rename(columns={'name': 'borough_name'})
-# 添加 ward 名称
+# add ward names
 gdf_listing_with_borough_wards = gpd.sjoin(gdf_listing_with_borough, London_wards, how='left', op='within')
 gdf_listing_with_borough_wards = gdf_listing_with_borough_wards.rename(columns={'NAME': 'ward_name'})
 """
@@ -617,25 +617,25 @@ gdf_listing_dropinf = gdf_listing[gdf_listing['log_sum_income'] != -np.inf]
 ```{python, fig.cap="Figure3a: Statistical distribution of Listings' profit-cost ratio", #Figure3a}
 import warnings
 warnings.filterwarnings('ignore') 
-# 首先，将数据归一化到 0 和 1 之间
+# nromalize the data btween 0 and 1 
 min_val = gdf_listing_dropinf['log_sum_income'].min()
 max_val = gdf_listing_dropinf['log_sum_income'].max()
 gdf_listing_dropinf['log_sum_income_normalized'] = (gdf_listing_dropinf['log_sum_income'] - min_val) / (max_val - min_val)
-# 然后，将 0-1 范围调整到 -1 到 1
+# modify the range to [-1, 1]
 gdf_listing_dropinf['log_sum_income_normalized_scaled'] = gdf_listing_dropinf['log_sum_income_normalized'] * 2 - 1
 median_num_income = np.median(gdf_listing_dropinf['log_sum_income_normalized_scaled'],axis=0)
 gdf_listing_dropinf['log_sum_income_normalized_scaled'] = gdf_listing_dropinf['log_sum_income_normalized_scaled'] - median_num_income
-# 创建图形和轴对象
+
 fig, ax = plt.subplots(figsize=(10, 6))
-# 绘制第一个直方图
+
 gdf_listing_dropinf['log_sum_income'].hist(bins=150, ax=ax, alpha=0.5, label='Original Data')
-# 绘制第二个直方图
+
 gdf_listing_dropinf['log_sum_income_normalized_scaled'].hist(bins=150, ax=ax, alpha=0.5, label='Normalized & Scaled Data')
 ax.legend()
-plt.subplots_adjust(bottom=0.15)  # 为题注留出空间
-# 修改处,这里删除了标题，和figure3b写在一起，并左上角添加ab
+plt.subplots_adjust(bottom=0.15)  # save extra space for label
+# add (a) in the left top corner
 fig.text(0.02, 0.95, '(a)', ha='left', va='top', fontsize=14, color='black', weight='bold') 
-# 保存为 PNG 文件，分辨率为 300 dpi
+# save to png，150 dpi
 fig.savefig(os.path.join("Images","Profit-cost ratio distribution.png"), dpi=150)  
 plt.show()
 ```
@@ -643,41 +643,43 @@ plt.show()
 ```{python, fig.cap="Figure3b: spatial distribution of Listings profit-cost ratio", #Figure3b}
 import warnings
 warnings.filterwarnings('ignore') 
-# 绘制地图
+
+
 fig, ax = plt.subplots(figsize=(24,24))
-# 计算 Jenks 自然断点
+#  Jenks breaks
 #breaks = jenkspy.jenks_breaks(gdf_listing_dropinf['log_sum_income_normalized_scaled'],n_classes=15)
-# 手动指定断点
+# set the breaks manually
 breaks = [-1,-0.75,-0.5,-0.4,-0.25,-0.20,-0.10,-0.05,-0.04,-0.03,-0.02,-0.01,-0.005,0,0.005,0.01,0.02,0.03,0.04,0.05,0.10,0.20,0.25,0.4,0.5,0.75,1,2]
-# 添加区域名称的文字标签
+# add the label for areas
 for idx, row in London_boroughs.iterrows():
     centroid = row.geometry.centroid
     text = ax.text(centroid.x, centroid.y, row['name'], fontsize=7, color='black',ha='center', va='center', alpha=0.5,
                    path_effects=[PathEffects.withStroke(linewidth=0.5, foreground='white')])
-# 使用断点对数据进行分类
+# classify the data with breaks
 gdf_listing_dropinf['income_category'] = np.digitize(gdf_listing_dropinf['log_sum_income_normalized_scaled'], breaks)
-#绘制borough与wards的边界
+#plot the boundary of wards and boroughs
 London_boroughs.boundary.plot(ax=ax, edgecolor='black', linewidth=1, alpha=0.4)
 London_wards.boundary.plot(ax=ax, edgecolor='black', linewidth=0.5, alpha=0.2)
-# 绘制点，根据sum_income列进行上色
-# 这里假设gdf具有'geometry'列，包含点的位置
+
+# sccater plot
 scatter = ax.scatter(gdf_listing_dropinf.geometry.x, gdf_listing_dropinf.geometry.y, 
                      c=gdf_listing_dropinf['log_sum_income_normalized_scaled'], edgecolors=None, s=40, cmap='bwr_r', 
                      vmax=0.4, vmin=-0.5, alpha=0.2)
-# 添加颜色条
+# add the color bar
 cbar = plt.colorbar(scatter, ax=ax, label='Profit-cost Ratio', shrink=0.5, pad=0.02)
-# 调整颜色条的大小和位置
-cbar.ax.set_aspect(20)  # 这里的数字越大，颜色条越窄
-# 隐藏坐标轴
+
+cbar.ax.set_aspect(20)  
+# hide the axes
 ax.xaxis.set_visible(True)
 ax.yaxis.set_visible(True)
-ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha=0.7)         #添加OSM底图
-plt.subplots_adjust(bottom=0.1)  # 为题注留出空间
-# 修改处，参考网址https://www.datascience.ch/articles/self-learning-change-urban-housing-street-level，把ab标题写在一起了，并左上角添加ab
+ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha=0.7)         #OSM map
+plt.subplots_adjust(bottom=0.1)  # save extra space for label
+# add (b) in the left top corner   
+# reference :https://www.datascience.ch/articles/self-learning-change-urban-housing-street-level
 fig.text(0.08, 0.75, '(b)', ha='left', va='top', fontsize=24, color='black', weight='bold')  
 fig.text(0.45, 0.2, 'Figure3:(a)Statistical Distribution of Annual Revenue for Listings in London.\n(b)Geographical Distribution of Cost-Benefit Ratio for Listings in London', ha='center', va='bottom', fontsize=18)
-# 保存为 PNG 文件，分辨率为 300 dpi
-fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=300)
+# save to png，150 dpi
+fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=150)
 plt.show()
 ```
 
