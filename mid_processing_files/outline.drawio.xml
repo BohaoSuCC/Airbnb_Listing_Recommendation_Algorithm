@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="2023-12-19T01:39:43.484Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/20.3.0 Chrome/104.0.5112.114 Electron/20.1.3 Safari/537.36" etag="tAcbCS9OCVtgnFW5wudR" version="20.3.0" type="device">
+  <diagram id="a3vBBrnzKLPdbwnCiwXk" name="第 1 页">
+    <mxGraphModel dx="4063" dy="2449" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="MDp67rornOQO0OE7oe0O-1" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;labelBackgroundColor=#0AD6FF;noLabel=1;textOpacity=50;fillColor=#dae8fc;strokeColor=#6c8ebf;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="2340" y="680" width="860" height="733" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-42" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;labelBackgroundColor=#0AD6FF;noLabel=1;textOpacity=50;fillColor=#d5e8d4;strokeColor=#82b366;opacity=50;" parent="1" vertex="1">
+          <mxGeometry x="200" y="1440" width="3000" height="570" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Z5b8Use1sGSGcP6kajGa-6" target="Z5b8Use1sGSGcP6kajGa-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="990" y="1680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-6" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="350" y="1465" width="550" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-39" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;labelBackgroundColor=#0AD6FF;noLabel=1;textOpacity=50;fillColor=#dae8fc;strokeColor=#6c8ebf;opacity=50;" parent="1" vertex="1">
+          <mxGeometry x="190" y="680" width="2140" height="733" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=19;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="IxLZpkKb62BbmPKwkkDb-1" edge="1" target="IxLZpkKb62BbmPKwkkDb-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="624.7142857142858" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-1" value="&lt;span style=&quot;font-family: 等线; font-size: 20px;&quot; lang=&quot;EN-US&quot;&gt;&lt;u style=&quot;font-size: 20px;&quot;&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Opportunities for Place- or Listing-Branding&lt;/font&gt;&lt;/u&gt;&lt;/span&gt;&lt;span style=&quot;font-family: 等线; font-size: 20px;&quot; lang=&quot;EN-US&quot;&gt;&lt;i style=&quot;font-size: 20px;&quot;&gt;&lt;u style=&quot;font-size: 20px;&quot;&gt;&lt;br style=&quot;font-size: 20px;&quot;&gt;&lt;/u&gt;&lt;/i&gt;Identifying key terms and features/amenities used to market listings by area and using these to identify opportunities for investment or branding.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="210" y="730" width="830" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=19;" parent="1" source="IxLZpkKb62BbmPKwkkDb-3" target="IxLZpkKb62BbmPKwkkDb-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-3" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;&lt;u&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;Branding-Definition&lt;/span&gt;&lt;/u&gt;&lt;/b&gt;&lt;br style=&quot;font-size: 20px;&quot;&gt;Extracting&amp;nbsp;&lt;span style=&quot;font-weight: 700; font-size: 20px;&quot;&gt;key terms and features/amenities, &lt;/span&gt;operating customized promotion towards different potential renters. Therefore column &#39;description&#39; and &#39;amenities&#39; are the main objects.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="210" y="880" width="830" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=19;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="IxLZpkKb62BbmPKwkkDb-4" target="IxLZpkKb62BbmPKwkkDb-13" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1330" y="820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="IxLZpkKb62BbmPKwkkDb-4" target="IxLZpkKb62BbmPKwkkDb-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-4" value="&lt;b style=&quot;font-size: 30px;&quot;&gt;Branding-Analysis&lt;br style=&quot;font-size: 30px;&quot;&gt;&lt;/b&gt;&lt;span style=&quot;text-align: start; font-size: 30px;&quot;&gt;&lt;font style=&quot;font-size: 30px;&quot;&gt;In the context of regulations for &lt;b style=&quot;font-size: 30px;&quot;&gt;&lt;u style=&quot;font-size: 30px;&quot;&gt;Short-Term Lets (STL)&lt;/u&gt;&lt;/b&gt; in London, where each property is limited to a rental period of only 90 days, what &lt;b style=&quot;font-size: 30px;&quot;&gt;&lt;u style=&quot;font-size: 30px;&quot;&gt;textual characteristics&lt;/u&gt;&lt;/b&gt; of a listing are more likely to lead to successful bookings and &lt;b style=&quot;font-size: 30px;&quot;&gt;&lt;u style=&quot;font-size: 30px;&quot;&gt;generate higher profits&lt;/u&gt;&lt;/b&gt; for the landlord and Airbnb?&lt;/font&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=30;" parent="1" vertex="1">
+          <mxGeometry x="210" y="1040" width="830" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=28;fontColor=#000000;" edge="1" parent="1" source="IxLZpkKb62BbmPKwkkDb-7" target="MDp67rornOQO0OE7oe0O-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-7" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;make the whole balanced&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;" parent="1" vertex="1">
+          <mxGeometry x="1490" y="1810" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=22;" parent="1" source="IxLZpkKb62BbmPKwkkDb-13" target="IxLZpkKb62BbmPKwkkDb-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-13" value="&lt;b&gt;&lt;font style=&quot;font-size: 25px;&quot;&gt;How to utilize&lt;br&gt;textual characteristics&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="1145" y="880" width="370" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=22;" parent="1" source="IxLZpkKb62BbmPKwkkDb-13" target="IxLZpkKb62BbmPKwkkDb-25" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=22;" parent="1" source="IxLZpkKb62BbmPKwkkDb-14" target="IxLZpkKb62BbmPKwkkDb-26" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-14" value="&lt;b style=&quot;font-size: 22px;&quot;&gt;&lt;font style=&quot;font-size: 25px;&quot;&gt;How to indicate&lt;br&gt;&amp;nbsp;&#39;higher profits&#39;&lt;/font&gt;&lt;/b&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;" parent="1" vertex="1">
+          <mxGeometry x="1145" y="1230" width="370" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=19;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="IxLZpkKb62BbmPKwkkDb-4" target="IxLZpkKb62BbmPKwkkDb-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1340" y="867.5" as="targetPoint" />
+            <mxPoint x="1050" y="1035" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=22;" parent="1" source="IxLZpkKb62BbmPKwkkDb-16" target="IxLZpkKb62BbmPKwkkDb-21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-16" value="&lt;font style=&quot;font-size: 23px;&quot;&gt;&lt;b&gt;“description”&lt;br&gt;&lt;/b&gt;&lt;br&gt;What &lt;b&gt;&lt;u&gt;aspects(topics)&lt;/u&gt;&lt;/b&gt; would different landlords focus on when &lt;b&gt;&lt;u&gt;promoting(branding)&lt;/u&gt;&lt;/b&gt; their properties?&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="700" width="320" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-21" value="(&lt;i&gt;Figure 1&lt;/i&gt;)&lt;br&gt;&lt;br&gt;Extracting and generalizing all &lt;b&gt;&lt;u&gt;topics and keywords&lt;/u&gt;&lt;/b&gt; by &lt;b&gt;LDA &lt;/b&gt;model." style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="2000" y="700" width="300" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;" parent="1" source="IxLZpkKb62BbmPKwkkDb-25" target="IxLZpkKb62BbmPKwkkDb-31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-25" value="&lt;font style=&quot;font-size: 23px;&quot;&gt;&lt;b&gt;“amenities”&lt;br&gt;&lt;/b&gt;&lt;br&gt;How to &lt;b&gt;&lt;u&gt;identify and classify&lt;/u&gt;&lt;/b&gt; those listings with similar amenities?&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="930" width="320" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=20;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="IxLZpkKb62BbmPKwkkDb-26" target="IxLZpkKb62BbmPKwkkDb-30" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2070" y="1284.571428571429" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-26" value="&lt;b style=&quot;font-size: 23px;&quot;&gt;“price”&lt;br&gt;&lt;/b&gt;&lt;br style=&quot;font-size: 23px;&quot;&gt;&lt;span style=&quot;font-size: 23px;&quot;&gt;How to take &lt;b&gt;&lt;u&gt;location rent cost&lt;/u&gt;&lt;/b&gt; into consideration and create proper index?&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="1610" y="1180" width="320" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-30" value="(&lt;i&gt;Figure 3&lt;/i&gt;)&lt;br&gt;&lt;br&gt;Calculate and&amp;nbsp;&lt;b&gt;visualize&lt;/b&gt;&amp;nbsp;all &amp;nbsp;&lt;b&gt;&lt;u&gt;&#39;Profit-cost ratio&#39;&lt;/u&gt;&lt;/b&gt;&amp;nbsp;of listings in different areas." style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="2000" y="1180" width="300" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-31" value="(&lt;i&gt;Figure 2&lt;/i&gt;)&lt;br&gt;&lt;br&gt;Identify and &lt;b&gt;cluster&lt;/b&gt; all listings with &lt;b&gt;&lt;u&gt;similar features&lt;/u&gt;&lt;/b&gt; by Word2Vec model and UMAP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" parent="1" vertex="1">
+          <mxGeometry x="2000" y="930" width="300" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-10" value="&lt;font style=&quot;font-size: 25px;&quot;&gt;&lt;b&gt;Analysis Results&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=19;" parent="1" vertex="1">
+          <mxGeometry x="510" y="1490" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-44" value="Question 7" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=57;fontColor=none;opacity=50;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="1490" y="1930" width="440" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IxLZpkKb62BbmPKwkkDb-45" value="Question 5" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=57;fontColor=none;opacity=50;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="2550" y="1350" width="440" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-1" value="&lt;b&gt;Fig2.Spatial distribution of homogeneous&amp;nbsp;&lt;/b&gt;&lt;b&gt;listings&amp;nbsp;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;" parent="1" vertex="1">
+          <mxGeometry x="365" y="1700" width="520" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-3" value="&lt;b&gt;Fig3. Spatial distribution of the “Profit-cost ratio”&amp;nbsp;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;" parent="1" vertex="1">
+          <mxGeometry x="365" y="1790" width="520" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-4" value="&lt;b&gt;Fig1.Characteristic topics and keywords of listings&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fillColor=default;strokeColor=default;" parent="1" vertex="1">
+          <mxGeometry x="365" y="1605" width="520" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Z5b8Use1sGSGcP6kajGa-7" target="Z5b8Use1sGSGcP6kajGa-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-7" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;Solid evidence and reference for branding and recommendation algorithms&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="1610" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Z5b8Use1sGSGcP6kajGa-8" target="Z5b8Use1sGSGcP6kajGa-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Z5b8Use1sGSGcP6kajGa-8" target="Z5b8Use1sGSGcP6kajGa-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-8" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;Branding Trade-off&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="1330" y="1645" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-12" value="more competitive&lt;br style=&quot;font-size: 22px;&quot;&gt;more profit&lt;br style=&quot;font-size: 22px;&quot;&gt;more homogeneous" style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="1510" y="1560" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-13" value="more diversity&lt;br style=&quot;font-size: 22px;&quot;&gt;more occupancy&lt;br style=&quot;font-size: 22px;&quot;&gt;more heterogeneous" style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="1510" y="1680" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=28;fontColor=#000000;" edge="1" parent="1" source="Z5b8Use1sGSGcP6kajGa-16" target="MDp67rornOQO0OE7oe0O-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Z5b8Use1sGSGcP6kajGa-16" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;make the good one better&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;" parent="1" vertex="1">
+          <mxGeometry x="1490" y="1500" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=23;fontColor=#000000;" edge="1" parent="1" source="MDp67rornOQO0OE7oe0O-2" target="MDp67rornOQO0OE7oe0O-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-2" value="&lt;b&gt;&lt;u&gt;Privacy Issues&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Obtain the consent of the owners to ensure that their privacy is not infringed upon" style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" vertex="1" parent="1">
+          <mxGeometry x="2810" y="720" width="330" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-3" value="Question 6" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=57;fontColor=none;opacity=50;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1105" y="1350" width="440" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=23;fontColor=#000000;" edge="1" parent="1" source="MDp67rornOQO0OE7oe0O-4" target="MDp67rornOQO0OE7oe0O-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-4" value="&lt;u style=&quot;&quot;&gt;&lt;b&gt;Legal compliance&lt;br&gt;&lt;/b&gt;&lt;/u&gt;&lt;br&gt;Comply with relating laws and regulations such as GDPR, DPA and EDPS." style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" vertex="1" parent="1">
+          <mxGeometry x="2390" y="720" width="330" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=23;fontColor=#000000;" edge="1" parent="1" source="MDp67rornOQO0OE7oe0O-5" target="MDp67rornOQO0OE7oe0O-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-5" value="&lt;u style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;b&gt;Data security&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;font-weight: bold;&quot;&gt;&lt;/div&gt;&lt;/u&gt;&lt;br&gt;Building safe mechanism from unauthorized access, scrapping and misuse." style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" vertex="1" parent="1">
+          <mxGeometry x="2810" y="1060" width="330" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=23;fontColor=#000000;" edge="1" parent="1" source="MDp67rornOQO0OE7oe0O-6" target="MDp67rornOQO0OE7oe0O-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-6" value="&lt;u style=&quot;&quot;&gt;&lt;b&gt;Social responsibility&lt;/b&gt;&lt;br&gt;&lt;/u&gt;&lt;br&gt;&lt;div&gt;Use information responsibly and ethically and resisting to labelizing.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=22;" vertex="1" parent="1">
+          <mxGeometry x="2390" y="1060" width="330" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=30;fontColor=#000000;" edge="1" parent="1" source="MDp67rornOQO0OE7oe0O-10" target="Z5b8Use1sGSGcP6kajGa-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Helvetica;fontSize=30;fontColor=#000000;" edge="1" parent="1" source="MDp67rornOQO0OE7oe0O-10" target="Z5b8Use1sGSGcP6kajGa-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-10" value="Government" style="rhombus;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=30;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1940" y="1590" width="320" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-11" value="Community" style="rhombus;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=30;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="2370" y="1590" width="320" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-12" value="Landlord" style="rhombus;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=30;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="2800" y="1590" width="320" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-13" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=23;fontColor=#000000;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1" source="MDp67rornOQO0OE7oe0O-10" target="MDp67rornOQO0OE7oe0O-11">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="1890" y="1740" as="sourcePoint" />
+            <mxPoint x="1990" y="1640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-14" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=23;fontColor=#000000;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1" source="MDp67rornOQO0OE7oe0O-11" target="MDp67rornOQO0OE7oe0O-12">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="2230" y="1680" as="sourcePoint" />
+            <mxPoint x="2340" y="1680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-28" value="Restrict" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=28;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="1850" y="1600" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MDp67rornOQO0OE7oe0O-29" value="Encourage" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=28;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="1850" y="1730" width="160" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

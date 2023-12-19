@@ -486,11 +486,15 @@ plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png"), dpi=150)
 plt.close(fig)
 
 #plt.show()
-```
 
+"""
 <img src="Images/Word2Vec_2D_UMAP_Projection.png" 
      onerror="this.onerror=null; this.src='https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Word2Vec_2D_UMAP_Projection.png?raw=true'"
      alt="Image description">
+"""
+```
+
+![](Images/Word2Vec_2D_UMAP_Projection.png)
 
 ```{python}
 # save the color info in Airbnb_Listing
@@ -578,11 +582,15 @@ fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.png"), dpi=350)
 plt.close(fig)
 
 #plt.show()
-```
 
+"""
 <img src="Images/Word2Vec_OSM_geospace.png" 
      onerror="this.onerror=null; this.src='https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Word2Vec_OSM_geospace.png?raw=true'"
      alt="Image description">
+"""
+```
+
+![](Images/Word2Vec_OSM_geospace.png)
 
 In the *Figure2b*, each kind of colours represents the amenities feature of a property, and areas with similar colors indicate highly similar amenities features between properties. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in listing features.
 
@@ -715,11 +723,15 @@ fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=350)
 plt.close(fig)
 
 #plt.show()
-```
 
+"""
 <img src="Images/Listings_profit_ratio.png" 
      onerror="this.onerror=null; this.src='https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Listings_profit_ratio.png?raw=true'"
      alt="Image description">
+"""
+```
+
+![](Images/Listings_profit_ratio.png)
 
 We use several numeric columns to calculate the total income for every listing. Though, technically this is an approximate number with normal distribution *Figure3a*, but it aligns with the data from the [Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average in that wards to indicate this listing's 'profit-cost ratio'. Then we standarlize the data and visualize it in the map *Figure3b*. The blue area means potential for more profit and more lease, which should be highlighted and coordinated with *Figure2b* when branding and promoting.
 
@@ -730,6 +742,12 @@ By using the SVM model for better predicting the 'profit-cost ratio' according t
 ### 6.5 Summary
 
 After the analysis, we have the key topics and words for better generalization(*Figure1*), the features spatial distribution for better classification(*Figure2*) and the 'profit-cost ratio' spatial distribution for better investment(*Figure3*), all of which would be utilized to inform the strategies for Airbnb, landlords, communities and governments(*Figure4*).
+
+```{python}
+#It is really hard, complicated and less-effective to use graghviz package in python to draw the framework diagram
+# So I draw it in XML, and re-load the image remotely from my Girhub
+# The Girhub url for this XML is: 
+```
 
 ![](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Framework_Diagram.png?raw=true)
 
