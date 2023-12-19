@@ -487,11 +487,6 @@ plt.close(fig)
 
 #plt.show()
 
-"""
-<img src="Images/Word2Vec_2D_UMAP_Projection.png" 
-     onerror="this.onerror=null; this.src='https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Word2Vec_2D_UMAP_Projection.png?raw=true'"
-     alt="Image description">
-"""
 ```
 
 ![](Images/Word2Vec_2D_UMAP_Projection.png)
@@ -583,11 +578,6 @@ plt.close(fig)
 
 #plt.show()
 
-"""
-<img src="Images/Word2Vec_OSM_geospace.png" 
-     onerror="this.onerror=null; this.src='https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Word2Vec_OSM_geospace.png?raw=true'"
-     alt="Image description">
-"""
 ```
 
 ![](Images/Word2Vec_OSM_geospace.png)
@@ -724,11 +714,6 @@ plt.close(fig)
 
 #plt.show()
 
-"""
-<img src="Images/Listings_profit_ratio.png" 
-     onerror="this.onerror=null; this.src='https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Listings_profit_ratio.png?raw=true'"
-     alt="Image description">
-"""
 ```
 
 ![](Images/Listings_profit_ratio.png)
