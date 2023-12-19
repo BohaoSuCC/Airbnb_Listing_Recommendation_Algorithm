@@ -702,7 +702,7 @@ plt.subplots_adjust(bottom=0.1)  # save extra space for label
 # add (b) in the left top corner   
 # reference :https://www.datascience.ch/articles/self-learning-change-urban-housing-street-level
 fig.text(0.08, 0.75, '(b)', ha='left', va='top', fontsize=24, color='black', weight='bold')  
-fig.text(0.45, 0.2, 'Figure3:(a)Statistical Distribution of Annual Revenue for Listings in London.\n(b)Geographical Distribution of Cost-Benefit Ratio for Listings in London', ha='center', va='bottom', fontsize=18)
+fig.text(0.45, 0.2, 'Figure3:(a)Statistical Distribution of Annual Revenue for Listings in London.\n(b)Geographical Distribution of Cost-Benefit Ratio for Listings in London', ha='center', va='bottom', fontsize=24)
 # save to png，150 dpi
 fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=350)
 
