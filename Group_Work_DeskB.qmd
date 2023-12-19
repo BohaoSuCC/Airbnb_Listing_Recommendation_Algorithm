@@ -1,4 +1,53 @@
-<<<<<<< HEAD
+---
+bibliography: bio.bib
+csl: harvard-cite-them-right.csl
+title: DeskB's Group Project
+execute:
+  echo: false
+format:
+  html:
+    theme:
+      - minty
+      - css/web.scss
+    code-copy: true
+    code-link: true
+    toc: true
+    toc-title: On this page
+    toc-depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+  pdf:
+    include-in-header:
+      text: |
+        \addtokomafont{disposition}{\rmfamily}
+    mainfont: Spectral
+    sansfont: Roboto
+    monofont: JetBrainsMono-Regular
+    papersize: a4
+    geometry:
+      - top=25mm
+      - left=40mm
+      - right=30mm
+      - bottom=25mm
+      - heightrounded
+    toc: false
+    number-sections: false
+    colorlinks: true
+    highlight-style: github
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .qmd
+      format_name: quarto
+      format_version: '1.0'
+      jupytext_version: 1.15.2
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
 ```{python}
 import os
 import spacy
@@ -101,59 +150,8 @@ local_csl_path = os.path.join(current_dir, "harvard-cite-them-right.csl")
 response = requests.get(csl_url)
 with open(local_csl_path, 'wb') as file:
     file.write(response.content)
-
 ```
 
----
-bibliography: bio.bib
-csl: harvard-cite-them-right.csl
-title: DeskB's Group Project
-execute:
-  echo: false
-jupyter: python3
-format:
-  html:
-    theme:
-      - minty
-      - css/web.scss
-    code-copy: true
-    code-link: true
-    toc: true
-    toc-title: On this page
-    toc-depth: 3
-    toc_float:
-      collapsed: false
-      smooth_scroll: true
-  pdf:
-    include-in-header:
-      text: |
-        \addtokomafont{disposition}{\rmfamily}
-    mainfont: Spectral
-    sansfont: Roboto
-    monofont: JetBrainsMono-Regular
-    papersize: a4
-    geometry:
-      - top=25mm
-      - left=40mm
-      - right=30mm
-      - bottom=25mm
-      - heightrounded
-    toc: false
-    number-sections: false
-    colorlinks: true
-    highlight-style: github
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .qmd
-      format_name: quarto
-      format_version: '1.0'
-      jupytext_version: 1.15.2
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
----
 
 ## Declaration of Authorship {.unnumbered .unlisted}
 
@@ -199,7 +197,6 @@ So, if convinient, we would like to know did we structure the whole report with 
 # Response to Questions
 
 ```{python}
-
 # check the "Data" folder
 data_dir = os.path.join(current_dir, "Data")
 
@@ -248,7 +245,6 @@ else:
 ```
 
 ```{python}
-
 data_dir = os.path.join(current_dir, "Data")
 
 zip_url = "https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip"
@@ -264,7 +260,6 @@ with zipfile.ZipFile(local_zip_path, 'r') as zip_ref:
     zip_ref.extractall(data_dir)
 
 London_wards = gpd.read_file(os.path.join("Data","London-wards-2018_ESRI","London_Ward.shp"))
-
 ```
 
 ## 1. Who collected the data?
@@ -326,7 +321,6 @@ After some [cleaning and preprocessing](https://github.com/BohaoSuCC/Groupwork_D
 We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. After calculating iteratively the model, we determine the best topics' number for summarizing 'descriptions' column should be 16. (*Figure1a*)
 
 ```{python}
-
 current_dir = os.getcwd()
 coherence_url = "https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Data/coherence_values.csv"
 
@@ -353,7 +347,6 @@ with open(local_LDAtopicwords_path, 'wb') as file:
 ```
 
 ```{python}
-
 # read coherence,csv
 LDA_topic_coherence_frame = pd.read_csv(os.path.join("Data","coherence_values.csv"))
 
@@ -361,7 +354,7 @@ LDA_topic_coherence_frame = pd.read_csv(os.path.join("Data","coherence_values.cs
 LDA_topics_and_words_frame = pd.read_csv(os.path.join("Data","lda_topics_and_words.csv"))
 ```
 
-```{python, fig.cap="Figure1a: best number of topics for summarizing key words", #Figure1a}
+```{python}
 # create the line chart
 fig, ax1 = plt.subplots(figsize=(12, 6))
 ax1.plot(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score'], marker='o')
@@ -388,11 +381,9 @@ plt.savefig(os.path.join("Images","CoherenceScoreOfLDA.png"))
 # 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
 
 plt.show()
-
 ```
 
-```{python, fig.cap="Figure1b: Topics and key words", #Figure1b}
-
+```{python}
 fig, axes = plt.subplots(4, 4, figsize=(24,24))  
 
 axes = axes.flatten()  
@@ -422,8 +413,6 @@ fig.text(0.5, 0.05, 'Figure1:(a)Variation of LDA Model Coherence Scores with Top
 plt.savefig(os.path.join("Images","LDA_topic16_wordcloud.png"))
 
 plt.show()
-
-
 ```
 
 The [LDA process](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so wesave and re-read the output remotely from Github. Then, results shows that among 16 topics *Figure1b*, there are some topics mainly describe the location like *topic8* and *topic6*. Also, some contains information about the facilities and some adjectives towards surrounding environments like *topic13* and *topic14*. In short, all of those key words could illustrate the general features about Airbnb listings which is essential to the recommendation algorithms in platform's branding[@mody_airbnb_2018].
@@ -446,17 +435,14 @@ with open(local_word2vec_path, 'wb') as file:
 
 
 word2vec_model = Word2Vec.load(os.path.join("Model","word2vec.model"))
-
 ```
 
 ```{python}
 # read csv after norm and split
 amenities_norm_split = pd.read_csv("https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Data/amenities_norm_split.csv",low_memory=False)
-
 ```
 
 ```{python}
-
 NormListing_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/raw/main/Data/Airbnb_listing_norm_min.zip"
 
 local_NormListing_path = os.path.join(data_dir, "Airbnb_listing_norm_min.zip")
@@ -469,11 +455,9 @@ with zipfile.ZipFile(local_NormListing_path, 'r') as zip_ref:
     zip_ref.extractall(data_dir)
 
 Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_listing_norm_min.csv"))
-
 ```
 
 ```{python}
-
 Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_listing_norm_min.csv"))
 
 texts_word2vec = Airbnb_Listing['amenities_norm']
@@ -486,11 +470,9 @@ amenities_ast_literal.drop('Unnamed: 0',axis=1)
 
 
 list_of_lists = amenities_ast_literal.apply(lambda row: [item for item in row if item is not None], axis=1).tolist()
-
 ```
 
 ```{python}
-
 # 向量化函数
 def vectorize(text, model):
     # 将文本分解为单词，并过滤掉模型词汇表中不存在的单词
@@ -508,7 +490,6 @@ amenities_vector = Airbnb_Listing['amenities_vector']
 ```
 
 ```{python}
-
 import warnings
 warnings.filterwarnings('ignore') 
 
@@ -520,7 +501,6 @@ numpy_array = np.array([np.array(x) for x in amenities_vector_nparray])
 
 reducer = umap.UMAP(n_components=2,n_neighbors=10,min_dist=0.9)
 embedding = reducer.fit_transform(numpy_array)
-
 ```
 
 ```{python}
@@ -538,8 +518,7 @@ new_center = translated_embedding.mean(axis=0)
 #print(f"New center after translation: {new_center}")
 ```
 
-```{python, fig.cap="Figure2a: Features clustering after UMAP", #Figure2a}
-
+```{python}
 import warnings
 warnings.filterwarnings('ignore') 
 
@@ -587,11 +566,9 @@ plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png"), dpi=150)
 # 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
 #plt.close(fig)
 plt.show()
-
 ```
 
 ```{python}
-
 # 将颜色信息保存至Airbnb_Listing
 
 Airbnb_Listing['Word2Vec_UMAP_Xcor'] = color_info[:, 0]  # 第一列
@@ -601,17 +578,13 @@ Airbnb_Listing['Word2Vec_UMAP_colorG'] = color_info[:, 3]  # 第四列
 Airbnb_Listing['Word2Vec_UMAP_colorB'] = color_info[:, 4]  # 第五列
 
 Airbnb_Listing.to_csv(os.path.join("Data","Airbnb_Ame2Vec_UMAP2color.csv"))
-
 ```
 
 ```{python}
-
 Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_Ame2Vec_UMAP2color.csv"),low_memory=False)
-
 ```
 
-```{python, fig.cap="Figure2b: spatial distribution of Listing's similarities", #Figure2b}
-
+```{python}
 # Transfer pandas dataframe (Airbnb_listing.csv) to geopandas geodataframe
 # By using the coordinates ()
 
@@ -705,8 +678,6 @@ fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.jpg"), dpi=200)
 # 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
 #plt.close(fig)
 plt.show()
-
-
 ```
 
 In the *Figure2b*, each kind of colours represents the amenities feature of a property, and areas with similar colors indicate highly similar amenities features between properties. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in listing features.
@@ -716,8 +687,6 @@ In the *Figure2b*, each kind of colours represents the amenities feature of a pr
 Even though Airbnb, as a responsible company, should take community and regulation into consideration, the essence of branding and recommendation system is still aiming for profit. Therefore comes the question: what indicator could represent the potential economic opportunities for listing's branding or promotion?
 
 ```{python}
-
-
 # 每个listing的收入与average收入相比
 average_income_forlisting = Airbnb_Listing['sum_income'].mean()
 
@@ -779,8 +748,7 @@ gdf_listing['log_sum_income'].value_counts()
 gdf_listing_dropinf = gdf_listing[gdf_listing['log_sum_income'] != -np.inf]
 ```
 
-```{python, fig.cap="Figure3a: Statistical distribution of Listings' profit-cost ratio", #Figure3a}
-
+```{python}
 import warnings
 warnings.filterwarnings('ignore') 
 
@@ -819,8 +787,7 @@ fig.savefig(os.path.join("Images","Profit-cost ratio distribution.png"), dpi=150
 plt.show()
 ```
 
-```{python, fig.cap="Figure3b: spatial distribution of Listings profit-cost ratio", #Figure3b}
-
+```{python}
 import warnings
 warnings.filterwarnings('ignore') 
 
@@ -878,8 +845,6 @@ fig.text(0.45, 0.2, 'Figure3:(a)Statistical Distribution of Annual Revenue for L
 fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=300)
 
 plt.show()
-
-
 ```
 
 We use several numeric columns to calculate the total income for every listing. Though, technically this is an approximate number with normal distribution *Figure3a*, but it aligns with the data from the [Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average in that wards to indicate this listing's 'profit-cost ratio'. Then we standarlize the data and visualize it in the map *Figure3b*. The blue area means potential for more profit and more lease, which should be highlighted and coordinated with *Figure2b* when branding and promoting.
@@ -1009,6 +974,7 @@ Airbnb transforms residential communities into tourist spaces and changes the so
 In a context where the lack of data is cited as a major limitation in research and decision-making outcomes [@Fonda2021], a registration service could provide some of the information necessary to bridge this gap. Utilizing statistical analysis and modelling, regulatory decisions can be evidence-based, considering the unique characteristics of each area. A collaborative effort between cities and Airbnb is suggested for the development of a centralized registration platform. The streamlined online monitoring and fine collection system could significantly enhance planning authorities' ability on balancing housing prices and availability, also improving community well-being.
 
 =======
+
 ```{python}
 import os
 import spacy
@@ -1107,7 +1073,6 @@ local_csl_path = os.path.join(current_dir, "harvard-cite-them-right.csl")
 response = requests.get(csl_url)
 with open(local_csl_path, 'wb') as file:
     file.write(response.content)
-
 ```
 
 ---
@@ -1205,7 +1170,6 @@ So, if convinient, we would like to know did we structure the whole report with 
 # Response to Questions
 
 ```{python}
-
 # check the "Data" folder
 data_dir = os.path.join(current_dir, "Data")
 
@@ -1254,7 +1218,6 @@ else:
 ```
 
 ```{python}
-
 data_dir = os.path.join(current_dir, "Data")
 
 zip_url = "https://data.london.gov.uk/download/statistical-gis-boundary-files-london/08d31995-dd27-423c-a987-57fe8e952990/London-wards-2018.zip"
@@ -1270,7 +1233,6 @@ with zipfile.ZipFile(local_zip_path, 'r') as zip_ref:
     zip_ref.extractall(data_dir)
 
 London_wards = gpd.read_file(os.path.join("Data","London-wards-2018_ESRI","London_Ward.shp"))
-
 ```
 
 ## 1. Who collected the data?
@@ -1332,7 +1294,6 @@ After some [cleaning and preprocessing](https://github.com/BohaoSuCC/Groupwork_D
 We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. After calculating iteratively the model, we determine the best topics' number for summarizing 'descriptions' column should be 16. (*Figure1a*)
 
 ```{python}
-
 current_dir = os.getcwd()
 coherence_url = "https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Data/coherence_values.csv"
 
@@ -1359,7 +1320,6 @@ with open(local_LDAtopicwords_path, 'wb') as file:
 ```
 
 ```{python}
-
 # read coherence,csv
 LDA_topic_coherence_frame = pd.read_csv(os.path.join("Data","coherence_values.csv"))
 
@@ -1367,7 +1327,7 @@ LDA_topic_coherence_frame = pd.read_csv(os.path.join("Data","coherence_values.cs
 LDA_topics_and_words_frame = pd.read_csv(os.path.join("Data","lda_topics_and_words.csv"))
 ```
 
-```{python, fig.cap="Figure1a: best number of topics for summarizing key words", #Figure1a}
+```{python}
 # create the line chart
 fig, ax1 = plt.subplots(figsize=(12, 6))
 ax1.plot(LDA_topic_coherence_frame['Topic_Num'], LDA_topic_coherence_frame['Coherence_Score'], marker='o')
@@ -1394,11 +1354,9 @@ plt.savefig(os.path.join("Images","CoherenceScoreOfLDA.png"))
 # 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
 
 plt.show()
-
 ```
 
-```{python, fig.cap="Figure1b: Topics and key words", #Figure1b}
-
+```{python}
 fig, axes = plt.subplots(4, 4, figsize=(24,24))  
 
 axes = axes.flatten()  
@@ -1428,8 +1386,6 @@ fig.text(0.5, 0.05, 'Figure1:(a)Variation of LDA Model Coherence Scores with Top
 plt.savefig(os.path.join("Images","LDA_topic16_wordcloud.png"))
 
 plt.show()
-
-
 ```
 
 The [LDA process](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so wesave and re-read the output remotely from Github. Then, results shows that among 16 topics *Figure1b*, there are some topics mainly describe the location like *topic8* and *topic6*. Also, some contains information about the facilities and some adjectives towards surrounding environments like *topic13* and *topic14*. In short, all of those key words could illustrate the general features about Airbnb listings which is essential to the recommendation algorithms in platform's branding[@mody_airbnb_2018].
@@ -1452,17 +1408,14 @@ with open(local_word2vec_path, 'wb') as file:
 
 
 word2vec_model = Word2Vec.load(os.path.join("Model","word2vec.model"))
-
 ```
 
 ```{python}
 # read csv after norm and split
 amenities_norm_split = pd.read_csv("https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/Data/amenities_norm_split.csv",low_memory=False)
-
 ```
 
 ```{python}
-
 NormListing_url = "https://github.com/BohaoSuCC/Groupwork_DeskB/raw/main/Data/Airbnb_listing_norm_min.zip"
 
 local_NormListing_path = os.path.join(data_dir, "Airbnb_listing_norm_min.zip")
@@ -1475,11 +1428,9 @@ with zipfile.ZipFile(local_NormListing_path, 'r') as zip_ref:
     zip_ref.extractall(data_dir)
 
 Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_listing_norm_min.csv"))
-
 ```
 
 ```{python}
-
 Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_listing_norm_min.csv"))
 
 texts_word2vec = Airbnb_Listing['amenities_norm']
@@ -1492,11 +1443,9 @@ amenities_ast_literal.drop('Unnamed: 0',axis=1)
 
 
 list_of_lists = amenities_ast_literal.apply(lambda row: [item for item in row if item is not None], axis=1).tolist()
-
 ```
 
 ```{python}
-
 # 向量化函数
 def vectorize(text, model):
     # 将文本分解为单词，并过滤掉模型词汇表中不存在的单词
@@ -1514,7 +1463,6 @@ amenities_vector = Airbnb_Listing['amenities_vector']
 ```
 
 ```{python}
-
 import warnings
 warnings.filterwarnings('ignore') 
 
@@ -1526,7 +1474,6 @@ numpy_array = np.array([np.array(x) for x in amenities_vector_nparray])
 
 reducer = umap.UMAP(n_components=2,n_neighbors=10,min_dist=0.9)
 embedding = reducer.fit_transform(numpy_array)
-
 ```
 
 ```{python}
@@ -1544,8 +1491,7 @@ new_center = translated_embedding.mean(axis=0)
 #print(f"New center after translation: {new_center}")
 ```
 
-```{python, fig.cap="Figure2a: Features clustering after UMAP", #Figure2a}
-
+```{python}
 import warnings
 warnings.filterwarnings('ignore') 
 
@@ -1593,11 +1539,9 @@ plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png"), dpi=150)
 # 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
 #plt.close(fig)
 plt.show()
-
 ```
 
 ```{python}
-
 # 将颜色信息保存至Airbnb_Listing
 
 Airbnb_Listing['Word2Vec_UMAP_Xcor'] = color_info[:, 0]  # 第一列
@@ -1607,17 +1551,13 @@ Airbnb_Listing['Word2Vec_UMAP_colorG'] = color_info[:, 3]  # 第四列
 Airbnb_Listing['Word2Vec_UMAP_colorB'] = color_info[:, 4]  # 第五列
 
 Airbnb_Listing.to_csv(os.path.join("Data","Airbnb_Ame2Vec_UMAP2color.csv"))
-
 ```
 
 ```{python}
-
 Airbnb_Listing = pd.read_csv(os.path.join("Data","Airbnb_Ame2Vec_UMAP2color.csv"),low_memory=False)
-
 ```
 
-```{python, fig.cap="Figure2b: spatial distribution of Listing's similarities", #Figure2b}
-
+```{python}
 # Transfer pandas dataframe (Airbnb_listing.csv) to geopandas geodataframe
 # By using the coordinates ()
 
@@ -1711,8 +1651,6 @@ fig.savefig(os.path.join("Images","Word2Vec_OSM_geospace.jpg"), dpi=200)
 # 修改处，在显示之前关闭图形对象，这将阻止在Jupyter Notebook中打印出图形对象的信息
 #plt.close(fig)
 plt.show()
-
-
 ```
 
 In the *Figure2b*, each kind of colours represents the amenities feature of a property, and areas with similar colors indicate highly similar amenities features between properties. This allows us to determine whether the properties in a specific area or community exhibit homogeneity (highly similar colors) or heterogeneity (more varied colors) in listing features.
@@ -1722,8 +1660,6 @@ In the *Figure2b*, each kind of colours represents the amenities feature of a pr
 Even though Airbnb, as a responsible company, should take community and regulation into consideration, the essence of branding and recommendation system is still aiming for profit. Therefore comes the question: what indicator could represent the potential economic opportunities for listing's branding or promotion?
 
 ```{python}
-
-
 # 每个listing的收入与average收入相比
 average_income_forlisting = Airbnb_Listing['sum_income'].mean()
 
@@ -1785,8 +1721,7 @@ gdf_listing['log_sum_income'].value_counts()
 gdf_listing_dropinf = gdf_listing[gdf_listing['log_sum_income'] != -np.inf]
 ```
 
-```{python, fig.cap="Figure3a: Statistical distribution of Listings' profit-cost ratio", #Figure3a}
-
+```{python}
 import warnings
 warnings.filterwarnings('ignore') 
 
@@ -1825,8 +1760,7 @@ fig.savefig(os.path.join("Images","Profit-cost ratio distribution.png"), dpi=150
 plt.show()
 ```
 
-```{python, fig.cap="Figure3b: spatial distribution of Listings profit-cost ratio", #Figure3b}
-
+```{python}
 import warnings
 warnings.filterwarnings('ignore') 
 
@@ -1884,8 +1818,6 @@ fig.text(0.45, 0.2, 'Figure3:(a)Statistical Distribution of Annual Revenue for L
 fig.savefig(os.path.join("Images","Listings_profit_ratio.png"), dpi=300)
 
 plt.show()
-
-
 ```
 
 We use several numeric columns to calculate the total income for every listing. Though, technically this is an approximate number with normal distribution *Figure3a*, but it aligns with the data from the [Inside Airbnb](http://insideairbnb.com/london). Afterwards, we compare 'sum_income' with the average in that wards to indicate this listing's 'profit-cost ratio'. Then we standarlize the data and visualize it in the map *Figure3b*. The blue area means potential for more profit and more lease, which should be highlighted and coordinated with *Figure2b* when branding and promoting.
@@ -1940,5 +1872,4 @@ Airbnb transforms residential communities into tourist spaces and changes the so
 
 In a context where the lack of data is cited as a major limitation in research and decision-making outcomes [@Fonda2021], a registration service could provide some of the information necessary to bridge this gap. Utilizing statistical analysis and modelling, regulatory decisions can be evidence-based, considering the unique characteristics of each area. A collaborative effort between cities and Airbnb is suggested for the development of a centralized registration platform. The streamlined online monitoring and fine collection system could significantly enhance planning authorities' ability on balancing housing prices and availability, also improving community well-being.
 
->>>>>>> ea27b658c5d5aa70e9a05aa2f2ee2c363a15b5f6
 ## References
