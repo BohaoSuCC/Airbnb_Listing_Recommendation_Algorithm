@@ -475,11 +475,20 @@ ax.scatter(translated_embedding[:, 0], translated_embedding[:, 1], color=circ_co
 ax.axis('off')
 
 # add (a) in the left top corner
-fig.text(0.1, 0.9, '(a)', ha='left', va='top', fontsize=10, color='black', weight='bold') 
+fig.text(0.1, 0.9, '(a)', ha='left', va='top', fontsize=10, color='black', weight='bold')
+
 plt.savefig(os.path.join("Images","Word2Vec_2D_UMAP_Projection.png"), dpi=150)
 
-plt.show()
+#the image rendered by quarto would be multi-layers and really slow to reload and appear in PDF file, 
+#so I will just read the rendered picture locally or remotely
+#and definitely they are the same version with no difference
+
+#plt.show()
 ```
+
+<img src="Images/Word2Vec_2D_UMAP_Projection.png" 
+     onerror="this.onerror=null; this.src='your-backup-image-url.png'"
+     alt="Image description">
 
 ```{python}
 # save the color info in Airbnb_Listing
