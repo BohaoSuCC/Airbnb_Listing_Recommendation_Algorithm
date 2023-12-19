@@ -63,9 +63,6 @@ from gensim.models import TfidfModel
 from gensim.models import KeyedVectors
 from gensim.models.ldamodel import LdaModel
 
-from graphviz import Digraph
-from IPython.display import Image
-
 from joblib import dump
 from joblib import load
 
@@ -84,7 +81,6 @@ bib_url = "https://raw.githubusercontent.com/BohaoSuCC/Groupwork_DeskB/main/refe
 
 # create local path for saving
 local_bib_path = os.path.join(current_dir, "bio.bib")
-
 
 # download and save .bib
 response = requests.get(bib_url)
@@ -268,19 +264,19 @@ London_wards = gpd.read_file(os.path.join("Data","London-wards-2018_ESRI","Londo
 
 ## 1. Who collected the data?
 
-The dataset was collected by [Murray Cox](https://en.wikipedia.org/wiki/Inside_Airbnb) through automatic scraping from the Airbnb website, specifically for the Inside Airbnb project.
+The dataset was collected by [Murray Cox](https://en.wikipedia.org/wiki/Inside_Airbnb) through automatic website scraping, specifically for the Inside Airbnb project. Murray Cox utilized automated tools to extract publicly available data from the Airbnb website and then compile it into the dataset.
 
 ## 2. Why did they collect it?
 
-The [Inside Airbnb](http://insideairbnb.com/about) project aims to provide an independent perspective, helping the public, researchers, and policymakers understand how Airbnb affects urban housing affordability and community dynamics. It offers insights for policy discussions and social understanding of Airbnb's role in urban environments.
+Murray Cox collected the [Inside Airbnb](http://insideairbnb.com/about) dataset to analyze Airbnb's impact on housing markets and communities in cities globally. The project aims to provide an independent perspective, helping the public, researchers, and policymakers understand how Airbnb affects urban housing affordability and community dynamics. This data offers insights for policy discussions and social understanding of Airbnb's role in urban environments.
 
 ## 3. How was the data collected?
 
 [listings.csv](http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/data/listings.csv.gz) : Inside Airbnb collects its data primarily by scraping information from the Airbnb website. This process involves the following steps:
 
--   Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, imitating human browsing.
+-   Web Scraping: Inside Airbnb employs scripts to rapidly and extensively extract Airbnb listing data, mimicking human browsing.
 
--   Data Extraction: Information about each listing, such as location, price, availability and host details, is extracted and compiled.
+-   Data Extraction: Information about each listing, such as location, price, availability, number of bedrooms, reviews, and host details, is extracted and compiled.
 
 -   Data Aggregation: Aggregated data forms a database for analyzing Airbnb trends and insights across cities and regions.
 
@@ -288,25 +284,25 @@ The [Inside Airbnb](http://insideairbnb.com/about) project aims to provide an in
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
-The dataset is mostly obtained by scraping information from the Airbnb website, so its breadth and depth of information publicly available on the site may be limited. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in-real time, potentially leading to information gaps[@prentice_addressing_2023].
+For the listings.csv file, its data is mainly obtained by scraping information from the Airbnb website, so it might be limited by the range and depth of information publicly available on the site. For instance, detailed information about certain listings might not be fully disclosed, or website terms might restrict access to some data. Moreover, legal and ethical considerations in web scraping, such as data privacy and usage rights, may affect the integrity and accuracy of the data. The content of the website is constantly changing dynamically, but data scraping occurs at intervals, which means the data might not be updated in real time, potentially leading to information gaps [@prentice_addressing_2023].
 
 ## 5. What ethical considerations does the use of this data raise?
 
 ### Privacy issues
 
-Whether the dataset has the consent of the owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours[@van_den_bemt_teaching_2018]. Therefore, It is crucial to obtain the consent of the owners to ensure that their privacy is not infringed upon.
+Whether the dataset has the consent of the landlord owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours[@van_den_bemt_teaching_2018]. Therefore, obtaining the user's consent is crucial to whether the user's privacy is effectively safeguarded.
 
 ### Legal compliance
 
-Usage of the dataset should comply with laws and regulations such as GDPR, DPA and EDPS. The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; We must consider the ethical dimensions of data processing[@hasselbalch_making_2019]. Legal compliance and ethical considerations should be closely combined in the digital age.
+Usage of the dataset should comply with laws and regulations such as GDPR, DPA and EDPS.The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; we must consider the ethical dimensions of data processing.[@hasselbalch_making_2019] Therefore, legal compliance and ethical considerations should be combined in the digital age.
 
 ### Social responsibility
 
-It is critical to use the dataset correctly, as exposing certain data may result in inequity and bias. The Fairness and Openness Report(@DataJusticeReport) emphasizes how to use information responsibly and ethically, as well as the importance to resist the labelling of low-income communities, race, etc. For example, a significant gap in housing prices between different neighbourhoods may reflect economic differences, which may affect perceptions of the social status of those areas. To avoid unwanted consequences, it is necessary to examine how to disclose the tagged attributes of the data.
+It is important to use datasets appropriately, as publishing certain data may exacerbate behaviours such as inequality and bias. The Fairness and Openness Report(@DataJusticeReport) emphasizes how to use information responsibly and ethically, and it is quite crucial to resist the labelling of low-income communities, people of colour, etc. For example, significant differences in housing prices in different neighbourhoods may reflect economic disparities, which can affect perceptions of the socioeconomic status of those areas. Therefore, there is a need to consider how to disclose the labelled attributes of the data in question to avoid negative impacts.
 
 ### Data security
 
-Some sensitive information in the dataset, such as personal descriptions and geographic coordinates, must be stored securely to prevent unauthorized access and misuse. By adjusting the norms of network data use, it is possible to effectively guarantee data security and increase companies’ ethical behavior level when processing data(@СкибунО.Ж_2022). Thus, attention to data security can prevent unscrupulous individuals from collecting housing data for profit or monitoring purposes.
+Some sensitive information in the dataset, such as personal information descriptions and geographic coordinates, must be stored securely to prevent access and misuse by unauthorized persons. By adjusting the norms of the use of network data, it is possible to effectively guarantee data security and increase the level of ethical behaviour of companies when processing data(@СкибунО.Ж_2022). Thus, attention to data security can prevent the conduct of unscrupulous individuals who collect housing data for profit or surveillance purposes.
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
 
@@ -890,80 +886,6 @@ By using the SVM model for better predicting the 'profit-cost ratio' according t
 ### 6.5 Summary
 
 After the analysis, we have the key topics and words for better generalization(*Figure1*), the features spatial distribution for better classification(*Figure2*) and the 'profit-cost ratio' spatial distribution for better investment(*Figure3*), all of which would be utilized to inform the strategies for Airbnb, communities and governments(*Figure4*).
-
-```{python}
-from graphviz import Digraph
-from IPython.display import Image
-
-
-# 使用 neato 引擎初始化一个无向图
-g = Digraph(engine='neato')
-g.attr(fontsize='30')
-g.attr(arrowsize='0.1')
-
-# 添加节点，并尝试指定它们的位置
-g.node('5A', 'Opportunities for Place- or Listing-Branding\nidentifying key terms and features/amenities used to market listings by area and\nusing these to identify opportunities for investment or branding.',shape='box', style='rounded', pos='0,24!')
-g.node('5B', 'Branding Definition: \nExtract the characteristics and key elements (key terms and features/amenities) of different listings, \nand make customized recommendations based on different product features when promoting to renters — therefore, \nthe main research subjects are the "amenities" and "description" columns of text data from InsideAirbnb.',shape='box', style='rounded', pos='0,21!')
-g.node('6A', 'Branding_核心问题 : 在伦敦STL(Short-Term Lets)的regulation背景下，每个房源仅有90天的租赁\n时间。那么有着怎样文本特征的房源更容易产生成功的预定并为房东带来更多的收益？',shape='box', style='rounded', pos='0,15!')
-g.node('6B1', '如何衡量“更多的收益”？',shape='box', style='rounded', pos='6,18!')
-g.node('6C1', '不论对于Airbnb还是房东来\n说，收入肯定是越高越好。\n我们用“minimum_nights”列的\n数据乘以“number_of_review”\nxxxxxx，乘以price。最后得到\n一个预估的总和income。',shape='box', style='rounded', pos='9,18!')
-g.node('6C2', '这个数据准确吗？\n不准确，因为每个column表示\n的确切意思并不能完美契合公\n式。但是我们计算的均值结果\n与InsideAirbnb官网的结果较\n为相似。',shape='box', style='rounded', pos='12,18!')
-g.node('6C3', '将每个房源listing得到的\nsum_income通过IDW插值分析生\n成栅格图像，表达伦敦短租房源\n的income空间分布情况。 \n（第一个大图）',shape='box', style='rounded', pos='15,18!')
-g.node('6B2', '如何利用“description” \n“amenities“这两列的文本特征？',shape='box', style='rounded', pos='6,15!')
-g.node('6D1', '“description” \n这一列的主要内容是房东对该\n房源的描述。\n那么，在各种各样的描述中，\n不同的房东会从哪些方面（主\n题topic）来对自己的房源进行\n描述（branding）？',shape='box', style='rounded', pos='9,15!')
-g.node('6D2', '如何决定共有多少个topic？ \n测试不同数量主题的模型并记\n录其Coherence Values。 \n（第二个折线图）',shape='box', style='rounded', pos='12,15!')
-g.node('6D3', '如何依据之前的主题数量，总\n结所有topic中的关键词？ \n通过LDA(Latent Dirchlet\nAllocation)模型。 \n（第三个词云图）',shape='box', style='rounded', pos='15,15!')
-g.node('6D4', '不同区域的房源有着怎样的\ntopic和关键词共性特征？ \n（第四个大图）',shape='box', style='rounded', pos='20,15!')
-g.node('6E1', '“amenities” \n这一列的主要内容是：\nxxxxxx。\n那么，在所有可提供的\namenities中，哪些与income\n有着正相关？',shape='box', style='rounded', pos='9,12!')
-g.node('6E2', '如何让单词与income\n（numeric or category）进行\n相关性分析？\n将单词通过word2vec模型转\n换为向量',shape='box', style='rounded', pos='12,12!')
-g.node('6E3', '1.向量降维聚类可视化（第五个大\n图Dendrome） \n2.通过训练SVM分类器，可以根\n据“amenities”的内容预测income\n的高/低于均值。',shape='box', style='rounded', pos='15,12!')
-g.node('7A', '得到了哪些分析结论',shape='box', style='rounded', pos='0,9!')
-g.node('7B1', 'Fig1.Airbnb房源文本描述的特征主题与关键词',shape='box', style='rounded', pos='0,6!')
-g.node('7B2', 'Fig2.基于文本特征的同质性房源的空间分布',shape='box', style='rounded', pos='0,3!')
-g.node('7B3', 'Fig3.Airbnb房源的“租赁利润率”空间分布',shape='box', style='rounded', pos='0,0!')
-g.node('7C', '通过文本特征优化\nAirbnb的branding与\nrecommendation算法',shape='box', style='rounded', pos='3,6!')
-g.node('7D', '调整\nbranding\n策略',shape='box', style='rounded', pos='6,6!')
-g.node('7E1', '对于Airbnb和host来说：给与有竞争力\n的房源更多的正向反馈，提高其租赁利\n润率，促进商业运作良性循环。',shape='box', style='rounded', pos='9,9!')
-g.node('7E2', '高者愈高',shape='box', style='rounded', pos='9,6!')
-g.node('7E3', '高低平衡',shape='box', style='rounded', pos='9,3!')
-g.node('7E4', '对于政府与社区构建来说：提高90天内\n的入住率，尽可能多的减少长时间空置\n的房屋，维持sustainable的供需平衡。',shape='box', style='rounded', pos='9,0!')
-g.node('7F', '如何选择不同\n策略？',shape='box', style='rounded', pos='12,6!')
-g.node('7G', '基于Fig2与Fig3的空间分布\n特征，对于不同特征的区域\n采用不同的branding策略。',shape='box', style='rounded', pos='15,6!')
-g.node('7H1', 'STL政策建议可以做出那些变动？ \n（基于空间分布特征的，针对不同类型的社区\n区域进行customized的政策制定）',shape='box', style='rounded', pos='20,6!')
-g.node('7H2', '例如，对于那些高度同质化类型Fig2且租赁收益率Fig3真\n的很高的房源，可以通过适当放宽90天，或者将日期与特\n定旅游（短租需求）高峰相重合等方式。',shape='box', style='rounded', pos='20,3!')
-
-
-# 添加边
-g.edge('5A', '5B',  arrowhead='normal')
-g.edge('5B', '6A',  arrowhead='normal')
-g.edges([('6A','7A'), ('6A','6B1'), ('6A','6B2')])
-g.edge('6B1', '6C1',  arrowhead='normal')
-g.edge('6C1', '6C2', arrowhead='normal')
-g.edge('6C2', '6C3', arrowhead='normal')
-g.edges([('6B2','6D1'), ('6B2','6E1')])
-g.edge('6D1', '6D2', arrowhead='normal')
-g.edge('6D2', '6D3', arrowhead='normal')
-g.edge('6D3', '6D4', arrowhead='normal')
-g.edge('6E1', '6E2', arrowhead='normal')
-g.edge('6E2', '6E3', arrowhead='normal')
-g.edge('7B1', '7B2',color='transparent')
-g.edge('7B2', '7B3', color='transparent')
-g.edge('7B1', '7C', arrowhead='normal')
-g.edge('7C', '7D', arrowhead='normal')
-g.edges([('7D','7E2'), ('7D','7E3')])
-g.edge('7E2', '7E1', color='transparent')
-g.edge('7E3', '7E4',  color='transparent')
-g.edges([('7E2','7F'), ('7E3','7F')])
-g.edge('7F', '7G',  arrowhead='normal')
-g.edge('7G', '7H1', color='transparent')
-g.edge('7H1', '7H2',  color='transparent')
-
-# 渲染图像，返回图像的路径
-image_path = g.render('graph-output', format='png', cleanup=True)
-
-# 在 Jupyter Notebook 中显示图像
-Image(image_path)
-```
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
