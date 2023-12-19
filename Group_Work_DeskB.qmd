@@ -655,6 +655,12 @@ for idx, row in London_boroughs.iterrows():
     centroid = row.geometry.centroid
     text = ax.text(centroid.x, centroid.y, row['name'], fontsize=7, color='black',ha='center', va='center', alpha=0.5,
                    path_effects=[PathEffects.withStroke(linewidth=0.5, foreground='white')])
+# add the label for wards
+for idx, row in London_wards.iterrows():
+    centroid = row.geometry.centroid
+    text = ax.text(centroid.x, centroid.y, row['NAME'], fontsize=2, color='black',ha='center', va='center', alpha=0.5,
+                   path_effects=[PathEffects.withStroke(linewidth=0.2, foreground='white')])
+
 # classify the data with breaks
 gdf_listing_dropinf['income_category'] = np.digitize(gdf_listing_dropinf['log_sum_income_normalized_scaled'], breaks)
 #plot the boundary of wards and boroughs
@@ -670,8 +676,8 @@ cbar = plt.colorbar(scatter, ax=ax, label='Profit-cost Ratio', shrink=0.5, pad=0
 
 cbar.ax.set_aspect(20)  
 # hide the axes
-ax.xaxis.set_visible(True)
-ax.yaxis.set_visible(True)
+ax.xaxis.set_visible(False)
+ax.yaxis.set_visible(False)
 ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik, alpha=0.7)         #OSM map
 plt.subplots_adjust(bottom=0.1)  # save extra space for label
 # add (b) in the left top corner   
