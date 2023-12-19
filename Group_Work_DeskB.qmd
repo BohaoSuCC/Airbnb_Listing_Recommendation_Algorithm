@@ -138,7 +138,7 @@ jupyter:
 
 ## Declaration of Authorship {.unnumbered .unlisted}
 
-We, \[DeskB\], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
+We, \[**DeskB**\], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
 
 Date: 19th December 2023
 
@@ -157,7 +157,7 @@ Are there any areas on which you would appreciate more detailed feedback if we'r
 
 Frankly, we've encountered lots of confusion towards the topic of this assessment. Especially in the topic selection, among all the predictive topis in the website, we can not propose the very specific quesiton and structure at the beginning. How to build the bridge between NLP recommending system for branding and inform valuable proposal for STL regulation could be the key issue for us.
 
-So, if convinient, we would like to know did we structure the whole report with a solid logical chain. Also, did we successfully propose some constructive and feasible suggestions? And what should be NLP analysis used for proposal looked like in a real comapny project?
+So, if convinient, we would like to know did we structure the whole report with a solid logical chain. Also, did we successfully propose some constructive and feasible suggestions? And what should be NLP analysis used for proposal looked like in a real company project?
 
 ```{=html}
 <style type="text/css">
@@ -260,21 +260,21 @@ The dataset is mostly obtained by scraping information from the Airbnb website, 
 
 ## 5. What ethical considerations does the use of this data raise?
 
-### Privacy issues
+### 5.1 Privacy issues
 
 Whether the dataset has the consent of the owner to disclose its information, e.g., house location, name. Geocoded data is privacy-sensitive and highly likely to expose personal privacy when used to study demographic patterns and behaviours[@van_den_bemt_teaching_2018]. Therefore, It is crucial to obtain the consent of the owners to ensure that their privacy is not infringed upon.
 
-### Legal compliance
+### 5.2 Legal compliance
 
 Usage of the dataset should comply with laws and regulations such as GDPR, DPA and EDPS. The EDPS 2015 report states that it is not enough to comply with the law in today's digital environment; We must consider the ethical dimensions of data processing[@hasselbalch_making_2019]. Legal compliance and ethical considerations should be closely combined in the digital age.
 
-### Social responsibility
+### 5.3 Social responsibility
 
-It is critical to use the dataset correctly, as exposing certain data may result in inequity and bias. The Fairness and Openness Report[@DataJusticeReport] emphasizes how to use information responsibly and ethically, as well as the importance to resist the labelling of low-income communities, race, etc. For example, a significant gap in housing prices between different neighbourhoods may reflect economic differences, which may affect perceptions of the social status of those areas. To avoid unwanted consequences, it is necessary to examine how to disclose the tagged attributes of the data.
+It is critical to use the dataset correctly, as exposing certain data may result in inequity and bias. The Fairness and Openness Report[@walker_consumer_2019] emphasizes how to use information responsibly and ethically, as well as the importance to resist the labelling of low-income communities, race, etc. For example, a significant gap in housing prices between different neighbourhoods may reflect economic differences, which may affect perceptions of the social status of those areas. To avoid unwanted consequences, it is necessary to examine how to disclose the tagged attributes of the data.
 
-### Data security
+### 5.4 Data security
 
-Some sensitive information in the dataset, such as personal descriptions and geographic coordinates, must be stored securely to prevent unauthorized access and misuse. By adjusting the norms of network data use, it is possible to effectively guarantee data security and increase companies' ethical behavior level when processing data[@СкибунО.Ж_2022]. Thus, attention to data security can prevent unscrupulous individuals from collecting housing data for profit or monitoring purposes.
+Some sensitive information in the dataset, such as personal descriptions and geographic coordinates, must be stored securely to prevent unauthorized access and misuse. By adjusting the norms of network data use, it is possible to effectively guarantee data security and increase companies' ethical behavior level when processing data[@culnan_how_2009]. Thus, attention to data security can prevent unscrupulous individuals from collecting housing data for profit or monitoring purposes.
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London?
 
@@ -288,7 +288,7 @@ Datasets consists of two textual fields: 'Description' and 'Amenities' from the 
 
 After some [cleaning and preprocessing](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Processing_Airbnb_listing_normalising.ipynb), there are two set of questions corresponding to the two columns respectively.
 
-#### Which topics would host like to focus on when promoting their properties?
+#### 6.2.1 Which topics would host like to focus on when promoting their properties?
 
 We could use the LDA model to generalize and extract topics to get the most frequent keywords in those topics. After calculating iteratively the model, we determine the best topics' number for summarizing 'descriptions' column should be 16. (*Figure1a*)
 
@@ -367,9 +367,9 @@ plt.show()
 
 The [LDA process](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/LDA_Modelling_by_TFIDFmatrix.ipynb) will cost about 30 minutes, so wesave and re-read the output remotely from Github. Then, results shows that among 16 topics *Figure1b*, there are some topics mainly describe the location like *topic8* and *topic6*. Also, some contains information about the facilities and some adjectives towards surrounding environments like *topic13* and *topic14*. In short, all of those key words could illustrate the general features about Airbnb listings which is essential to the recommendation algorithms in platform's branding[@mody_airbnb_2018].
 
-#### Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
+#### 6.2.2 Do the listings in the same neighbourhood, or with the same spatial location, share the similar amenities?
 
-Amenities are highly categorizable, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify various amenities' similarities just like group synonyms out from dictionaries. We use the [Word2Vec model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) to classify voluminous t words and phrases, and then apply UMAP[\@[@stalder_self-supervised_2023]\] for better visualization in *Figure2a*.
+Amenities are highly categorizable, like '500Mb WiFi' and 'highspeed Internet access' basically meaning the same thing. Thus, we need to identify various amenities' similarities just like group synonyms out from dictionaries. We use the [Word2Vec model](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Processing_Modeling/Word2Vec_Modelling_by_SVM.ipynb) to classify voluminous t words and phrases, and then apply UMAP[@stalder_self-supervised_2023] for better visualization in *Figure2a*.
 
 ```{python}
 # import Word2Vec Model remotely
@@ -691,47 +691,47 @@ By using the SVM model for better predicting the 'profit-cost ratio' according t
 
 After the analysis, we have the key topics and words for better generalization(*Figure1*), the features spatial distribution for better classification(*Figure2*) and the 'profit-cost ratio' spatial distribution for better investment(*Figure3*), all of which would be utilized to inform the strategies for Airbnb, landlords, communities and governments(*Figure4*).
 
-![Framework_Diagram](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Framework_Diagram.png?raw=true)
+![](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Framework_Diagram.png?raw=true)
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?
 
-### Short Term Lets(STL)
+### 7.1 Short Term Lets(STL)
 
 In an effort to preserve the city's current housing supply, the government legalized short-term rentals in London for a maximum of 90 days per calendar year with the introduction of the [2011 Localism Act](https://www.legislation.gov.uk/ukpga/2011/20/contents/enacted) and the [2015 Deregulation Act](https://www.legislation.gov.uk/ukpga/2015/20/contents/enacted). Nevertheless, a number of studies[@jefferson-jones_can_2015] point out that this regulation isn't always adhered to in reality. Most of the [Airbnb listings](https://www.london.gov.uk/programmes-strategies/housing-and-land/housing-and-land-publications/housing-research-note-short-term-and-holiday-letting-london) (77%) did respect the 90-day limit. Out from the listings surpassing the 90-day limit, the [average estimated occupancy](https://commonslibrary.parliament.uk/research-briefings/cbp-8395/) was 145 nights a year. Of these lettings, 6,140 (or 55%) were entire homes and 5,000 (or 45%) were private rooms. Hence, much of the existing research [@shabrina_airbnb_2022] has focused on the role of Airbnb as the most prominent and prevalent online platform for short-term lets in the UK and internationally.
 
-### Airbnb Branding
+### 7.2 Airbnb Branding
 
 To enhance the Airbnb platform strategically, leveraging text features for branding and recommendation algorithms is crucial. Based on the comparison between *Figure2b* and *Figure3b* and some perspectives from Question5, The following strategies can be implemented:
 
--   Positive feedback cycle:
+#### 7.2.1 Positive feedback cycle:
 
 In regions with lower occupancy rates, recommendation algorithms adjustment ensures balanced occupancy rate over different areas. This proactive approach mitigates property vacancy concerns and boosts hosts' profitability, thereby fostering a dynamic equilibrium within London's housing market. Moreover, for listings with high rental profitability, providing additional positive feedback serves to incentivize competitive listings, which means positive feedback cycles, promoting business operations beneficial for both Airbnb and landlords.
 
--   Negative Homogeneous listing:
+#### 7.2.2 Negative Homogeneous listing:
 
 Considering the potential contribution of housing homogeneity to market distortions [@zhou_asymmetric_2015; @Nieuwland_2018], in areas like London Bridge & West Bermondsey, where low income rates and property feature similarity coincide, the platform and housing department should explore the incorporation of text-based features. By leveraging these features, authorities can identify and filter out homogeneous listings in concentrated areas. This strategic approach could assist platform in rationally branding homogenous properties in time series and making arrangement according to various peak demand period, as well as promoting a more balanced housing landscape.
 
--   Airbnb's trade-off:
+#### 7.2.3 Airbnb's trade-off:
 
 In pursuing the core interests of its business, Airbnb undoubtedly seeks to foster a positive cycle by promoting competitive listings to renters [@Hoffman2020]. However, this could inadvertently contribute to homogeneity, counteracting the intended positive cycle [@H_bscher_2022]. Alternatively, Airbnb could actively contribute to the heterogeneity of specific regions by engaging in targeted interventions. One effective approach could involve providing personalized guidance to hosts in competitive areas, encouraging them to modify their amenities/descriptions to enhance their appeal to renters. As discussed in the Question 5, once Airbnb got valuable textual information, social responsibility they should take to establish a framework for communication and collaboration with hosts and provide insights towards market trends. Overall, the trade-off between promoting competitiveness and maintaining area diversity should be approached with flexibility by implementing a dynamic system that takes into account local preferences, seasonal variations, and emerging trends.
 
-### Government Regulatory Options
+### 7.3 Government Regulatory Options
 
 Furukawa & Onuki's tri-categorical definition [@furukawa_design_2019] indicates that effective policies should be less restrictive for Primary Hosted & Unhosted Short-term lets within appropriate timeframes, while regulating Nonprimary short-term lets more firmly to provide the right incentives to landlords to rent long-term.
 
--   Tailored Policies Based on Spatial Distribution Features
+#### 7.3.1 Tailored Policies Based on Spatial Distribution Features
 
 Tailoring policies for diverse community types is essential. In high-density areas, consider limiting the addition of new listings to prevent overcrowding. In contrast, for areas with lower occupancy rates, policies can encourage landlords to adopt more proactive occupancy promotion strategies.
 
--   Dynamic Policy Adjustments for Supply-Demand Balance
+#### 7.3.2 Dynamic Policy Adjustments for Supply-Demand Balance
 
 Utilize spatial distribution features to monitor market dynamics and make dynamic policy adjustments based on actual demand. In high-demand areas, policies can be more flexible, encouraging short-term rentals, while in oversupplied regions, stricter policies can reduce vacancy rates. Connect the identified branding opportunities with STL regulations to strike a balance between encouraging tourism and preventing negative impacts on housing markets. For areas with distinctive amenities or features, consider regulations that preserve the uniqueness without contributing to housing shortages.
 
--   Encouraging Landlord Engagement in Community Development
+#### 7.3.3 Encouraging Landlord Engagement in Community Development
 
 Airbnb transforms residential communities into tourist spaces and changes the socio-cultural landscape of urban neighborhoods. It specifically propagates the experience of 'living like a local'[@Ferreri_2018], but this consumption of everyday local residential life has implications for the well-being of long-term tenants, including the disruption and erasure of long-term communities and housing insecurity[@Rozena_2021]. Critical urbanists [@Cocola_Gant_2019; @Freytag_2018] have accordingly linked Airbnb to touristification/gentrification - 'Airbnbification'[@T_rnberg_2022]. Governments can consider incentivizing landlords to participate in community development, aiming to increase the 90-day occupancy rate. This not only reduces long-term property vacancies but also fosters community vitality and helps maintain supply-demand equilibrium.
 
--   Create a Registration Service to Bridge Gaps in Data
+#### 7.3.4 Create a Registration Service to Bridge Gaps in Data
 
 In a context where the lack of data is cited as a major limitation in research and decision-making outcomes [@Fonda2021], a registration service could provide some of the information necessary to bridge this gap. Utilizing statistical analysis and modelling, regulatory decisions can be evidence-based, considering the unique characteristics of each area. A collaborative effort between cities and Airbnb is suggested for the development of a centralized registration platform. The streamlined online monitoring and fine collection system could significantly enhance planning authorities' ability on balancing housing prices and availability, also improving community well-being.
 
