@@ -746,7 +746,7 @@ After the analysis, we have the key topics and words for better generalization(*
 ```{python}
 #It is really hard, complicated and less-effective to use graghviz package in python to draw the framework diagram
 # So I draw it in XML, and re-load the image remotely from my Girhub
-# The Girhub url for this XML is: 
+# The Girhub url for this XML is: https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/mid_processing_files/outline.drawio.xml
 ```
 
 ![](https://github.com/BohaoSuCC/Groupwork_DeskB/blob/main/Images/Framework_Diagram.png?raw=true)
